@@ -1,12 +1,42 @@
-body{
-	font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
-	line-height: 1.75;
-	font-size: 16px;
-	width: 100vh;
-    height: 100vh; 
+body {
+    font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+    width: 100vh;
+    height: 100vh;
     /*「vh」はブラウザの表示域を基準にする単位。
     100vhがブラウザの高さであり、1vhはその100分の1*/
-	margin: auto;
+    margin: auto;
     background-color: aquamarine;
-    background: linear-gradient(45deg, #ff8e8e ,#ff99cc,#d3a8ff,#99ccff);
+    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
+}
+
+.yes a {
+    border-radius: 325px; /*円の半径の長さ*/
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px auto;
+    max-width: 220px;
+    padding: 10px 25px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    background: gray;
+}
+
+.no a {
+    border-radius: 325px; /*円の半径の長さ*/
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px auto;
+    max-width: 220px;
+    padding: 10px 25px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    background: gray;
 }
