@@ -1,0 +1,37 @@
+body {
+    font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+    width: 100vh;
+    height: 100vh;
+    /*「vh」はブラウザの表示域を基準にする単位。
+    100vhがブラウザの高さであり、1vhはその100分の1*/
+    margin: auto;
+}
+
+h1{
+    color:black;
+    font-weight: 900;
+}
+
+td{
+    font-size: 36px;
+    width: 200px;
+    height: 200px;
+    border: 1px #000000  solid;
+}
+
+table{
+    text-align: center;
+    margin: auto;
+    border: 1px #000000  solid;
+
+}
+
+
+
+.chara{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
