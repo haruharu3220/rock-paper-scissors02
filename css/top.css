@@ -11,6 +11,10 @@ body {
     background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
 }
 
+h1{
+    color: white;
+    font-weight: 900;
+}
 .yes a {
     border-radius: 325px; /*円の半径の長さ*/
     position: relative;
