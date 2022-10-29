@@ -1,21 +1,23 @@
+const min = 0;
+const max = 2;
+
+const rand_a1 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_b1 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_c1 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_d1 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_a2 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_b2 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_c2 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_d2 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_a3 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_b3 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_c3 = Math.floor(Math.random() * (max - min + 1) + min);
+const rand_d3 = Math.floor(Math.random() * (max - min + 1) + min);
+
+
 $(function () {
-    $("p").on("click", function () {
+    $("#gu").on("click", function () {
 
-        const min = 0;
-        const max = 2;
-
-        const rand_a1 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_b1 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_c1 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_d1 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_a2 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_b2 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_c2 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_d2 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_a3 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_b3 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_c3 = Math.floor(Math.random() * (max - min + 1) + min);
-        const rand_d3 = Math.floor(Math.random() * (max - min + 1) + min);
         //$("table").css("font-size", "36px");
 
         console.log("a1=" + rand_a1);
@@ -125,8 +127,6 @@ $(function () {
         } else if (rand_d3 === 2) {
             $(".table_d3").text("パー");
         }
-
-
         //let i=1;
         // $("td").each(function(){
         //     $("td").text("これは"+ i);
@@ -141,10 +141,20 @@ $(function () {
 
 
 
+$(function () {
+    $(".table_a1").on("click", function () {
+
+        if (rand_a1 === 0 /*グー*/) {
+            alert("アイコ");
+        } else if (rand_a1=== 1 /*チョキ*/) {
+            alert("勝ち！！！");
+        } else if (rand_a1 === 2/*パー*/) {
+            alert("まけ😒😒😒");
+        }
 
 
-
-
+    });
+});
 
 
 
