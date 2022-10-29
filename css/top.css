@@ -2,8 +2,11 @@ body{
 	font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
 	line-height: 1.75;
 	font-size: 16px;
-	width: auto;
+	width: 100vh;
+    height: 100vh; 
+    /*「vh」はブラウザの表示域を基準にする単位。
+    100vhがブラウザの高さであり、1vhはその100分の1*/
 	margin: auto;
     background-color: aquamarine;
-
+    background: linear-gradient(45deg, #ff8e8e ,#ff99cc,#d3a8ff,#99ccff);
 }
