@@ -28,10 +28,20 @@ $(function () {
 
         if (rand_a1 === 0) {
             $(".table_a1").text("グー");
+            $(".table_a1").append("<img src=\"img/gu.png\">");
+            $(".table_a1 img").css("width", "100px")
+                .css("height", "100px")
+
         } else if (rand_a1 === 1) {
             $(".table_a1").text("チョキ");
+            $(".table_a1").append("<img src=\"img/gu.png\">");
+            $(".table_a1 img").css("width", "100px")
+                .css("height", "100px")
         } else if (rand_a1 === 2) {
             $(".table_a1").text("パー");
+            $(".table_a1").append("<img src=\"img/gu.png\">");
+            $(".table_a1 img").css("width", "100px")
+                .css("height", "100px")
         }
 
 
@@ -146,7 +156,7 @@ $(function () {
 
         if (rand_a1 === 0 /*グー*/) {
             alert("アイコ");
-        } else if (rand_a1=== 1 /*チョキ*/) {
+        } else if (rand_a1 === 1 /*チョキ*/) {
             alert("勝ち！！！");
         } else if (rand_a1 === 2/*パー*/) {
             alert("まけ😒😒😒");
