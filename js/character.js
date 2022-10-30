@@ -1,7 +1,7 @@
 //https://www.sejuku.net/blog/103061
 
 
-$('#enemy_green').animate({'left': '100%'}).animate({'left': '0'}); //左から見て
+$('#enemy_green').animate({'left': '100%'},2000,"linear").animate({'left': '0'},2000,"linear"); //左から見て
 $('#enemy_green').animate({'top': '100%'}).animate({'top': '0'}); //上から見て
 
 
