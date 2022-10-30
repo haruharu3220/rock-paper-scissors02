@@ -35,3 +35,12 @@ table{
     height: 50px;
     background-color: red;
 }
+
+.enemy_green img{
+    position: absolute;
+}
+
+.chara{
+    position: absolute;
+}
+  

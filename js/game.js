@@ -1,3 +1,5 @@
+
+
 const min = 0;
 const max = 2;
 
@@ -137,12 +139,6 @@ $(function () {
         } else if (rand_d3 === 2) {
             $(".table_d3").text("パー");
         }
-        //let i=1;
-        // $("td").each(function(){
-        //     $("td").text("これは"+ i);
-        //     console.log(i);
-        //     i++;
-        // });
 
     });
 });
