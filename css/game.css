@@ -36,11 +36,20 @@ table{
     background-color: red;
 }
 
-.enemy_green img{
+.enemy_green2{
+    position:relative;
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+    margin-bottom: 10px;
+}
+
+#enemy_green{
     position: absolute;
 }
 
+
 .chara{
-    position: absolute;
+     position: absolute; 
 }
   
