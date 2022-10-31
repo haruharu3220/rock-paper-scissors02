@@ -84,9 +84,9 @@ key.push = '';
 //メインループ
 function main() {
 	//塗（ぬ）りつぶす色を指定（してい）
-	//ctx.fillStyle = "bluck";
+	ctx.fillStyle = "bluck";
 	//塗（ぬ）りつぶす
-	//ctx.fillRect(0, 0, 640, 640);
+	ctx.fillRect(0, 0, 640, 640);
 
 	//画像を表示
 	ctx.drawImage( rico.img, rico.x, rico.y );
