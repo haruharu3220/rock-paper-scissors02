@@ -1,0 +1,23 @@
+#enemy_red{
+    position: absolute; /* enemy_redの位置いちを絶対位置にします。 */
+    top: 0px;
+    left: 0px;
+
+}
+
+
+
+#enemy_blue{
+    position: absolute; /* enemy_redの位置いちを絶対位置にします。 */
+    top: 0px;
+    left: 0px;
+
+}
+
+
+#enemy_green{
+    position: absolute; /* enemy_redの位置いちを絶対位置にします。 */
+    top: 0px;
+    left: 0px;
+
+}
