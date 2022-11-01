@@ -20,91 +20,80 @@ var selecter = 0;
 
 addEventListener('keypress', select);
 
+
+
 function select(e) {
-  	if (e.keyCode === 13) {
-		
-        selecter++;  
-        console.log(selecter);
-        if(selecter===1){
-            $("#start a").css("background","red");
-            $("#select a").css("background","gray");
-            $("#setting a").css("background","gray");
-        }
+    if (e.keyCode === 13) {
 
-        if(selecter===2){
-            $("#start a").css("background","gray");
-            $("#select a").css("background","red");
-            $("#setting a").css("background","gray");
-        }
+        //selecter++;  
+        //console.log(selecter);
+        // if(selecter===1){
+        //     $("#start a").css("background","red");
+        //     $("#select a").css("background","gray");
+        //     $("#setting a").css("background","gray");
+        // }
 
-        if(selecter===3){
-            $("#start a").css("background","gray");
-            $("#select a").css("background","gray");
-            $("#setting a").css("background","red");
-        }
+        // if(selecter===2){
+        //     $("#start a").css("background","gray");
+        //     $("#select a").css("background","red");
+        //     $("#setting a").css("background","gray");
+        // }
 
-        
-	}  
-		return false;
+        // if(selecter===3){
+        //     $("#start a").css("background","gray");
+        //     $("#select a").css("background","gray");
+        //     $("#setting a").css("background","red");
+        // }
+
+
+    }
+    return false;
 }
 
-
+addEventListener('keypress', plus);
 function plus(e) {
-    if (e.keyCode === 13) {
-      
-      selecter++;  
-      console.log(selecter);
-      if(selecter===1){
-          $("#start a").css("background","red");
-          $("#select a").css("background","gray");
-          $("#setting a").css("background","gray");
-      }
+    if (e.keyCode === 97) { //aボタン
+        if (selecter < 3) {
+            selecter++;
+        }
 
-      if(selecter===2){
-          $("#start a").css("background","gray");
-          $("#select a").css("background","red");
-          $("#setting a").css("background","gray");
-      }
-
-      if(selecter===3){
-          $("#start a").css("background","gray");
-          $("#select a").css("background","gray");
-          $("#setting a").css("background","red");
-      }
-
-      
-  }  
-      return false;
+        console.log(selecter);
+    }
+    return false;
 }
 
+addEventListener('keypress', minus);
 function minus(e) {
-    if (e.keyCode === 13) {
-      
-      selecter++;  
-      console.log(selecter);
-      if(selecter===1){
-          $("#start a").css("background","red");
-          $("#select a").css("background","gray");
-          $("#setting a").css("background","gray");
-      }
+    if (e.keyCode === 115) { //Sボタン
+        if (selecter > 1) {
+            selecter--;
+        }
+        console.log(selecter);
 
-      if(selecter===2){
-          $("#start a").css("background","gray");
-          $("#select a").css("background","red");
-          $("#setting a").css("background","gray");
-      }
-
-      if(selecter===3){
-          $("#start a").css("background","gray");
-          $("#select a").css("background","gray");
-          $("#setting a").css("background","red");
-      }
-
-      
-  }  
-      return false;
+    }
+    return false;
 }
+function main() {
+    if (selecter === 1) {
+        $("#start a").css("background", "red");
+        $("#select a").css("background", "gray");
+        $("#setting a").css("background", "gray");
+    }
 
+    if (selecter === 2) {
+        $("#start a").css("background", "gray");
+        $("#select a").css("background", "red");
+        $("#setting a").css("background", "gray");
+    }
+
+    if (selecter === 3) {
+        $("#start a").css("background", "gray");
+        $("#select a").css("background", "gray");
+        $("#setting a").css("background", "red");
+    }
+    var canvas = document.getElementById( 'canvas' );
+    requestAnimationFrame(main);
+}
 
 
 
