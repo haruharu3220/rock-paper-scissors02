@@ -5,34 +5,23 @@ addEventListener('keypress', select);
 
 function select(e) {
     if (e.keyCode === 13) {
-
-        //selecter++;  
-        //console.log(selecter);
-        // if(selecter===1){
-        //     $("#start a").css("background","red");
-        //     $("#select a").css("background","gray");
-        //     $("#setting a").css("background","gray");
-        // }
-
-        // if(selecter===2){
-        //     $("#start a").css("background","gray");
-        //     $("#select a").css("background","red");
-        //     $("#setting a").css("background","gray");
-        // }
-
-        // if(selecter===3){
-        //     $("#start a").css("background","gray");
-        //     $("#select a").css("background","gray");
-        //     $("#setting a").css("background","red");
-        // }
+        if(selecter===1){
+            location.href="game.html";
+        }
+        if(selecter===2){
+            location.href="game.html";
+        }
+        if(selecter===3){
+            location.href="settings.html";
+        }
 
 
     }
     return false;
 }
 
-addEventListener('keypress', plus);
-addEventListener('keypress', minus);
+addEventListener('keydown', plus);
+addEventListener('keydown', minus);
 function numberSelect(number) {
     if (number === 1) {
         console.log("1だよ");
@@ -58,7 +47,7 @@ function numberSelect(number) {
 
 
 function plus(e) {
-    if (e.keyCode === 97) { //aボタン
+    if (e.keyCode === 40) { //下ボタン
         if (selecter < 3) {
             selecter++;
         }
@@ -72,7 +61,7 @@ function plus(e) {
 
 
 function minus(e) {
-    if (e.keyCode === 115) { //Sボタン
+    if (e.keyCode === 38) { //上ボタン
         if (selecter > 1) {
             selecter--;
         }

@@ -18,51 +18,21 @@
 
 <body>
     <main>
-        <h1>じゃんけんゲームスタート</h1>
-
-        <p>じゃんけん・・・</p>
-        <p id="gu">グー</p>
-        <p id="choki">チョキ</p>
-        <p id="pa">パー</p>
+        <h1>Stage1</h1>
 
 
-        <table border="1">
-            <tr>
-                <td class="table_a1">A1</td>
-                <td class="table_b1">B1</td>
-                <td class="table_c1">C1</td>
-                <td class="table_d1">D1</td>
-            </tr>
-            <tr>
-
-                <td class="table_a2">A2</td>
-                <td class="table_b2">B2</td>
-                <td class="table_c2">C2</td>
-                <td class="table_d2">D2</td>
-            </tr>
-            <tr>
-                <td class="table_a3">A3</td>
-                <td class="table_b3">B3</td>
-                <td class="table_c3">C3</td>
-                <td class="table_d3">D3</td>
-
-            </tr>
-        </table>
-
-
-        <div class="chara"></div>
-
-        <img src="img/enemy_red.png">
-        <img src="img/enemy_blue.png">
-        <div class="enemy_green2"><img src="img/enemy_green.png" id="enemy_green"></div>
-
-
+        <canvas id="canvas_map"></canvas>
+        <div id="container">
+            <!-- <img src="img/enemy_red.png"> -->
+        </div>
 
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/character.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    
     
 
 </body>
