@@ -277,7 +277,7 @@ function returnTop(e) {
 }
 
 
-//当たり判定を関数化
+//壁当たり判定を関数化
 function collision(Object) {
 	if (Object.move === 0) {
 		if (key.left === true) {
@@ -326,6 +326,13 @@ function collision(Object) {
 		}
 	}
 }
+
+function collision_to_enemy(...Object) {
+
+	console.log("一人目のX座標＝"+ Object[0].x);
+	console.log("一人目のX座標＝"+ Object[1].x);	
+}
+collision_to_enemy(pacman ,enemy_gu) ;
 
 
 //rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
