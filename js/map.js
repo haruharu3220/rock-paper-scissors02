@@ -224,9 +224,6 @@ enemy_red.move = 0;
 
 
 //マップチップのImageオブジェクトを作る
-var mapchip = new Image();
-mapchip.src = 'img/map.png';
-
 var aisle = new Image();
 aisle.src = 'img/aisle7.png';
 
@@ -279,10 +276,10 @@ var map = [
 ]
 //メインループ
 function main() {
-	//塗（ぬ）りつぶす色を指定（してい）
-	ctx_map.fillStyle = "rgb( 0, 0, 0 )";
-	//塗（ぬ）りつぶす
-	ctx_map.fillRect(0, 0, 640, 640);
+	// //塗（ぬ）りつぶす色を指定（してい）
+	// ctx_map.fillStyle = "rgb( 0, 0, 0 )";
+	// //塗（ぬ）りつぶす
+	// ctx_map.fillRect(0, 0, 640, 640);
 
 	for (var y=0; y<map.length; y++) {
 		for (var x=0; x<map[y].length; x++) {
@@ -298,7 +295,7 @@ function main() {
 	addEventListener("keydown", keydownfunc02, false);
 	addEventListener("keyup", keyupfunc02, false);
 
-	//方向キーが押されている場合（ばあい）は、りこちゃんが移動する
+	//方向キーが押されている場合は、りこちゃんが移動する
 	//あたり判定
 	//https://original-game.com/introduction-to-javascript-character-move-on-map/
 	if ( enemy_red.move === 0 ) {
@@ -310,6 +307,7 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     enemy_red.move = 32;
                     key.push = 'left';
+					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 		
@@ -321,7 +319,7 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     enemy_red.move = 32;
                     key.push = 'up';
-                    console.log("下に移動するよ");
+					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 
@@ -334,6 +332,7 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     enemy_red.move = 32;
                     key.push = 'right';
+					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 		if ( key.down === true ) {
@@ -344,7 +343,7 @@ function main() {
 				if ( map[y][x] != 1 ) {
 					enemy_red.move = 32;
 					key.push = 'down';
-                    console.log("４つずつ");
+					ctx_map.drawImage( aisle,  32*x, 32*y );
 				}
 			}
 		}
