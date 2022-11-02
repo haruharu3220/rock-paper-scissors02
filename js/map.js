@@ -109,7 +109,7 @@ function main() {
 	// //塗（ぬ）りつぶす
 	// ctx_map.fillRect(0, 0, 640, 640);
 	let remainItemCount = 0;
-	
+
 	for (var y = 0; y < map.length; y++) {
 		for (var x = 0; x < map[y].length; x++) {
 
@@ -133,7 +133,7 @@ function main() {
 	//残アイテムが0判定（クリア判定）
 	//main 関数が無限ループしているからその中でクリア判定を実施し
 	//クリアなら１回だけ通知を上げるところが難しかった
-	if (remainItemCount === 0 && clearFlig==0) {
+	if (remainItemCount === 0 && clearFlig == 0) {
 		clearFlig++
 		//console.log("A");
 		if (clearFlig === 1) {
@@ -144,6 +144,12 @@ function main() {
 	//パックマンを表示
 	ctx_map.drawImage(pacman.img, pacman.x, pacman.y, 32, 32); //32pxにリサイズ
 
+
+	ctx_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //32pxにリサイズ
+	ctx_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //32pxにリサイズ
+	ctx_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //32pxにリサイズ
+
+
 	//パックマンが一度通った道のアイテムは消す
 	if (pacman.move === 0) {
 		map[pacman.y / 32][pacman.x / 32] = 0;
@@ -151,66 +157,81 @@ function main() {
 
 	// addEventListener("keydown", keydownfunc02, false);
 	// addEventListener("keyup", keyupfunc02, false);
-	
+
 
 	//方向キーが押されている場合は、りこちゃんが移動する
 	//あたり判定
 	//https://original-game.com/introduction-to-javascript-character-move-on-map/
-	if (pacman.move === 0) {
-		if (key.left === true) {
+	// if (pacman.move === 0) {
+	// 	if (key.left === true) {
 
-			var x = pacman.x / 32;
-			var y = pacman.y / 32;
-			x--;
-			if (map[y][x] != 1) {
-				pacman.move = 32;
-				key.push = 'left';
-			}
-		}
+	// 		var x = pacman.x / 32;
+	// 		var y = pacman.y / 32;
+	// 		x--;
+	// 		if (map[y][x] != 1) {
+	// 			pacman.move = 32;
+	// 			key.push = 'left';
+	// 		}
+	// 	}
 
-		if (key.up === true) {
-			var x = pacman.x / 32;
-			var y = pacman.y / 32;
-			if (y > 0) {
-				y--;
-				if (map[y][x] != 1) {
-					pacman.move = 32;
-					key.push = 'up';
-				}
-			}
+	// 	if (key.up === true) {
+	// 		var x = pacman.x / 32;
+	// 		var y = pacman.y / 32;
+	// 		if (y > 0) {
+	// 			y--;
+	// 			if (map[y][x] != 1) {
+	// 				pacman.move = 32;
+	// 				key.push = 'up';
+	// 			}
+	// 		}
 
-		}
-		if (key.right === true) {
+	// 	}
+	// 	if (key.right === true) {
 
-			var x = pacman.x / 32;
-			var y = pacman.y / 32;
-			x++;
-			if (map[y][x] != 1) {
-				pacman.move = 32;
-				key.push = 'right';
-			}
-		}
-		if (key.down === true) {
-			var x = pacman.x / 32;
-			var y = pacman.y / 32;
-			if (y < 30) {
-				y++;
-				if (map[y][x] != 1) {
-					pacman.move = 32;
-					key.push = 'down';
-				}
-			}
-		}
-	}
+	// 		var x = pacman.x / 32;
+	// 		var y = pacman.y / 32;
+	// 		x++;
+	// 		if (map[y][x] != 1) {
+	// 			pacman.move = 32;
+	// 			key.push = 'right';
+	// 		}
+	// 	}
+	// 	if (key.down === true) {
+	// 		var x = pacman.x / 32;
+	// 		var y = pacman.y / 32;
+	// 		if (y < 30) {
+	// 			y++;
+	// 			if (map[y][x] != 1) {
+	// 				pacman.move = 32;
+	// 				key.push = 'down';
+	// 			}
+	// 		}
+	// 	}
+	// }
+	collision(pacman);
+	move(pacman);
+
+	collision(enemy_gu);
+	move(enemy_gu);
 
 	//rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
-	if (pacman.move > 0) {
-		pacman.move -= 4;
-		if (key.push === 'left') pacman.x -= 4;
-		if (key.push === 'up') pacman.y -= 4;
-		if (key.push === 'right') pacman.x += 4;
-		if (key.push === 'down') pacman.y += 4;
-	}
+	// if (pacman.move > 0) {
+	// 	pacman.move -= 4;
+	// 	if (key.push === 'left') pacman.x -= 4;
+	// 	if (key.push === 'up') pacman.y -= 4;
+	// 	if (key.push === 'right') pacman.x += 4;
+	// 	if (key.push === 'down') pacman.y += 4;
+	// }
+
+	//敵配置のソース　未完成
+	// if (enemy_gu.move > 0) {
+	// 	enemy_gu.move -= 4;
+	// 	if (key.push === 'left') pacman.x -= 4;
+	// 	if (key.push === 'up') pacman.y -= 4;
+	// 	if (key.push === 'right') pacman.x += 4;
+	// 	if (key.push === 'down') pacman.y += 4;
+	// }
+
 
 	requestAnimationFrame(main);
 }
@@ -245,12 +266,75 @@ function keyupfunc02(event) {
 //ほかのページだとkeypressに反応する
 addEventListener('keydown', returnTop);
 function returnTop(e) {
-    if (e.keyCode === 13) {
+	if (e.keyCode === 13) {
 
 		console.log("aを押しました");
-            location.href="top.html";
-    }
+		location.href = "top.html";
+	}
 
 
-    return false;
+	return false;
+}
+
+
+//当たり判定を関数化
+function collision(Object) {
+	if (Object.move === 0) {
+		if (key.left === true) {
+
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			x--;
+			if (map[y][x] != 1) {
+				Object.move = 32;
+				key.push = 'left';
+			}
+		}
+
+		if (key.up === true) {
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			if (y > 0) {
+				y--;
+				if (map[y][x] != 1) {
+					Object.move = 32;
+					key.push = 'up';
+				}
+			}
+
+		}
+		if (key.right === true) {
+
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			x++;
+			if (map[y][x] != 1) {
+				Object.move = 32;
+				key.push = 'right';
+			}
+		}
+		if (key.down === true) {
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			if (y < 30) {
+				y++;
+				if (map[y][x] != 1) {
+					Object.move = 32;
+					key.push = 'down';
+				}
+			}
+		}
+	}
+}
+
+
+//rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
+function move(Object){
+if (Object.move > 0) {
+	Object.move -= 4;
+	if (key.push === 'left') Object.x -= 4;
+	if (key.push === 'up') Object.y -= 4;
+	if (key.push === 'right') Object.x += 4;
+	if (key.push === 'down') Object.y += 4;
+}
 }
