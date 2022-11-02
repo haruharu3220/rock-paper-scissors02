@@ -214,6 +214,8 @@ function main() {
 	collision(enemy_gu);
 	move(enemy_gu);
 
+	collision_to_enemy(pacman ,enemy_gu,enemy_choki) ;
+
 	//rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
 	// if (pacman.move > 0) {
 	// 	pacman.move -= 4;
@@ -327,12 +329,25 @@ function collision(Object) {
 	}
 }
 
-function collision_to_enemy(...Object) {
+function collision_to_enemy(Pacman, ...Object) {
 
-	console.log("一人目のX座標＝"+ Object[0].x);
-	console.log("一人目のX座標＝"+ Object[1].x);	
+	console.log("1人目のX座標＝"+ Pacman.x);
+	
+	console.log("2人目のX座標＝"+ Object[0].x);
+	console.log("3人目のX座標＝"+ Object[1].x);
+	console.log("引数の数＝"+  arguments.length);
+	
+	for(let i=0;i< arguments.length-1;i++){
+		console.log("for文＝"+  i);
+		//if((Pacman.x===X) && (Pacman.y===Y)){	
+			if((Pacman.x===Object[i].x) && (Pacman.y===Object[i].y)){
+			console.log("GAMEOVER");
+		}
+	}
+	//if(Pacman.x == Object )
 }
-collision_to_enemy(pacman ,enemy_gu) ;
+//collision_to_enemy(pacman ,enemy_gu,enemy_choki) ;
+
 
 
 //rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
