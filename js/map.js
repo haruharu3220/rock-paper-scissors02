@@ -149,8 +149,9 @@ function main() {
 		map[pacman.y / 32][pacman.x / 32] = 0;
 	}
 
-	addEventListener("keydown", keydownfunc02, false);
-	addEventListener("keyup", keyupfunc02, false);
+	// addEventListener("keydown", keydownfunc02, false);
+	// addEventListener("keyup", keyupfunc02, false);
+	
 
 	//方向キーが押されている場合は、りこちゃんが移動する
 	//あたり判定
@@ -216,6 +217,9 @@ function main() {
 //ページと依存（いぞん）している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
 
+addEventListener("keydown", keydownfunc02, false);
+addEventListener("keyup", keyupfunc02, false);
+
 //キーボードが押されたときに呼び出される関数（かんすう）
 function keydownfunc02(event) {
 	var key_code = event.keyCode;
@@ -233,4 +237,20 @@ function keyupfunc02(event) {
 	if (key_code === 38) key.up = false;
 	if (key_code === 39) key.right = false;
 	if (key_code === 40) key.down = false;
+}
+
+
+//エンターを押したらTOP画面に戻る関数
+//なぜかkeypressだと画面遷移しない
+//ほかのページだとkeypressに反応する
+addEventListener('keydown', returnTop);
+function returnTop(e) {
+    if (e.keyCode === 13) {
+
+		console.log("aを押しました");
+            location.href="top.html";
+    }
+
+
+    return false;
 }

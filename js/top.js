@@ -1,8 +1,6 @@
 var selecter = 0;
 
 addEventListener('keypress', select);
-
-
 function select(e) {
     if (e.keyCode === 13) {
         if(selecter===1){
