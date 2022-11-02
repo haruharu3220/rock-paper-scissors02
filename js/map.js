@@ -105,6 +105,11 @@ function main() {
 	//パックマンを表示
 	ctx_map.drawImage( pacman.img, pacman.x, pacman.y ,32,32); //32pxにリサイズ
 
+	//パックマンが一度通った道のアイテムは消す
+	if ( pacman.move === 0 ) {
+	map[pacman.y/32][pacman.x/32] = 0;
+	}
+
 	addEventListener("keydown", keydownfunc02, false);
 	addEventListener("keyup", keyupfunc02, false);
 
@@ -120,7 +125,6 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     pacman.move = 32;
                     key.push = 'left';
-					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 		
@@ -132,7 +136,6 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     pacman.move = 32;
                     key.push = 'up';
-					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 
@@ -145,7 +148,6 @@ function main() {
                 if ( map[y][x] != 1 ) {
                     pacman.move = 32;
                     key.push = 'right';
-					ctx_map.drawImage( aisle_pacman,  32*x, 32*y );
                 }
             }
 		if ( key.down === true ) {
@@ -156,7 +158,6 @@ function main() {
 				if ( map[y][x] != 1 ) {
 					pacman.move = 32;
 					key.push = 'down';
-					ctx_map.drawImage( aisle,  32*x, 32*y );
 				}
 			}
 		}
