@@ -27,7 +27,11 @@ if(rule_page == 2) {
   //console.log("aaa");
   //alert("bbb");
   rules01.style.display = 'none';
-  //rules02.style.display = 'block';
+  rules02.style.display = 'block';
+}
+if(rule_page == 3) {
+  rules02.style.display = 'none';
+  //rules03.style.display = 'block';
 }
 
   if(clearFlig !== 0) {
@@ -50,18 +54,7 @@ function nextPage(e) {
 
 
 
-if(rule_page == 2) {
-  //function modalOpen() {
-  //console.log("aaa");
-  //alert("bbb");
-  rules01.style.display = 'none';
-  //rules02.style.display = 'block';
-}
-else if(rule_page == 3) {
-  rules02.style.display = 'none';
-  //rules03.style.display = 'block';
-}
-else if (rule_page == 4) {
+ if (rule_page == 4) {
   //function modalOpen() {
   //console.log("aaa");
   rules03.style.display = 'none';
