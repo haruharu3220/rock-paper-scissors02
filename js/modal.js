@@ -38,8 +38,14 @@ if (rule_page == 4) {
   //function modalOpen() {
   //console.log("aaa");
   rules03.style.display = 'none';
-  //rules04.style.display = 'block';
+  rules04.style.display = 'block';
 }
+
+
+if (rule_page >= 5) {
+   rules04.style.display = 'none';
+ }
+
 
   if(clearFlig !== 0) {
     easyModal.style.display = 'block';
@@ -57,13 +63,6 @@ function nextPage(e) {
   if (e.keyCode === 13) {
     rule_page++
   }
-}
-
-
-
-
-if (rule_page >= 5) {
- // rules04.style.display = 'block';
 }
 
 //参考サイト
