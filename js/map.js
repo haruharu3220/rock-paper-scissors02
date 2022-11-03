@@ -281,7 +281,7 @@ function keyupfunc02(event) {
 //ほかのページだとkeypressに反応する
 addEventListener('keydown', returnTop);
 function returnTop(e) {
-	if (e.keyCode === 13) {
+	if (e.keyCode === 65 ) {
 
 		console.log("aを押しました");
 		location.href = "top.html";
