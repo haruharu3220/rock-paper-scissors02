@@ -31,7 +31,14 @@ if(rule_page == 2) {
 }
 if(rule_page == 3) {
   rules02.style.display = 'none';
-  //rules03.style.display = 'block';
+  rules03.style.display = 'block';
+}
+
+if (rule_page == 4) {
+  //function modalOpen() {
+  //console.log("aaa");
+  rules03.style.display = 'none';
+  //rules04.style.display = 'block';
 }
 
   if(clearFlig !== 0) {
@@ -54,13 +61,8 @@ function nextPage(e) {
 
 
 
- if (rule_page == 4) {
-  //function modalOpen() {
-  //console.log("aaa");
-  rules03.style.display = 'none';
-  //rules04.style.display = 'block';
-}
-else if (rule_page >= 5) {
+
+if (rule_page >= 5) {
  // rules04.style.display = 'block';
 }
 
