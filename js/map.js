@@ -90,7 +90,8 @@ key.right = false;
 key.left = false;
 key.push = '';
 
-
+//クリア判定フラグ
+let clearFlig = 0;
 
 //マップの作成（さくせい）
 var map = [
@@ -135,7 +136,7 @@ for (var y = 0; y < map.length; y++) {
 }
 console.log("アイテム数は" + itemCount);
 
-let clearFlig = 0;
+
 //メインループ
 function main() {
 	// //塗（ぬ）りつぶす色を指定（してい）
