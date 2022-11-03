@@ -12,13 +12,30 @@ let randamNum1 = 0;
 //コンテキストを取得（しゅとく）
 var ctx_map = canvas_map.getContext('2d');
 
+//ジャンケンのENUM
+let janken = {
+	defalt:0,
+	gu: -2,
+	choki: 3,
+	pa: -4,
+	
+};
+
 //パックマンのオブジェクトを作成
 var pacman = new Object();
-pacman.img = new Image();
-pacman.img.src = 'img/pacman.png';
+pacman.img_default = new Image();
+pacman.img_default.src = 'img/pacman.png';
+pacman.img_gu = new Image();
+pacman.img_gu.src = 'img/pacman_gu.png';
+pacman.img_choki= new Image();
+pacman.img_choki.src = 'img/pacman_choki.png';
+pacman.img_pa = new Image();
+pacman.img_pa.src = 'img/pacman_pa.png';
+pacman.janken = janken.defalt;
 pacman.x = 32;
 pacman.y = 32;
 pacman.move = 0;
+
 
 //敵(グー)のオブジェクトを作成
 var enemy_gu = new Object();
@@ -73,17 +90,12 @@ key.right = false;
 key.left = false;
 key.push = '';
 
-let janken = {
-	gu: -2,
-	choki: 3,
-	pa: -4,
-	
-};
+
 
 //マップの作成（さくせい）
 var map = [
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1],
+	[1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, janken.pa, 1, 1, janken.gu, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1],
 	[1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 1],
 	[1, -1, 1, 0, 0, 1, -1, 1, 0, 0, 0, 1, -1, 1, 1, -1, 1, 0, 0, 0, 1, -1, 1, 0, 0, 1, -1, 1],
 	[1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 1],
@@ -98,7 +110,7 @@ var map = [
 	[1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
 	[0, 0, 0, 0, 0, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 0, 0, 0, 0, 0],
 	[1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
-	[1, janken.pa, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1],
+	[1, janken.pa, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, janken.gu, 1],
 	[1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 1],
 	[1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, 1],
 	[1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, 1],
@@ -106,7 +118,7 @@ var map = [
 	[1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, 1],
 	[1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1],
 	[1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1],
-	[1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1],
+	[1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, janken.choki, 1, 1, janken.pa, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1],
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
@@ -175,14 +187,41 @@ function main() {
 	}
 
 	//キャラクターを表示
-	ctx_map.drawImage(pacman.img, pacman.x, pacman.y,); //パックマン
+	if(pacman.janken===janken.gu){
+		ctx_map.drawImage(pacman.img_gu, pacman.x, pacman.y,); //パックマン
+	}else if(pacman.janken===janken.choki){
+		ctx_map.drawImage(pacman.img_choki, pacman.x, pacman.y,); //パックマン
+	}else if(pacman.janken===janken.pa){
+		ctx_map.drawImage(pacman.img_pa, pacman.x, pacman.y,); //パックマン
+	}else{
+		ctx_map.drawImage(pacman.img_default, pacman.x, pacman.y,); //パックマン
+	}
+	
 	ctx_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //グーの敵　＝青
 	ctx_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //チョキの敵　＝赤
 	ctx_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //パーの敵　＝緑
 
 
 	//パックマンが一度通った道のアイテムは消す
+	//パックマンがジャンケンアイテムをとったらパックマン状態を反映する
 	if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
+	
+
+		if(map[pacman.y / 32][pacman.x / 32] === janken.gu){
+			console.log("グー");
+			pacman.janken = janken.gu;
+		}else if(map[pacman.y / 32][pacman.x / 32] === janken.choki){
+			console.log("チョキ");
+			pacman.janken = janken.choki;
+		}else if(map[pacman.y / 32][pacman.x / 32] === janken.pa){
+			console.log("パー");
+			pacman.janken = janken.pa;
+		}
+		map[pacman.y / 32][pacman.x / 32] = 0;
+	}
+
+	if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
+		
 		map[pacman.y / 32][pacman.x / 32] = 0;
 	}
 
