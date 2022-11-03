@@ -151,7 +151,7 @@ function main() {
 
 
 	//パックマンが一度通った道のアイテムは消す
-	if (pacman.move === 0) {
+	if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
 		map[pacman.y / 32][pacman.x / 32] = 0;
 	}
 
@@ -208,13 +208,24 @@ function main() {
 	// 		}
 	// 	}
 	// }
-	collision(pacman);
-	move(pacman);
 
-	collision(enemy_gu);
-	move(enemy_gu);
+	if (pacman.move === 0) {
+		collision(pacman);
+	}
+	if (pacman.move > 0) {
+		move(pacman);
+	}
 
-	collision_to_enemy(pacman ,enemy_gu,enemy_choki) ;
+	if (enemy_gu.move === 0) {
+		collision(enemy_gu);
+	}
+	if (enemy_gu.move > 0) {
+		move(enemy_gu);
+	}
+
+
+
+	collision_to_enemy(pacman, enemy_gu, enemy_choki);
 
 	//rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
 	// if (pacman.move > 0) {
@@ -331,32 +342,27 @@ function collision(Object) {
 
 function collision_to_enemy(Pacman, ...Object) {
 
-	console.log("1人目のX座標＝"+ Pacman.x);
-	
-	console.log("2人目のX座標＝"+ Object[0].x);
-	console.log("3人目のX座標＝"+ Object[1].x);
-	console.log("引数の数＝"+  arguments.length);
-	
-	for(let i=0;i< arguments.length-1;i++){
-		console.log("for文＝"+  i);
-		//if((Pacman.x===X) && (Pacman.y===Y)){	
-			if((Pacman.x===Object[i].x) && (Pacman.y===Object[i].y)){
+	// console.log("1人目のX座標＝" + Pacman.x);
+
+	// console.log("2人目のX座標＝" + Object[0].x);
+	// console.log("3人目のX座標＝" + Object[1].x);
+	// console.log("引数の数＝" + arguments.length);
+
+	for (let i = 0; i < arguments.length - 1; i++) {
+		if ((Pacman.x === Object[i].x) && (Pacman.y === Object[i].y)) {
 			console.log("GAMEOVER");
 		}
 	}
-	//if(Pacman.x == Object )
+
 }
-//collision_to_enemy(pacman ,enemy_gu,enemy_choki) ;
-
-
 
 //rico.moveが0より大きい場合は、4pxずつ移動（いどう）を続ける
-function move(Object){
-if (Object.move > 0) {
-	Object.move -= 4;
-	if (key.push === 'left') Object.x -= 4;
-	if (key.push === 'up') Object.y -= 4;
-	if (key.push === 'right') Object.x += 4;
-	if (key.push === 'down') Object.y += 4;
-}
+function move(Object) {
+	if (Object.move > 0) {
+		Object.move -= 4;
+		if (key.push === 'left') Object.x -= 4;
+		if (key.push === 'up') Object.y -= 4;
+		if (key.push === 'right') Object.x += 4;
+		if (key.push === 'down') Object.y += 4;
+	}
 }
