@@ -14,11 +14,11 @@ var ctx_map = canvas_map.getContext('2d');
 
 //ジャンケンのENUM
 let janken = {
-	defalt:0,
+	defalt: 0,
 	gu: -2,
 	choki: 3,
 	pa: -4,
-	
+
 };
 
 //パックマンのオブジェクトを作成
@@ -27,7 +27,7 @@ pacman.img_default = new Image();
 pacman.img_default.src = 'img/pacman.png';
 pacman.img_gu = new Image();
 pacman.img_gu.src = 'img/pacman_gu.png';
-pacman.img_choki= new Image();
+pacman.img_choki = new Image();
 pacman.img_choki.src = 'img/pacman_choki.png';
 pacman.img_pa = new Image();
 pacman.img_pa.src = 'img/pacman_pa.png';
@@ -37,28 +37,31 @@ pacman.y = 32;
 pacman.move = 0;
 
 
-//敵(グー)のオブジェクトを作成
+//敵(グー 青)のオブジェクトを作成
 var enemy_gu = new Object();
 enemy_gu.img = new Image();
 enemy_gu.img.src = 'img/blue.png';
-enemy_gu.x = 64;
-enemy_gu.y = 64;
+enemy_gu.janken = janken.gu;
+enemy_gu.x = 384;
+enemy_gu.y = 256;
 enemy_gu.move = 0;
 
-//敵(チョキ)のオブジェクトを作成
+//敵(チョキ　赤)のオブジェクトを作成
 var enemy_choki = new Object();
 enemy_choki.img = new Image();
 enemy_choki.img.src = 'img/red.png';
-enemy_choki.x = 96;
-enemy_choki.y = 96;
+enemy_choki.janken = janken.choki;
+enemy_choki.x = 672;
+enemy_choki.y = 384;
 enemy_choki.move = 0;
 
-//敵(パー)のオブジェクトを作成
+//敵(パー　緑)のオブジェクトを作成
 var enemy_pa = new Object();
 enemy_pa.img = new Image();
 enemy_pa.img.src = 'img/green.png';
-enemy_pa.x = 128;
-enemy_pa.y = 128;
+enemy_pa.janken = janken.pa;
+enemy_pa.x = 192;
+enemy_pa.y = 608;
 enemy_pa.move = 0;
 
 //マップチップのImageオブジェクトを作る
@@ -139,10 +142,6 @@ console.log("アイテム数は" + itemCount);
 
 //メインループ
 function main() {
-	// //塗（ぬ）りつぶす色を指定（してい）
-	// ctx_map.fillStyle = "rgb( 0, 0, 0 )";
-	// //塗（ぬ）りつぶす
-	// ctx_map.fillRect(0, 0, 640, 640);
 	let remainItemCount = 0;
 
 	for (var y = 0; y < map.length; y++) {
@@ -159,16 +158,16 @@ function main() {
 			else if (map[y][x] === 1) { //壁
 				ctx_map.drawImage(aisle, 32 * x, 32 * y);
 			}
-			else if (map[y][x] === janken.gu){ //グーアイテム
-				ctx_map.drawImage(gu, 32 * x, 32 * y,32,32);
+			else if (map[y][x] === janken.gu) { //グーアイテム
+				ctx_map.drawImage(gu, 32 * x, 32 * y, 32, 32);
 			}
-			else if (map[y][x] === janken.choki){ //チョキアイテム
-				ctx_map.drawImage(choki, 32 * x, 32 * y,32,32);
+			else if (map[y][x] === janken.choki) { //チョキアイテム
+				ctx_map.drawImage(choki, 32 * x, 32 * y, 32, 32);
 			}
-			else if (map[y][x] === janken.pa){ //パーアイテム
-				ctx_map.drawImage(pa, 32 * x, 32 * y,32,32);
+			else if (map[y][x] === janken.pa) { //パーアイテム
+				ctx_map.drawImage(pa, 32 * x, 32 * y, 32, 32);
 			}
-			
+
 
 			else { //デバッグ用コード　動作確認のためアイテムの数を減らす
 				ctx_map.drawImage(aisle_pacman, 32 * x, 32 * y);
@@ -187,34 +186,37 @@ function main() {
 		}
 	}
 
-	//キャラクターを表示
-	if(pacman.janken===janken.gu){
-		ctx_map.drawImage(pacman.img_gu, pacman.x, pacman.y,); //パックマン
-	}else if(pacman.janken===janken.choki){
-		ctx_map.drawImage(pacman.img_choki, pacman.x, pacman.y,); //パックマン
-	}else if(pacman.janken===janken.pa){
-		ctx_map.drawImage(pacman.img_pa, pacman.x, pacman.y,); //パックマン
-	}else{
-		ctx_map.drawImage(pacman.img_default, pacman.x, pacman.y,); //パックマン
-	}
-	
+	//敵を表示
 	ctx_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //グーの敵　＝青
 	ctx_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //チョキの敵　＝赤
 	ctx_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //パーの敵　＝緑
+
+	//キャラクターを表示
+	if (pacman.janken === janken.gu) {
+		ctx_map.drawImage(pacman.img_gu, pacman.x, pacman.y,); //パックマン
+	} else if (pacman.janken === janken.choki) {
+		ctx_map.drawImage(pacman.img_choki, pacman.x, pacman.y,); //パックマン
+	} else if (pacman.janken === janken.pa) {
+		ctx_map.drawImage(pacman.img_pa, pacman.x, pacman.y,); //パックマン
+	} else {
+		ctx_map.drawImage(pacman.img_default, pacman.x, pacman.y,); //パックマン
+	}
+
+
 
 
 	//パックマンが一度通った道のアイテムは消す
 	//パックマンがジャンケンアイテムをとったらパックマン状態を反映する
 	if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
-	
 
-		if(map[pacman.y / 32][pacman.x / 32] === janken.gu){
+
+		if (map[pacman.y / 32][pacman.x / 32] === janken.gu) {
 			console.log("グー");
 			pacman.janken = janken.gu;
-		}else if(map[pacman.y / 32][pacman.x / 32] === janken.choki){
+		} else if (map[pacman.y / 32][pacman.x / 32] === janken.choki) {
 			console.log("チョキ");
 			pacman.janken = janken.choki;
-		}else if(map[pacman.y / 32][pacman.x / 32] === janken.pa){
+		} else if (map[pacman.y / 32][pacman.x / 32] === janken.pa) {
 			console.log("パー");
 			pacman.janken = janken.pa;
 		}
@@ -222,7 +224,7 @@ function main() {
 	}
 
 	if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
-		
+
 		map[pacman.y / 32][pacman.x / 32] = 0;
 	}
 
@@ -239,18 +241,13 @@ function main() {
 		collision(enemy_gu);
 		randamNum1 = Math.floor(Math.random() * (max - min + 1) + min);
 	}
-	// if (enemy_gu.move > 0) {
-	// 	move_random(enemy_gu, randamNum1);
-	// }
 
 
-
-	collision_to_enemy(pacman, enemy_gu, enemy_choki);
 
 
 	requestAnimationFrame(main);
 }
-//ページと依存（いぞん）している全てのデータが読み込まれたら、メインループ開始
+//ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
 
 addEventListener("keydown", keydownfunc02, false);
@@ -281,19 +278,16 @@ function keyupfunc02(event) {
 //ほかのページだとkeypressに反応する
 addEventListener('keydown', returnTop);
 function returnTop(e) {
-	if (e.keyCode === 65 ) {
-
-		console.log("aを押しました");
+	if (e.keyCode === 65) {
 		location.href = "top.html";
 	}
-
-
 	return false;
 }
 
 
 //壁当たり判定を関数化
 function collision(Object) {
+	//if (modalFrag === false) { //モーダルが非表示の時
 	if (Object.move === 0) {
 		if (key.left === true) {
 
@@ -319,7 +313,6 @@ function collision(Object) {
 
 		}
 		if (key.right === true) {
-
 			var x = Object.x / 32;
 			var y = Object.y / 32;
 			x++;
@@ -340,26 +333,49 @@ function collision(Object) {
 			}
 		}
 	}
+	//}
 }
 
+let gameover = false;
 //敵との当たり判定　第一引数：パックマンオブジェクト　第二引数以降：敵オブジェクト
 function collision_to_enemy(Pacman, ...Object) {
 	for (let i = 0; i < arguments.length - 1; i++) {
 		if ((Pacman.x === Object[i].x) && (Pacman.y === Object[i].y)) {
-			console.log("GAMEOVER");
+
+			if ((Pacman.janken === janken.pa && Object[i].janken === janken.gu) ||
+				(Pacman.janken === janken.gu && Object[i].janken === janken.choki) ||
+				(Pacman.janken === janken.choki && Object[i].janken === janken.pa)) {
+				gameover = false;
+			} else {
+				gameover = true;
+			}
+			return true;
 		}
 	}
+	return false;
+}
 
+//敵との勝敗判定　第一引数：パックマンオブジェクト　第二引数：敵オブジェクト
+function win_judg(Pacman, Emeny) {
+	if ((Pacman.janken.pa && Emeny.janken.gu) ||
+		(Pacman.janken.gu && Emeny.janken.choki) ||
+		(Pacman.janken.choki && Emeny.janken.pa)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 //パックマンがmoveが0より大きい場合は、4pxずつ移動を続ける
 function move(Object) {
-	if (Object.move > 0) {
-		Object.move -= 4;
-		if (key.push === 'left') Object.x -= 4;
-		if (key.push === 'up') Object.y -= 4;
-		if (key.push === 'right') Object.x += 4;
-		if (key.push === 'down') Object.y += 4;
+	if (modalFrag === false) { //モーダルが非表示の時
+		if (Object.move > 0) {
+			Object.move -= 4;
+			if (key.push === 'left') Object.x -= 4;
+			if (key.push === 'up') Object.y -= 4;
+			if (key.push === 'right') Object.x += 4;
+			if (key.push === 'down') Object.y += 4;
+		}
 	}
 }
 
