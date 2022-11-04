@@ -3,7 +3,9 @@ body {
     line-height: 1.75;
     font-size: 16px;
     width: 100vh;
-    height: 100vh;
+    /* height: 100vh; */
+    height: 100%;
+    
     /*「vh」はブラウザの表示域を基準にする単位。
     100vhがブラウザの高さであり、1vhはその100分の1*/
     margin: auto;
@@ -14,9 +16,10 @@ h1{
     font-weight: 500;
     font-family: "Nikukyu";
     text-align: center;
-
+    font-size: 64px;
+    color: grey;
 }
-#start a , #select a , #setting a{
+#start a , #select a , #setting a ,#returnTop a{
 
     border-radius: 325px; /*円の半径の長さ*/
     position: relative;

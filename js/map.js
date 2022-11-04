@@ -7,7 +7,8 @@ canvas_map.height = 960;	//canvasの縦幅（たてはば）
 
 const min = 0;
 const max = 100;
-let randamNum1 = 0;
+let directionChange = 0;
+let directionNow = 0;
 
 //コンテキストを取得（しゅとく）
 var ctx_map = canvas_map.getContext('2d');
@@ -18,8 +19,16 @@ let janken = {
 	gu: -2,
 	choki: 3,
 	pa: -4,
-
 };
+
+let direction = {
+	top: 1,
+	right: 2,
+	down: 3,
+	left: 4
+};
+
+
 
 //パックマンのオブジェクトを作成
 var pacman = new Object();
@@ -45,6 +54,8 @@ enemy_gu.janken = janken.gu;
 enemy_gu.x = 384;
 enemy_gu.y = 256;
 enemy_gu.move = 0;
+enemy_gu.direction = direction.top;
+
 
 //敵(チョキ　赤)のオブジェクトを作成
 var enemy_choki = new Object();
@@ -54,6 +65,8 @@ enemy_choki.janken = janken.choki;
 enemy_choki.x = 672;
 enemy_choki.y = 384;
 enemy_choki.move = 0;
+enemy_choki.direction = direction.top;
+
 
 //敵(パー　緑)のオブジェクトを作成
 var enemy_pa = new Object();
@@ -63,6 +76,7 @@ enemy_pa.janken = janken.pa;
 enemy_pa.x = 192;
 enemy_pa.y = 608;
 enemy_pa.move = 0;
+enemy_pa.direction = direction.top;
 
 //マップチップのImageオブジェクトを作る
 var aisle = new Image();
@@ -237,13 +251,33 @@ function main() {
 		move(pacman);
 	}
 
+
+	//移動先が壁でなかったら敵を動かす
 	if (enemy_gu.move === 0) {
-		collision(enemy_gu);
-		randamNum1 = Math.floor(Math.random() * (max - min + 1) + min);
+		directionChange = Math.floor(Math.random() * (max - min + 1) + min);
+		
+		//40％の確率でそのままの向きに移動
+		if (directionChange < 40) {
+			//60％の確立で方向転換
+		} else if (directionChange > 40 && directionChange < 55) {
+			enemy_gu.direction = direction.top;
+		}
+		else if (directionChange > 55 && directionChange < 60) {
+			enemy_gu.direction = direction.right;
+		}
+		else if (directionChange > 60 && directionChange < 75) {
+			enemy_gu.direction = direction.down;
+		}
+		else if (directionChange > 75) {
+			enemy_gu.direction = direction.left;
+		}
+		collision_enemy(enemy_gu);
+		console.log("directionChange="+directionChange);
 	}
+	if (enemy_gu.move > 0) {
+		move_random(enemy_gu);
 
-
-
+	}
 
 	requestAnimationFrame(main);
 }
@@ -253,7 +287,7 @@ addEventListener('load', main(), false);
 addEventListener("keydown", keydownfunc02, false);
 addEventListener("keyup", keyupfunc02, false);
 
-//キーボードが押されたときに呼び出される関数（かんすう）
+//キーボードが押されたときに呼び出される関数
 function keydownfunc02(event) {
 	var key_code = event.keyCode;
 	if (key_code === 37) key.left = true;
@@ -263,7 +297,7 @@ function keydownfunc02(event) {
 	event.preventDefault();
 }
 
-//キーボードが放（はな）されたときに呼び出される関数
+//キーボードが放されたときに呼び出される関数
 function keyupfunc02(event) {
 	var key_code = event.keyCode;
 	if (key_code === 37) key.left = false;
@@ -285,7 +319,7 @@ function returnTop(e) {
 }
 
 
-//壁当たり判定を関数化
+//パックマンの壁当たり判定を関数化
 function collision(Object) {
 	//if (modalFrag === false) { //モーダルが非表示の時
 	if (Object.move === 0) {
@@ -336,12 +370,59 @@ function collision(Object) {
 	//}
 }
 
+//敵の壁当たり判定を関数化
+function collision_enemy(Object) {
+	//if (modalFrag === false) { //モーダルが非表示の時
+	if (Object.move === 0) {
+		if (Object.direction === direction.left) {
+
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			x--;
+			if (map[y][x] != 1) {
+				Object.move = 32;
+			}
+		}
+
+		if (Object.direction === direction.up) {
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			if (y > 0) {
+				y--;
+				if (map[y][x] != 1) {
+					Object.move = 32;
+					console.log("ここは１回通るはず");
+				}
+			}
+
+		}
+		if (Object.direction === direction.right) {
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			x++;
+			if (map[y][x] != 1) {
+				Object.move = 32;
+			}
+		}
+		if (Object.direction === direction.down) {
+			var x = Object.x / 32;
+			var y = Object.y / 32;
+			if (y < 30) {
+				y++;
+				if (map[y][x] != 1) {
+					Object.move = 32;
+				}
+			}
+		}
+	}
+}
+
+
 let gameover = false;
 //敵との当たり判定　第一引数：パックマンオブジェクト　第二引数以降：敵オブジェクト
 function collision_to_enemy(Pacman, ...Object) {
 	for (let i = 0; i < arguments.length - 1; i++) {
 		if ((Pacman.x === Object[i].x) && (Pacman.y === Object[i].y)) {
-
 			if ((Pacman.janken === janken.pa && Object[i].janken === janken.gu) ||
 				(Pacman.janken === janken.gu && Object[i].janken === janken.choki) ||
 				(Pacman.janken === janken.choki && Object[i].janken === janken.pa)) {
@@ -355,16 +436,6 @@ function collision_to_enemy(Pacman, ...Object) {
 	return false;
 }
 
-//敵との勝敗判定　第一引数：パックマンオブジェクト　第二引数：敵オブジェクト
-function win_judg(Pacman, Emeny) {
-	if ((Pacman.janken.pa && Emeny.janken.gu) ||
-		(Pacman.janken.gu && Emeny.janken.choki) ||
-		(Pacman.janken.choki && Emeny.janken.pa)) {
-		return true;
-	} else {
-		return false;
-	}
-}
 
 //パックマンがmoveが0より大きい場合は、4pxずつ移動を続ける
 function move(Object) {
@@ -379,38 +450,17 @@ function move(Object) {
 	}
 }
 
-let direction = {
-	top: 1,
-	right: 2,
-	down: 3,
-	left: 4
-};
-direction.top;
-
 //敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
-function move_random(Object, num) {
+function move_random(Object) {
+	if (modalFrag === false) { //モーダルが非表示の時
+	if (Object.move > 0) {
+			if (Object.direction === direction.top) Object.y -= 4;
+			if (Object.direction === direction.right) Object.x += 4;
+			if (Object.direction === direction.down) Object.y += 4;
+			if (Object.direction === direction.left) Object.x -= 4;
 
-
-	while (Object.move > 0) {
-
-		if (num < 50) {
-			Object.x -= 4;
-		} else if (num > 51 && num < 75) {
-			Object.y -= 4;
-		} else if (num > 76 && num < 90) {
-			Object.x += 4;
-		} else {
-			Object.y += 4;
 		}
 	}
 }
 
 
-function move_random2(Object) {
-
-	Object.move -= 4;
-	if (key.push === 'left') Object.x -= 4;
-	if (key.push === 'up') Object.y -= 4;
-	if (key.push === 'right') Object.x += 4;
-	if (key.push === 'down') Object.y += 4;
-}
