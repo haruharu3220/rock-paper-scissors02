@@ -1,0 +1,20 @@
+#level a , #demonstration a , #easy a {
+
+    border-radius: 325px; /*円の半径の長さ*/
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px auto;
+    max-width: 220px;
+    padding: 10px 25px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    background: gray;
+}
+
+#demonstration a{
+    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
+}
+
