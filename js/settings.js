@@ -2,6 +2,7 @@ let settings = 0;
 
 addEventListener('keypress', selectSettings);
 function selectSettings(e) {
+    //エンターキーを押したらトップ画面に遷移
     if (e.keyCode === 13) {
             location.href="settings_level.html";
     }

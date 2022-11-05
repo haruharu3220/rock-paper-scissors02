@@ -5,14 +5,10 @@ let settingsLevel = 0;
 function getSettingsLevel() {
     return settingsLevel;
 }
-export {getSettingsLevel};
-
-window.globalFunction = {};
-window.globalFunction.getSettingsLevel = getSettingsLevel;
-
 
 addEventListener('keypress', selectLevel);
 function selectLevel(e) {
+    //エンターキーを押したらトップ画面に遷移
     if (e.keyCode === 13) {
         location.href = "top.html";
     }
@@ -35,16 +31,13 @@ function levelSelect(number) {
 
 function settingsLevelPlus(e) {
     if (e.keyCode === 40) { //下ボタン
-        if (settingsLevel < 1) {
+        if (settingsLevel < 2) {
             console.log("下");
             settingsLevel++;
         }
         levelSelect(settingsLevel);
     }
-
-    return false;
 }
-
 
 function settingsLevelMinus(e) {
     if (e.keyCode === 38) { //上ボタン
@@ -54,6 +47,4 @@ function settingsLevelMinus(e) {
         }
         levelSelect(settingsLevel);
     }
-
-    return false;
 }
