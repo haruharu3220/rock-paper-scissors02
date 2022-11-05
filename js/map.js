@@ -1,16 +1,13 @@
-////★★★★★★★★パターン3★★★★★★★★
-//https://original-game.com/introduction-to-javascript-character-move-on-map/
-//あたり判定
 var canvas_map = document.getElementById('canvas_map');
-canvas_map.width = 896;	//canvasの横幅（よこはば）
-canvas_map.height = 960;	//canvasの縦幅（たてはば）
+canvas_map.width = 896;	//canvasの横幅
+canvas_map.height = 960;	//canvasの縦幅
 
 const min = 0;
 const max = 100;
 let directionChange = 0;
 let directionNow = 0;
 
-//コンテキストを取得（しゅとく）
+//コンテキストを取得
 var ctx_map = canvas_map.getContext('2d');
 
 //ジャンケンのENUM
@@ -453,11 +450,11 @@ function move(Object) {
 function move_random(Object) {
 	if (modalFrag === false) { //モーダルが非表示の時
 		if (Object.move > 0) {
+			Object.move -= 4;
 			if (Object.direction === direction.top) Object.y -= 4;
 			if (Object.direction === direction.right) Object.x += 4;
 			if (Object.direction === direction.down) Object.y += 4;
 			if (Object.direction === direction.left) Object.x -= 4;
-
 		}
 	}
 }
