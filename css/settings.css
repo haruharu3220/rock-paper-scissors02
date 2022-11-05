@@ -18,3 +18,22 @@
     background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
 }
 
+
+.returnTop{
+    display: flex;
+    justify-content: center;
+}
+
+.returnTopIcon, t{
+    margin-left: 10px;
+    color: gray;
+    text-align: center;
+    display: flex;
+}
+.returnText{
+    height: 80px;
+    color: gray;
+    text-align: center;
+    display: flex;
+    line-height: 80px;
+}

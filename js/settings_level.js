@@ -1,5 +1,3 @@
-
-
 let settingsLevel = 0;
 
 function getSettingsLevel() {
@@ -32,7 +30,6 @@ function levelSelect(number) {
 function settingsLevelPlus(e) {
     if (e.keyCode === 40) { //下ボタン
         if (settingsLevel < 2) {
-            console.log("下");
             settingsLevel++;
         }
         levelSelect(settingsLevel);
@@ -42,9 +39,15 @@ function settingsLevelPlus(e) {
 function settingsLevelMinus(e) {
     if (e.keyCode === 38) { //上ボタン
         if (settingsLevel > 0) {
-            console.log("上");
             settingsLevel--;
         }
         levelSelect(settingsLevel);
+    }
+}
+
+addEventListener('keydown', returnTop);
+function returnTop(e) {
+    if (e.keyCode === 37) {
+        location.href = "top.html";
     }
 }
