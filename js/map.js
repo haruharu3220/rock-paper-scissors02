@@ -1,3 +1,5 @@
+//import {getSettingsLevel} from 'js/getsettingslevel.js';
+
 var canvas_map = document.getElementById('canvas_map');
 canvas_map.width = 896;	//canvasの横幅
 canvas_map.height = 960;	//canvasの縦幅
@@ -119,7 +121,7 @@ var map = [
 	[1, -1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1],
 	[1, janken.gu, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, janken.choki, 1],
 	[1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
-	[0, 0, 0, 0, 0, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 0, 0, 0, 0, 0],
+	[1, 0, 0, 0, 0, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 0, 0, 0, 0, 1],
 	[1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
 	[0, 0, 0, 0, 0, 0, -1, -1, -1, -1, 1, 0, 0, 0, 0, 0, 0, 1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0],
 	[1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
@@ -154,6 +156,7 @@ console.log("アイテム数は" + itemCount);
 //メインループ
 function main() {
 	let remainItemCount = 0;
+	//console.log("getSettingsLevel"+getSettingsLevel());
 
 	for (var y = 0; y < map.length; y++) {
 		for (var x = 0; x < map[y].length; x++) {
@@ -162,6 +165,7 @@ function main() {
 				ctx_map.drawImage(aisle_pacman, 32 * x, 32 * y);
 			}
 			else if (map[y][x] === -1 &&x < 5 && y < 5) { //ポイント有り通路)
+			//else if (map[y][x] === -1 ) { //ポイント有り通路)
 						ctx_map.drawImage(point, 32 * x, 32 * y);
 						remainItemCount++;
 					}
@@ -212,8 +216,6 @@ function main() {
 	} else {
 		ctx_map.drawImage(pacman.img_default, pacman.x, pacman.y,); //パックマン
 	}
-
-
 
 
 	//パックマンが一度通った道のアイテムは消す
@@ -273,6 +275,8 @@ function main() {
 	}
 	if (enemy_gu.move > 0) {
 		move_random(enemy_gu);
+		console.log("directionChange"+directionChange);
+	
 
 	}
 
