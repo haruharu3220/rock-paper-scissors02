@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/sanitize.css">
     <link rel="stylesheet" href="css/game.css">
-
-
-
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/end.css">
 
 </head>
 
@@ -26,14 +25,149 @@
             <!-- <img src="img/enemy_red.png"> -->
         </div>
 
+        <p>TOPに戻る(aボタン)</p>
+        <dev><a href="#">TOPに戻る(aボタン)</a></dev>
     </main>
+
+    <div id="rules01" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>パックマンとジャンケンをかけ合わせたゲームです。</h2>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <p class="bound">
+                        <span>
+                            <p>青の敵はグーです</p>
+
+                            <img src="img/blue.png" width="50" height="50">
+                            <p>赤の敵はチョキです</p>
+                            <img src="img/red.png" width="50" height="50">
+
+                            <p>緑の敵はパーです</p>
+                            <img src="img/green.png" width="50" height="50">
+                        </span>
+                    </p>
+                </div>
+                <p>次へ行くときはEnter</p>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div id="rules02" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>パックマンにもジャンケンの手があります。</h2>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <p class="bound">
+                        <span>
+                            <p>最初のパックマンはなにも手を出していない状態です。</p>
+                            <img src="img/pacman.png" width="50" height="50">
+                            <p>青のアイテムを取るとパックマンはグーになります</p>
+                            <img src="img/gu.png" width="50" height="50">
+                            <img src="img/pacman_gu.png" width="50" height="50">
+
+                            <p>赤のアイテムを取るとパックマンはチョキになります</p>
+                            <img src="img/choki.png" width="50" height="50">
+                            <img src="img/pacman_choki.png" width="50" height="50">
+
+                            <p>緑のアイテムを取るとパックマンはパーになります</p>
+                            <img src="img/pa.png" width="50" height="50">
+                            <img src="img/pacman_pa.png" width="50" height="50">
+                        </span>
+                    </p>
+                </div>
+                <p>次へ行くときはEnter</p>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div id="rules03" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>敵とぶつかったらジャンケンをします。</h2>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <p class="bound">
+                        <span>
+                            <p>勝ったら敵を食べることができます。</p>
+                            <p>負けやあいこのときはGAMEOVERです。</p>
+                        </span>
+                    </p>
+                </div>
+                <p>次へ行くときはEnter</p>
+            </div>
+            
+        </div>
+    </div>
+
+     
+    <div id="rules04" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>全部のポイントを取ったらクリアです。</h2>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <p class="bound">
+                        <span>
+                            <p>ポイントはこれです。</p>
+                            <img src="img/point.png" width="50" height="50">
+                            <p>ルールはおしまい。楽しんでね。</p>
+                        </span>
+                    </p>
+                </div>
+                <p>次へ行くときはEnter</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="clearModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ゲームクリア</h2>
+            </div>
+            <div class="modal-body">
+                <p>すごい！すごい！</p>
+                <p>次へ行くときはEnter</p>
+            
+            </div>
+
+        </div>
+    </div> 
+
+    <div id="gameOver" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ゲームオーバー</h2>
+            </div>
+            <div class="modal-body">
+                <p>残念～！！</p>
+                <p>また遊んでね！</p>
+            
+            </div>
+
+        </div>
+    </div> 
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/character.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
-    
-    
+    <!-- <script type="text/javascript" src="js/settings_level.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/getsettinglevel.js"></script>
 
 </body>
 

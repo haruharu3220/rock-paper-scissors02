@@ -1,38 +1,25 @@
 <!DOCTYPE html>
-<!--HTML5で書かれてますよ」という宣言せんげんです。-->
-<html lang="en">
-
+<html labg="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>じゃんけんゲーム</title>
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/sanitize.css">
-    <link rel="stylesheet" href="css/top.css">
-    <link rel="stylesheet" href="css/test.css">
-
-
+<meta chrset="utf-8" />
+<title>Modal App　Challenge</title>
+<link rel="stylesheet" href="css/modal.css" />
 </head>
-
 <body>
-
-    <!-- <canvas id="canvas"></canvas> -->
-    <canvas id="canvas_map"></canvas>
-    <div id="container">
-        <!-- <img src="img/enemy_red.png"> -->
+  <button id="modalOpen" class="button">Click Me</button>
+  <div id="easyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Great job 🎉</h1>
+        <span class="modalClose">×</span>
+      </div>
+      <div class="modal-body">
+        <p>You've just displayed this awesome Modal Window!</p>
+        <p>Let's enjoy learning JavaScript ☺️</p>
+      </div>
     </div>
+  </div>
+  <script src="js/modal.js"></script>
 
-    <p class="test">これはテストです</p>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/top.js"></script>
-    <script type="text/javascript" src="js/test.js"></script>
-    <script type="text/javascript" src="js/test02.js"></script>
-    <script type="text/javascript" src="js/canvas.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
 </body>
-
 </html>
