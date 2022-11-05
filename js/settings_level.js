@@ -1,10 +1,11 @@
+
+
 let settingsLevel = 0;
 
 function getSettingsLevel() {
     return settingsLevel;
-
-
 }
+export {getSettingsLevel};
 
 window.globalFunction = {};
 window.globalFunction.getSettingsLevel = getSettingsLevel;
