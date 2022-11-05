@@ -22,21 +22,18 @@ addEventListener('keydown', plus);
 addEventListener('keydown', minus);
 function numberSelect(number) {
     if (number === 1) {
-        console.log("1だよ");
         $("#start a").css("background", "linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff)");
         $("#select a").css("background", "gray");
         $("#setting a").css("background", "gray");
     }
 
     if (number === 2) {
-        console.log("2だよ");
         $("#start a").css("background", "gray");
         $("#select a").css("background", "linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff)");
         $("#setting a").css("background", "gray");
     }
 
     if (number === 3) {
-        console.log("3だよ");
         $("#start a").css("background", "gray");
         $("#select a").css("background", "gray");
         $("#setting a").css("background", "linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff)");
@@ -50,8 +47,6 @@ function plus(e) {
             selecter++;
         }
         numberSelect(selecter);
-        console.log(selecter);
-        
     }
     
     return false;

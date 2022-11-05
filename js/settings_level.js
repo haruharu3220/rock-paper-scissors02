@@ -1,11 +1,21 @@
 let settingsLevel = 0;
 
+function getSettingsLevel() {
+    return settingsLevel;
+
+
+}
+
+window.globalFunction = {};
+window.globalFunction.getSettingsLevel = getSettingsLevel;
+
+
 addEventListener('keypress', selectLevel);
 function selectLevel(e) {
     if (e.keyCode === 13) {
-            location.href="top.html";
-          }
+        location.href = "top.html";
     }
+}
 
 addEventListener('keydown', settingsLevelPlus);
 addEventListener('keydown', settingsLevelMinus);
@@ -26,11 +36,11 @@ function settingsLevelPlus(e) {
     if (e.keyCode === 40) { //下ボタン
         if (settingsLevel < 1) {
             console.log("下");
-          settingsLevel++;
+            settingsLevel++;
         }
-        levelSelect(settingsLevel);    
+        levelSelect(settingsLevel);
     }
-    
+
     return false;
 }
 
@@ -39,10 +49,10 @@ function settingsLevelMinus(e) {
     if (e.keyCode === 38) { //上ボタン
         if (settingsLevel > 0) {
             console.log("上");
-          settingsLevel--;
+            settingsLevel--;
         }
-        levelSelect(settingsLevel); 
+        levelSelect(settingsLevel);
     }
-    
+
     return false;
 }

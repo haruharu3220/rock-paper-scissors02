@@ -164,11 +164,11 @@ function main() {
 			if (map[y][x] === 0) { // アイテム無し通路
 				ctx_map.drawImage(aisle_pacman, 32 * x, 32 * y);
 			}
-			else if (map[y][x] === -1 && x < 5 && y < 5) { //ポイント有り通路
-				ctx_map.drawImage(point, 32 * x, 32 * y);
-				remainItemCount++;
+			else if (map[y][x] === -1 &&x < 5 && y < 5) { //ポイント有り通路)
+						ctx_map.drawImage(point, 32 * x, 32 * y);
+						remainItemCount++;
+					}
 				//console.log("map[y][x]="+ map[y][x]);
-			}
 			else if (map[y][x] === 1) { //壁
 				ctx_map.drawImage(aisle, 32 * x, 32 * y);
 			}
@@ -255,7 +255,7 @@ function main() {
 	//移動先が壁でなかったら敵を動かす
 	if (enemy_gu.move === 0) {
 		directionChange = Math.floor(Math.random() * (max - min + 1) + min);
-		
+
 		//40％の確率でそのままの向きに移動
 		if (directionChange < 40) {
 			//60％の確立で方向転換
@@ -272,7 +272,7 @@ function main() {
 			enemy_gu.direction = direction.left;
 		}
 		collision_enemy(enemy_gu);
-		console.log("directionChange="+directionChange);
+		console.log("directionChange=" + directionChange);
 	}
 	if (enemy_gu.move > 0) {
 		move_random(enemy_gu);
@@ -283,7 +283,6 @@ function main() {
 }
 //ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
-
 addEventListener("keydown", keydownfunc02, false);
 addEventListener("keyup", keyupfunc02, false);
 
@@ -453,7 +452,7 @@ function move(Object) {
 //敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
 function move_random(Object) {
 	if (modalFrag === false) { //モーダルが非表示の時
-	if (Object.move > 0) {
+		if (Object.move > 0) {
 			if (Object.direction === direction.top) Object.y -= 4;
 			if (Object.direction === direction.right) Object.x += 4;
 			if (Object.direction === direction.down) Object.y += 4;
@@ -462,5 +461,3 @@ function move_random(Object) {
 		}
 	}
 }
-
-
