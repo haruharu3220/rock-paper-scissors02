@@ -1,4 +1,4 @@
-import {getSettingsLevel} from './getsettingslevel.js';
+//import {getSettingsLevel} from './getsettingslevel.js';
 
 var canvas_map = document.getElementById('canvas_map');
 canvas_map.width = 896;	//canvasの横幅
@@ -155,12 +155,12 @@ for (var y = 0; y < map.length; y++) {
 	}
 }
 console.log("アイテム数は" + itemCount);
-console.log("難易度は" + getSettingsLevel());
+//console.log("難易度は" + getSettingsLevel());
 
 //メインループ
 function main() {
 	let remainItemCount = 0;
-
+	
 	for (var y = 0; y < map.length; y++) {
 		for (var x = 0; x < map[y].length; x++) {
 
@@ -275,11 +275,11 @@ function main() {
 			enemy_gu.direction = direction.left;
 		}
 		collision_enemy(enemy_gu);
-		console.log("directionChange=" + directionChange);
+		//console.log("directionChange=" + directionChange);
 	}
 	if (enemy_gu.move > 0) {
 		move_random(enemy_gu);
-		console.log("directionChange"+directionChange);
+		//console.log("directionChange"+directionChange);
 	
 
 	}
