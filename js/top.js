@@ -1,4 +1,5 @@
 var selecter = 0;
+console.log('pathname:' + location.pathname);
 
 addEventListener('keypress', select);
 function select(e) {

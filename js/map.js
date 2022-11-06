@@ -1,4 +1,6 @@
-//import {getSettingsLevel} from './getsettingslevel.js';
+import { getSettingsLevel } from './getsettinglevel.js';
+import { modalFrag } from './modal.js';
+
 
 var canvas_map = document.getElementById('canvas_map');
 canvas_map.width = 896;	//canvasの横幅
@@ -111,7 +113,7 @@ key.left = false;
 key.push = '';
 
 //クリア判定フラグ
-let clearFlig = 0;
+export let clearFlig = false;
 
 //マップの作成（さくせい）
 var map = [
@@ -155,24 +157,24 @@ for (var y = 0; y < map.length; y++) {
 	}
 }
 console.log("アイテム数は" + itemCount);
-//console.log("難易度は" + getSettingsLevel());
+console.log("難易度は" + getSettingsLevel());
 
 //メインループ
 function main() {
 	let remainItemCount = 0;
-	
+
 	for (var y = 0; y < map.length; y++) {
 		for (var x = 0; x < map[y].length; x++) {
 
 			if (map[y][x] === 0) { // アイテム無し通路
 				ctx_map.drawImage(aisle_pacman, 32 * x, 32 * y);
 			}
-			else if (map[y][x] === -1 &&x < 5 && y < 5) { //ポイント有り通路)
-			//else if (map[y][x] === -1 ) { //ポイント有り通路)
-						ctx_map.drawImage(point, 32 * x, 32 * y);
-						remainItemCount++;
-					}
-				//console.log("map[y][x]="+ map[y][x]);
+			else if (map[y][x] === -1 && x < 5 && y < 5) { //ポイント有り通路)
+				//else if (map[y][x] === -1 ) { //ポイント有り通路)
+				ctx_map.drawImage(point, 32 * x, 32 * y);
+				remainItemCount++;
+			}
+			//console.log("map[y][x]="+ map[y][x]);
 			else if (map[y][x] === 1) { //壁
 				ctx_map.drawImage(aisle, 32 * x, 32 * y);
 			}
@@ -196,11 +198,13 @@ function main() {
 	//残アイテムが0判定（クリア判定）
 	//main 関数が無限ループしているからその中でクリア判定を実施し
 	//クリアなら１回だけ通知を上げるところが難しかった
-	if (remainItemCount === 0 && clearFlig == 0) {
-		clearFlig++
+	if (remainItemCount === 0 && !clearFlig) {
+		clearFlig = true;
 		//console.log("A");
-		if (clearFlig === 1) {
+		if (clearFlig) {
 			console.log("クリア");
+			clearModal.style.display = 'block';
+			modalFrag = true;
 		}
 	}
 
@@ -280,7 +284,16 @@ function main() {
 	if (enemy_gu.move > 0) {
 		move_random(enemy_gu);
 		//console.log("directionChange"+directionChange);
-	
+
+
+
+		//敵と当たったとき
+		if (collision_to_enemy(pacman, enemy_gu, enemy_choki, enemy_pa)) {
+			if (gameover) {
+				gameOver.style.display = 'block';
+				modalFrag = true;
+			}
+		}
 
 	}
 
@@ -424,7 +437,7 @@ function collision_enemy(Object) {
 
 let gameover = false;
 //敵との当たり判定　第一引数：パックマンオブジェクト　第二引数以降：敵オブジェクト
-function collision_to_enemy(Pacman, ...Object) {
+export function collision_to_enemy(Pacman, ...Object) {
 	for (let i = 0; i < arguments.length - 1; i++) {
 		if ((Pacman.x === Object[i].x) && (Pacman.y === Object[i].y)) {
 			if ((Pacman.janken === janken.pa && Object[i].janken === janken.gu) ||

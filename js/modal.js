@@ -1,7 +1,10 @@
+import {clearFlig} from  './map.js';
+import {collision_to_enemy} from  './map.js';
+
 let rule_page = 1;
 
 //trueの時はモーダル表示中 falseの時はモーダル非表示
-let modalFrag = false;
+export let modalFrag = false;
 
 
 // ボタンがクリックされた時
@@ -44,19 +47,19 @@ function main2() {
   }
 
 
+//ゲームクリアなら
+  // if (clearFlig) {
+  //   clearModal.style.display = 'block';
+  //   modalFrag = true;
+  // }
 
-  if (clearFlig !== 0) {
-    clearModal.style.display = 'block';
-    modalFrag = true;
-  }
-
-  //敵と当たったとき
-  if (collision_to_enemy(pacman, enemy_gu, enemy_choki, enemy_pa)) {
-    if (gameover) {
-      gameOver.style.display = 'block';
-      modalFrag = true;
-    }
-  }
+  // //敵と当たったとき
+  // if (collision_to_enemy(pacman, enemy_gu, enemy_choki, enemy_pa)) {
+  //   if (gameover) {
+  //     gameOver.style.display = 'block';
+  //     modalFrag = true;
+  //   }
+  // }
 
 
 
