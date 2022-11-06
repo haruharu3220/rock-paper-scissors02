@@ -1,4 +1,4 @@
-//import {getSettingsLevel} from 'js/getsettingslevel.js';
+import {getSettingsLevel} from './getsettingslevel.js';
 
 var canvas_map = document.getElementById('canvas_map');
 canvas_map.width = 896;	//canvasの横幅
@@ -77,24 +77,28 @@ enemy_pa.y = 608;
 enemy_pa.move = 0;
 enemy_pa.direction = direction.top;
 
-//マップチップのImageオブジェクトを作る
-var aisle = new Image();
-aisle.src = 'img/aisle7.png';
 
-//マップチップのImageオブジェクトを作る
+
+//モンスターのImageオブジェクトを作る
 var gu = new Image();
 gu.src = 'img/gu.png';
 
 var choki = new Image();
 choki.src = 'img/choki.png';
 
+
 var pa = new Image();
 pa.src = 'img/pa.png';
 
+//壁のImageオブジェクトを作る
+var aisle = new Image();
+aisle.src = 'img/aisle7.png';
 
+//通路（アイテム無し）のImageオブジェクトを作る
 var aisle_pacman = new Image();
 aisle_pacman.src = 'img/aisle5.png';
 
+//通路（アイテム有り）のImageオブジェクトを作る
 var point = new Image();
 point.src = 'img/point.png';
 
@@ -151,7 +155,7 @@ for (var y = 0; y < map.length; y++) {
 	}
 }
 console.log("アイテム数は" + itemCount);
-
+console.log("難易度は" + getSettingsLevel());
 
 //メインループ
 function main() {

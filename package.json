@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "name": "homework_02",
+  "version": "1.0.0",
+  "description": "- デプロイしている場合はURLを記入（任意）",
+  // "main": "index.js",
+  "main": "top.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
