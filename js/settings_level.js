@@ -1,8 +1,8 @@
-let settingsLevel = 0;
+// let settingsLevel = 0;
 
-function getSettingsLevel() {
-    return settingsLevel;
-}
+// function getSettingsLevel() {
+//     return settingsLevel;
+// }
 
 addEventListener('keypress', selectLevel);
 function selectLevel(e) {
