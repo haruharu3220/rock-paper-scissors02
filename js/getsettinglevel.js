@@ -1,7 +1,7 @@
 
 let settingsLevel = 0;
 
- export default function getSettingsLevel() {
+ export function getSettingsLevel() {
      return settingsLevel;
  }
 

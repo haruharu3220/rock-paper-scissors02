@@ -1,6 +1,6 @@
 let settingsLevel = 0;
 
-export function getSettingsLevel() {
+function getSettingsLevel() {
     return settingsLevel;
 }
 

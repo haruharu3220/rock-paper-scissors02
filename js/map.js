@@ -1,4 +1,4 @@
-//import {getSettingsLevel} from './getsettingslevel.js';
+import {getSettingsLevel} from './getsettingslevel.js';
 
 var canvas_map = document.getElementById('canvas_map');
 canvas_map.width = 896;	//canvasの横幅
@@ -155,7 +155,7 @@ for (var y = 0; y < map.length; y++) {
 	}
 }
 console.log("アイテム数は" + itemCount);
-//console.log("難易度は" + getSettingsLevel());
+console.log("難易度は" + getSettingsLevel());
 
 //メインループ
 function main() {
