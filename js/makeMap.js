@@ -48,23 +48,33 @@ let enemyType = {
 };
 
 
-let selectPlay =false; //遊ぶボタンをタップしたかフラグ
+let pacmanCount = 0; //配置したパックマンの数
+let enemy_guCount = 0; //配置したパックマンの数
+let enemy_chokiCount = 0; //配置したパックマンの数
+let enemy_paCount = 0; //配置したパックマンの数
+var madePacman = []; //配置したパックマンオブジェクトの管理用配列
+var madeEnemy_gu = []; //配置したパックマンオブジェクトの管理用配列
+var madeEnemy_pa = []; //配置したパックマンオブジェクトの管理用配列
+var madeEnemy_choki = []; //配置したパックマンオブジェクトの管理用配列
 
-//パックマンのオブジェクトを作成
-var pacman = new Object();
-pacman.img_default = new Image();
-pacman.img_default.src = 'img/pacman.png';
-pacman.img_gu = new Image();
-pacman.img_gu.src = 'img/pacman_gu.png';
-pacman.img_choki = new Image();
-pacman.img_choki.src = 'img/pacman_choki.png';
-pacman.img_pa = new Image();
-pacman.img_pa.src = 'img/pacman_pa.png';
-pacman.janken = janken.defalt;
-pacman.x = 32;
-//pacman.y = 32;
-pacman.y = 128;
-pacman.move = 0;
+let selectPlay = false; //遊ぶボタンをタップしたかフラグ
+
+
+// //パックマンのオブジェクトを作成
+// var pacman = new Object();
+// pacman.img_default = new Image();
+// pacman.img_default.src = 'img/pacman.png';
+// pacman.img_gu = new Image();
+// pacman.img_gu.src = 'img/pacman_gu.png';
+// pacman.img_choki = new Image();
+// pacman.img_choki.src = 'img/pacman_choki.png';
+// pacman.img_pa = new Image();
+// pacman.img_pa.src = 'img/pacman_pa.png';
+// pacman.janken = janken.defalt;
+// pacman.x = 32;
+// //pacman.y = 32;
+// pacman.y = 128;
+// pacman.move = 0;
 
 
 //敵(グー 青)のオブジェクトを作成
@@ -291,11 +301,6 @@ function main() {
             else if (map[y][x] === enemyType.pa) { //敵（パー）
                 make_map.drawImage(monster_pa, 32 * x, 32 * y, 32, 32);
             }
-
-
-            else { //デバッグ用コード　動作確認のためアイテムの数を減らす
-                make_map.drawImage(pacman_default, 32 * x, 32 * y);
-            }
         }
     }
 
@@ -304,9 +309,8 @@ function main() {
     make_map.strokeStyle = "white";
     // パスの開始
     make_map.beginPath();
-    // make_map.moveTo(0, 32);
-    // make_map.lineTo(makeMapArea.width, 32);
 
+    //格子の線を格納
     for (let i = 0; i < makeMapArea.height / 32; i++) {
         make_map.moveTo(0, 32 * i);
         make_map.lineTo(makeMapArea.width, 32 * i);
@@ -317,12 +321,8 @@ function main() {
         make_map.lineTo(32 * i, makeMapArea.height);
     }
 
-
     // 描画
     make_map.stroke();
-
-
-
 
     //残アイテムが0判定（クリア判定）
     //main 関数が無限ループしているからその中でクリア判定を実施し
@@ -338,81 +338,54 @@ function main() {
     }
 
     //敵を表示
-    make_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //グーの敵　＝青
-    make_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //チョキの敵　＝赤
-    make_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //パーの敵　＝緑
+    // make_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //グーの敵　＝青
+    // make_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //チョキの敵　＝赤
+    // make_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //パーの敵　＝緑
 
-    //パックマンを表示
-    //グーチョキパーに適したパックマンを表示
-    
-    if (pacman.janken === janken.gu) {
-        make_map.drawImage(pacman.img_gu, pacman.x, pacman.y,); //パックマン
-    } else if (pacman.janken === janken.choki) {
-        make_map.drawImage(pacman.img_choki, pacman.x, pacman.y,); //パックマン
-    } else if (pacman.janken === janken.pa) {
-        make_map.drawImage(pacman.img_pa, pacman.x, pacman.y,); //パックマン
-    } else {
-        make_map.drawImage(pacman.img_default, pacman.x, pacman.y,); //パックマン
-    }
 
     //遊ぶを押したら
-    if(selectPlay){
-    for(var i = 0; i < pacmanCount; i++){
-    if (madePacman[i].janken === janken.gu) {
-        make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,); //パックマン
-    } else if (madePacman[i].janken === janken.choki) {
-        make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
-    } else if (madePacman[i].janken === janken.pa) {
-        make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
-    } else {
-        make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
+    if (selectPlay) {
+        //パックマンオブジェクトの制御
+        for (var i = 0; i < pacmanCount; i++) {
+            if (madePacman[i].janken === janken.gu) {
+                make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,); //パックマン
+            } else if (madePacman[i].janken === janken.choki) {
+                make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
+            } else if (madePacman[i].janken === janken.pa) {
+                make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
+            } else {
+                make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
+            }
+            itemCatch(madePacman[i]);
+
+
+            if (madePacman[i].move === 0) {
+                collision(madePacman[i]);
+            }
+            if (madePacman[i].move > 0) {
+                move(madePacman[i]);
+            }
+
+
+
+        }
+
+        for (var i = 0; i < enemy_guCount; i++) {
+            make_map.drawImage(madeEnemy_gu[i].img, madeEnemy_gu[i].x, madeEnemy_gu[i].y,); //敵（グー）
+        //enemyMove(Object);
+        }
+
+        for (var i = 0; i < enemy_chokiCount; i++) {
+            make_map.drawImage(madeEnemy_choki[i].img, madeEnemy_choki[i].x, madeEnemy_choki[i].y,); //敵（グー）
+        //enemyMove(Object);
+        }
+
+        for (var i = 0; i < enemy_paCount; i++) {
+            make_map.drawImage(madeEnemy_pa[i].img, madeEnemy_pa[i].x, madeEnemy_pa[i].y,); //敵（グー）
+        //enemyMove(Object);
+        }
+
     }
-    itemCatch(madePacman[i]);
-
-
-    if (madePacman[i].move === 0) {
-        collision(madePacman[i]);
-    }
-    if (madePacman[i].move > 0) {
-        move(madePacman[i]);
-    }
-}
-}
-
-
-
-    //パックマンが一度通った道のアイテムは消す
-    //パックマンがジャンケンアイテムをとったらパックマン状態を反映する
-    // if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
-
-
-    //     if (map[pacman.y / 32][pacman.x / 32] === janken.gu) {
-    //         console.log("グー");
-    //         pacman.janken = janken.gu;
-    //     } else if (map[pacman.y / 32][pacman.x / 32] === janken.choki) {
-    //         console.log("チョキ");
-    //         pacman.janken = janken.choki;
-    //     } else if (map[pacman.y / 32][pacman.x / 32] === janken.pa) {
-    //         console.log("パー");
-    //         pacman.janken = janken.pa;
-    //     }
-    //     map[pacman.y / 32][pacman.x / 32] = 0;
-    // }
-
-    // if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
-
-    //     map[pacman.y / 32][pacman.x / 32] = 0;
-    // }
-
-
-    //移動先が壁でなかったらパックマンを動かす
-    // if (pacman.move === 0) {
-    //     collision(pacman);
-    // }
-    // if (pacman.move > 0) {
-    //     move(pacman);
-    // }
-
 
     //移動先が壁でなかったら敵を動かす
     if (enemy_gu.move === 0) {
@@ -438,18 +411,6 @@ function main() {
     }
     if (enemy_gu.move > 0) {
         move_random(enemy_gu);
-        //console.log("directionChange"+directionChange);
-
-
-
-        //敵と当たったとき
-        // 	if (collision_to_enemy(pacman, enemy_gu, enemy_choki, enemy_pa)) {
-        // 		if (gameover) {
-        // 			gameOver.style.display = 'block';
-        // 			modalFrag = true;
-        // 		}
-        // 	}
-
     }
 
     requestAnimationFrame(main);
@@ -739,23 +700,17 @@ $("#selectreset").on("click", function (e) {
 });
 
 
-let pacmanCount = 0;
-let enemy_guCount = 0;
-let enemy_chokiCount = 0;
-let enemy_paCount = 0;
-var madePacman = [];
-
 
 $("#selectPlay").on("click", function (e) {
-    selectPlay =true;
-   
-    
+    selectPlay = true;
+
+
 
     //パックマンと敵の数を数える
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
             if (map[y][x] === pacmanType.default) {
-                madePacman[pacmanCount]= new Object();
+                madePacman[pacmanCount] = new Object();
                 madePacman[pacmanCount].img_default = new Image();
                 madePacman[pacmanCount].img_default.src = 'img/pacman.png';
                 madePacman[pacmanCount].img_gu = new Image();
@@ -765,45 +720,50 @@ $("#selectPlay").on("click", function (e) {
                 madePacman[pacmanCount].img_pa = new Image();
                 madePacman[pacmanCount].img_pa.src = 'img/pacman_pa.png';
                 madePacman[pacmanCount].janken = janken.defalt;
-                madePacman[pacmanCount].x = 32*x;
-                madePacman[pacmanCount].y = 32*y;
+                madePacman[pacmanCount].x = 32 * x;
+                madePacman[pacmanCount].y = 32 * y;
                 madePacman[pacmanCount].move = 0;
                 pacmanCount++;
-                map[y][x] =0;
+                map[y][x] = 0;
             }
-            if (map[y][x] === enemyType.gu) enemy_guCount++;
-            if (map[y][x] === enemyType.choki) enemy_chokiCount++;
-            if (map[y][x] === enemyType.pa) enemy_paCount++;
+            if (map[y][x] === enemyType.gu){ 
+                madeEnemy_gu[enemy_guCount] = new Object();
+                madeEnemy_gu[enemy_guCount].img = new Image();
+                madeEnemy_gu[enemy_guCount].img.src = 'img/blue.png';
+                madeEnemy_gu[enemy_guCount].janken = janken.gu;
+                madeEnemy_gu[enemy_guCount].x = 32 * x;
+                madeEnemy_gu[enemy_guCount].y = 32 * y;
+                madeEnemy_gu[enemy_guCount].move = 0;
+                enemy_guCount++;
+                map[y][x] = 0;
+            }
+            if (map[y][x] === enemyType.choki){
+                madeEnemy_choki[enemy_chokiCount] = new Object();
+                madeEnemy_choki[enemy_chokiCount].img = new Image();
+                madeEnemy_choki[enemy_chokiCount].img.src = 'img/red.png';
+                madeEnemy_choki[enemy_chokiCount].janken = janken.gu;
+                madeEnemy_choki[enemy_chokiCount].x = 32 * x;
+                madeEnemy_choki[enemy_chokiCount].y = 32 * y;
+                madeEnemy_choki[enemy_chokiCount].move = 0;
+                enemy_chokiCount++;
+                map[y][x] = 0;
+            } 
+            if (map[y][x] === enemyType.pa) {
+                madeEnemy_pa[enemy_paCount] = new Object();
+                madeEnemy_pa[enemy_paCount].img = new Image();
+                madeEnemy_pa[enemy_paCount].img.src = 'img/green.png';
+                madeEnemy_pa[enemy_paCount].janken = janken.gu;
+                madeEnemy_pa[enemy_paCount].x = 32 * x;
+                madeEnemy_pa[enemy_paCount].y = 32 * y;
+                madeEnemy_pa[enemy_paCount].move = 0;
+                enemy_paCount++;
+                map[y][x] = 0;
+            
+            
+            }
+
         }
     }
-
-    console.log("pacmaCount" + pacmanCount);
-    console.log("enemy_guCount" + enemy_guCount);
-    console.log("enemy_chokiCount" + enemy_chokiCount);
-    console.log("enemy_paCount" + enemy_paCount);
-
-
-
-    for (var i = 0; i < pacmanCount; i++) {
-        console.log("pacman[i] " +pacman[i] );
-        pacman[i] = new Object();
-        pacman[i].img_default = new Image();
-        pacman[i].img_default.src = 'img/pacman.png';
-        pacman[i].img_gu = new Image();
-        pacman[i].img_gu.src = 'img/pacman_gu.png';
-        pacman[i].img_choki = new Image();
-        pacman[i].img_choki.src = 'img/pacman_choki.png';
-        pacman[i].img_pa = new Image();
-        pacman[i].img_pa.src = 'img/pacman_pa.png';
-        pacman[i].janken = janken.defalt;
-        pacman[i].x = 32;
-        pacman[i].y = 32;
-        pacman[i].move = 0;
-
-
-    }
-
-
 });
 
 //敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
@@ -826,6 +786,33 @@ function itemCatch(Object) {
 
 }
 
+//敵をランダムに動かす関数
+function enemyMove(Object) {
+    if (Object.move === 0) {
+        directionChange = Math.floor(Math.random() * (max - min + 1) + min);
 
+        //40％の確率でそのままの向きに移動
+        if (directionChange < 40) {
+            //60％の確立で方向転換
+        } else if (directionChange > 40 && directionChange < 55) {
+            Object.direction = direction.top;
+        }
+        else if (directionChange > 55 && directionChange < 60) {
+            Object.direction = direction.right;
+        }
+        else if (directionChange > 60 && directionChange < 75) {
+            Object.direction = direction.down;
+        }
+        else if (directionChange > 75) {
+            Object.direction = direction.left;
+        }
+        collision_enemy(Object);
+        //console.log("directionChange=" + directionChange);
+    }
+    if (Object.move > 0) {
+        move_random(Object);
+    }
+
+}
 
 
