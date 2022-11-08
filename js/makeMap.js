@@ -224,7 +224,6 @@ for (var y = 0; y < map.length; y++) {
     }
 }
 console.log("アイテム数は" + itemCount);
-console.log("item.length" + item.length);
 
 //メインループ
 function main() {
@@ -329,18 +328,7 @@ function main() {
     //クリアなら１回だけ通知を上げるところが難しかった
     if (remainItemCount === 0 && !clearFlig) {
         clearFlig = true;
-        //console.log("A");
-        // if (clearFlig) {
-        // 	console.log("クリア");
-        // 	clearModal.style.display = 'block';
-        // 	modalFrag = true;
-        // }
     }
-
-    //敵を表示
-    // make_map.drawImage(enemy_gu.img, enemy_gu.x, enemy_gu.y, 32, 32); //グーの敵　＝青
-    // make_map.drawImage(enemy_choki.img, enemy_choki.x, enemy_choki.y, 32, 32); //チョキの敵　＝赤
-    // make_map.drawImage(enemy_pa.img, enemy_pa.x, enemy_pa.y, 32, 32); //パーの敵　＝緑
 
 
     //遊ぶを押したら
@@ -372,47 +360,22 @@ function main() {
 
         for (var i = 0; i < enemy_guCount; i++) {
             make_map.drawImage(madeEnemy_gu[i].img, madeEnemy_gu[i].x, madeEnemy_gu[i].y,); //敵（グー）
-        //enemyMove(Object);
+            enemyMove(madeEnemy_gu[i]);
         }
 
         for (var i = 0; i < enemy_chokiCount; i++) {
             make_map.drawImage(madeEnemy_choki[i].img, madeEnemy_choki[i].x, madeEnemy_choki[i].y,); //敵（グー）
-        //enemyMove(Object);
+            enemyMove(madeEnemy_choki[i]);
         }
 
         for (var i = 0; i < enemy_paCount; i++) {
             make_map.drawImage(madeEnemy_pa[i].img, madeEnemy_pa[i].x, madeEnemy_pa[i].y,); //敵（グー）
-        //enemyMove(Object);
+            enemyMove(madeEnemy_pa[i]);
         }
 
-    }
 
-    //移動先が壁でなかったら敵を動かす
-    if (enemy_gu.move === 0) {
-        directionChange = Math.floor(Math.random() * (max - min + 1) + min);
-
-        //40％の確率でそのままの向きに移動
-        if (directionChange < 40) {
-            //60％の確立で方向転換
-        } else if (directionChange > 40 && directionChange < 55) {
-            enemy_gu.direction = direction.top;
-        }
-        else if (directionChange > 55 && directionChange < 60) {
-            enemy_gu.direction = direction.right;
-        }
-        else if (directionChange > 60 && directionChange < 75) {
-            enemy_gu.direction = direction.down;
-        }
-        else if (directionChange > 75) {
-            enemy_gu.direction = direction.left;
-        }
-        collision_enemy(enemy_gu);
         //console.log("directionChange=" + directionChange);
     }
-    if (enemy_gu.move > 0) {
-        move_random(enemy_gu);
-    }
-
     requestAnimationFrame(main);
 }
 //ページと依存している全てのデータが読み込まれたら、メインループ開始
@@ -517,23 +480,21 @@ function collision_enemy(Object) {
             }
         }
 
-        if (Object.direction === direction.up) {
+        if (Object.direction === direction.top) {
             var x = Object.x / 32;
             var y = Object.y / 32;
             if (y > 0) {
                 y--;
                 if (map[y][x] != 1) {
                     Object.move = 32;
-                    console.log("ここは１回通るはず");
                 }
             }
-
         }
         if (Object.direction === direction.right) {
             var x = Object.x / 32;
             var y = Object.y / 32;
             x++;
-            if (map[y][x] != 1) {
+            if (map[y][x] != 1){
                 Object.move = 32;
             }
         }
@@ -588,10 +549,22 @@ function move_random(Object) {
     //if (modalFrag === false) { //モーダルが非表示の時
     if (Object.move > 0) {
         Object.move -= 4;
-        if (Object.direction === direction.top) Object.y -= 4;
-        if (Object.direction === direction.right) Object.x += 4;
-        if (Object.direction === direction.down) Object.y += 4;
-        if (Object.direction === direction.left) Object.x -= 4;
+        if (Object.direction === direction.top) {
+            Object.y -= 4;
+            console.log("TOP");
+        }
+        else if (Object.direction === direction.right) {
+            Object.x += 4;
+           // console.log("Right");
+        }
+        else if (Object.direction === direction.down) {
+            Object.y += 4;
+            console.log("Down");
+        }
+        else if (Object.direction === direction.left) {
+            Object.x -= 4;
+            //console.log("Leftaaa");
+        }
     }
     //}
 }
@@ -734,6 +707,7 @@ $("#selectPlay").on("click", function (e) {
                 madeEnemy_gu[enemy_guCount].x = 32 * x;
                 madeEnemy_gu[enemy_guCount].y = 32 * y;
                 madeEnemy_gu[enemy_guCount].move = 0;
+                madeEnemy_gu[enemy_paCount].direction = direction.top;
                 enemy_guCount++;
                 map[y][x] = 0;
             }
@@ -745,6 +719,7 @@ $("#selectPlay").on("click", function (e) {
                 madeEnemy_choki[enemy_chokiCount].x = 32 * x;
                 madeEnemy_choki[enemy_chokiCount].y = 32 * y;
                 madeEnemy_choki[enemy_chokiCount].move = 0;
+                madeEnemy_choki[enemy_paCount].direction = direction.top;
                 enemy_chokiCount++;
                 map[y][x] = 0;
             } 
@@ -756,6 +731,7 @@ $("#selectPlay").on("click", function (e) {
                 madeEnemy_pa[enemy_paCount].x = 32 * x;
                 madeEnemy_pa[enemy_paCount].y = 32 * y;
                 madeEnemy_pa[enemy_paCount].move = 0;
+                madeEnemy_pa[enemy_paCount].direction = direction.top;
                 enemy_paCount++;
                 map[y][x] = 0;
             
@@ -790,21 +766,26 @@ function itemCatch(Object) {
 function enemyMove(Object) {
     if (Object.move === 0) {
         directionChange = Math.floor(Math.random() * (max - min + 1) + min);
-
+        //console.log("directionChange"+directionChange);
         //40％の確率でそのままの向きに移動
         if (directionChange < 40) {
             //60％の確立で方向転換
         } else if (directionChange > 40 && directionChange < 55) {
             Object.direction = direction.top;
+            console.log("TOP");
         }
         else if (directionChange > 55 && directionChange < 60) {
             Object.direction = direction.right;
+            //console.log("Right");
         }
         else if (directionChange > 60 && directionChange < 75) {
             Object.direction = direction.down;
+           // console.log("Down");
         }
         else if (directionChange > 75) {
+            
             Object.direction = direction.left;
+           // console.log("Left");
         }
         collision_enemy(Object);
         //console.log("directionChange=" + directionChange);
