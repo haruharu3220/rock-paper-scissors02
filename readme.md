@@ -58,3 +58,7 @@ https://qiita.com/mzmz__02/items/873118fbd8723c44956d
 https://tcd-theme.com/2021/08/javascript-modalwindow.html  
 https://coco-factory.jp/ugokuweb/move01/9-6-1/
 
+
+■マウスボタン押しっぱなしの判定
+https://dgcolor.info/blog/98/
+
