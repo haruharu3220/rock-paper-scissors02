@@ -367,6 +367,15 @@ function main() {
     } else {
         make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
     }
+    itemCatch(madePacman[i]);
+
+
+    if (madePacman[i].move === 0) {
+        collision(madePacman[i]);
+    }
+    if (madePacman[i].move > 0) {
+        move(madePacman[i]);
+    }
 }
 }
 
@@ -374,35 +383,35 @@ function main() {
 
     //パックマンが一度通った道のアイテムは消す
     //パックマンがジャンケンアイテムをとったらパックマン状態を反映する
-    if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
+    // if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
 
 
-        if (map[pacman.y / 32][pacman.x / 32] === janken.gu) {
-            console.log("グー");
-            pacman.janken = janken.gu;
-        } else if (map[pacman.y / 32][pacman.x / 32] === janken.choki) {
-            console.log("チョキ");
-            pacman.janken = janken.choki;
-        } else if (map[pacman.y / 32][pacman.x / 32] === janken.pa) {
-            console.log("パー");
-            pacman.janken = janken.pa;
-        }
-        map[pacman.y / 32][pacman.x / 32] = 0;
-    }
+    //     if (map[pacman.y / 32][pacman.x / 32] === janken.gu) {
+    //         console.log("グー");
+    //         pacman.janken = janken.gu;
+    //     } else if (map[pacman.y / 32][pacman.x / 32] === janken.choki) {
+    //         console.log("チョキ");
+    //         pacman.janken = janken.choki;
+    //     } else if (map[pacman.y / 32][pacman.x / 32] === janken.pa) {
+    //         console.log("パー");
+    //         pacman.janken = janken.pa;
+    //     }
+    //     map[pacman.y / 32][pacman.x / 32] = 0;
+    // }
 
-    if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
+    // if (pacman.move === 0 && pacman.x % 32 === 0 && pacman.y % 32 === 0) {
 
-        map[pacman.y / 32][pacman.x / 32] = 0;
-    }
+    //     map[pacman.y / 32][pacman.x / 32] = 0;
+    // }
 
 
     //移動先が壁でなかったらパックマンを動かす
-    if (pacman.move === 0) {
-        collision(pacman);
-    }
-    if (pacman.move > 0) {
-        move(pacman);
-    }
+    // if (pacman.move === 0) {
+    //     collision(pacman);
+    // }
+    // if (pacman.move > 0) {
+    //     move(pacman);
+    // }
 
 
     //移動先が壁でなかったら敵を動かす
@@ -796,3 +805,27 @@ $("#selectPlay").on("click", function (e) {
 
 
 });
+
+//敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
+function itemCatch(Object) {
+    if (Object.move === 0 && Object.x % 32 === 0 && Object.y % 32 === 0) {
+
+
+        if (map[Object.y / 32][Object.x / 32] === janken.gu) {
+            console.log("グー");
+            Object.janken = janken.gu;
+        } else if (map[Object.y / 32][Object.x / 32] === janken.choki) {
+            console.log("チョキ");
+            Object.janken = janken.choki;
+        } else if (map[Object.y / 32][Object.x / 32] === janken.pa) {
+            console.log("パー");
+            Object.janken = janken.pa;
+        }
+        map[Object.y / 32][Object.x / 32] = 0;
+    }
+
+}
+
+
+
+
