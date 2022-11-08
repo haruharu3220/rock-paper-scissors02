@@ -247,10 +247,10 @@ function main() {
     Item_area.stroke();
 
 
-
     //マップの作成
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
+
 
             if (map[y][x] === 0) { // アイテム無し通路
                 make_map.drawImage(aisle_pacman, 32 * x, 32 * y);
@@ -670,24 +670,6 @@ $("#makeMapArea").mousedown(function () {
     pushing_flag = 1;
     setTimeout(mouse_push_hold, 1); // ここで「mouse_push_hold」を指定
 
-    // if(pushing_flag===1){
-    //     $("#makeMapArea").on("mousemove", function (e) {
-
-    //         if ($("makeMapArea").mousedown) {
-    //             var rect = e.target.getBoundingClientRect();
-    //             makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
-    //             makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
-
-
-    //             var x = e.pageX,
-    //                 y = e.pageY;
-
-    //             map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-    //             console.log(makeMapAreaX, makeMapAreaY);
-    //         }
-    //     });
-    // }
-
     return false;
 }).mouseup(function () {
     // 領域内でマウスボタンを離した時
@@ -717,3 +699,13 @@ $("#makeMapArea").on("mousemove", function (e) {
     }
 });
 
+
+$("#selectreset").on("click", function (e) {
+ console.log("あああ");
+    for (var y = 0; y < map.length; y++) {
+        for (var x = 0; x < map[y].length; x++) {
+            selectReset = true;
+            map[y][x] = 0;
+        }}
+
+});
