@@ -58,7 +58,7 @@ var madeEnemy_pa = []; //配置したパックマンオブジェクトの管理�
 var madeEnemy_choki = []; //配置したパックマンオブジェクトの管理用配列
 
 let selectPlay = false; //遊ぶボタンをタップしたかフラグ
-
+let selectReset = false;
 
 // //パックマンのオブジェクトを作成
 // var pacman = new Object();
@@ -355,25 +355,28 @@ function main() {
             }
 
 
-
+            
         }
 
         for (var i = 0; i < enemy_guCount; i++) {
             make_map.drawImage(madeEnemy_gu[i].img, madeEnemy_gu[i].x, madeEnemy_gu[i].y,); //敵（グー）
             enemyMove(madeEnemy_gu[i]);
+            collision_to_enemy(madePacman[0], madeEnemy_gu[i]);
         }
 
         for (var i = 0; i < enemy_chokiCount; i++) {
             make_map.drawImage(madeEnemy_choki[i].img, madeEnemy_choki[i].x, madeEnemy_choki[i].y,); //敵（グー）
             enemyMove(madeEnemy_choki[i]);
+            collision_to_enemy(madePacman[0], madeEnemy_choki[i]);
         }
 
         for (var i = 0; i < enemy_paCount; i++) {
             make_map.drawImage(madeEnemy_pa[i].img, madeEnemy_pa[i].x, madeEnemy_pa[i].y,); //敵（グー）
             enemyMove(madeEnemy_pa[i]);
+            collision_to_enemy(madePacman[0], madeEnemy_pa[i]);
         }
 
-
+        
         //console.log("directionChange=" + directionChange);
     }
     requestAnimationFrame(main);
@@ -514,15 +517,17 @@ function collision_enemy(Object) {
 
 let gameover = false;
 //敵との当たり判定　第一引数：パックマンオブジェクト　第二引数以降：敵オブジェクト
-export function collision_to_enemy(Pacman, ...Object) {
+export function collision_to_enemy(Pacman, Object) {
     for (let i = 0; i < arguments.length - 1; i++) {
-        if ((Pacman.x === Object[i].x) && (Pacman.y === Object[i].y)) {
-            if ((Pacman.janken === janken.pa && Object[i].janken === janken.gu) ||
-                (Pacman.janken === janken.gu && Object[i].janken === janken.choki) ||
-                (Pacman.janken === janken.choki && Object[i].janken === janken.pa)) {
+        if ((Pacman.x === Object.x) && (Pacman.y === Object.y)) {
+            if ((Pacman.janken === janken.pa && Object.janken === janken.gu) ||
+                (Pacman.janken === janken.gu && Object.janken === janken.choki) ||
+                (Pacman.janken === janken.choki && Object.janken === janken.pa)) {
                 gameover = false;
+                
             } else {
                 gameover = true;
+                console.log("GAMEOVER");
             }
             return true;
         }
@@ -551,19 +556,18 @@ function move_random(Object) {
         Object.move -= 4;
         if (Object.direction === direction.top) {
             Object.y -= 4;
-            console.log("TOP");
+            
         }
         else if (Object.direction === direction.right) {
             Object.x += 4;
-           // console.log("Right");
+           
         }
         else if (Object.direction === direction.down) {
             Object.y += 4;
-            console.log("Down");
+           
         }
         else if (Object.direction === direction.left) {
             Object.x -= 4;
-            //console.log("Leftaaa");
         }
     }
     //}
@@ -766,13 +770,12 @@ function itemCatch(Object) {
 function enemyMove(Object) {
     if (Object.move === 0) {
         directionChange = Math.floor(Math.random() * (max - min + 1) + min);
-        //console.log("directionChange"+directionChange);
         //40％の確率でそのままの向きに移動
         if (directionChange < 40) {
             //60％の確立で方向転換
         } else if (directionChange > 40 && directionChange < 55) {
             Object.direction = direction.top;
-            console.log("TOP");
+            //console.log("TOP");
         }
         else if (directionChange > 55 && directionChange < 60) {
             Object.direction = direction.right;
