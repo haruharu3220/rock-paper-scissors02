@@ -654,25 +654,8 @@ $("#makeMapArea").on("click", function (e) {
 
 var pushing_flag = 0;
 
-// $("#makeMapArea").on("mousemove", function (e) {
-
-//     if ($("makeMapArea").mousedown) {
-//         var rect = e.target.getBoundingClientRect();
-//         makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
-//         makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
-
-
-//         var x = e.pageX,
-//             y = e.pageY;
-
-//         map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-//         console.log(makeMapAreaX, makeMapAreaY);
-//     }
-// });
-
 var mouse_push_hold = function () {
     // ここに、マウスボタンを押しっぱなしにしている間に行いたい処理
-
     if (pushing_flag == 1) {
         // 領域内でマウスボタンを押している場合、この関数を再び呼び出す
         setTimeout(mouse_push_hold, 1);
@@ -728,12 +711,9 @@ $("#makeMapArea").on("mousemove", function (e) {
             makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
             makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
 
-
-            var x = e.pageX,
-                y = e.pageY;
-
             map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
             console.log(makeMapAreaX, makeMapAreaY);
         }
     }
 });
+
