@@ -34,18 +34,18 @@ let direction = {
     left: 4
 };
 
-let pacmanType ={
-default:10,
-gu:11,
-choki: 12,
-pa: 13,
+let pacmanType = {
+    default: 10,
+    gu: 11,
+    choki: 12,
+    pa: 13,
 };
 
-let enemyType ={
-    gu:21,
+let enemyType = {
+    gu: 21,
     choki: 22,
     pa: 23,
-    };
+};
 
 //パックマンのオブジェクトを作成
 var pacman = new Object();
@@ -194,7 +194,7 @@ let map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
-let item = [0, -1, 1, pacmanType.default, enemyType.gu,enemyType.choki, enemyType.pa,janken.gu, janken.choki, janken.pa]
+let item = [0, -1, 1, pacmanType.default, enemyType.gu, enemyType.choki, enemyType.pa, janken.gu, janken.choki, janken.pa]
 
 
 let itemCount = 0; //残アイテムの数をカウント
@@ -606,11 +606,11 @@ function move_random(Object) {
     //}
 }
 
-let makeMapAreaX=0; //クリックしたX座標
-let makeMapAreaY=0; //クリックしたY座標
+let makeMapAreaX = 0; //クリックしたX座標
+let makeMapAreaY = 0; //クリックしたY座標
 
-let mapItemX=0; //クリックしたX座標
-let mapItemY=0; //クリックしたY座標
+let mapItemX = 0; //クリックしたX座標
+let mapItemY = 0; //クリックしたY座標
 
 $("#makeMapItem").on("click", function (e) {
     // var mousePos = getMousePosition(Item_area, evt);
@@ -620,8 +620,8 @@ $("#makeMapItem").on("click", function (e) {
     var rect = e.target.getBoundingClientRect();
     mapItemX = e.clientX - Math.floor(rect.left) - 2;
     mapItemY = e.clientY - Math.floor(rect.top) - 2;
-    console.log( mapItemX,~~(mapItemY/50) );
-}); 
+    console.log(mapItemX, ~~(mapItemY / 50));
+});
 
 $("#makeMapArea").on("click", function (e) {
     // var mousePos = getMousePosition(Item_area, evt);
@@ -634,10 +634,106 @@ $("#makeMapArea").on("click", function (e) {
     //console.log( makeMapAreaX,makeMapAreaY );
 
     //console.log( map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)]);
-    console.log( "map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] =="+map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)]);
+    console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
 
     //map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] == 5;
-    map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] = item[~~(mapItemY/50)];
-    console.log( "map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] =="+map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)]);
+    map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+    console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
 
-}); 
+});
+
+// https://liginc.co.jp/web/js/jquery/102848
+// $("#makeMapItem").draggable({
+//     drag : function (event , ui) {
+//         console.log("drag event start" );
+//         console.log(event , ui);
+//     } ,
+// });
+
+//https://shanabrian.com/web/jquery/mouse-position.php
+
+var pushing_flag = 0;
+
+// $("#makeMapArea").on("mousemove", function (e) {
+
+//     if ($("makeMapArea").mousedown) {
+//         var rect = e.target.getBoundingClientRect();
+//         makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
+//         makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
+
+
+//         var x = e.pageX,
+//             y = e.pageY;
+
+//         map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+//         console.log(makeMapAreaX, makeMapAreaY);
+//     }
+// });
+
+var mouse_push_hold = function () {
+    // ここに、マウスボタンを押しっぱなしにしている間に行いたい処理
+
+    if (pushing_flag == 1) {
+        // 領域内でマウスボタンを押している場合、この関数を再び呼び出す
+        setTimeout(mouse_push_hold, 1);
+    }
+};
+
+var pushing_flag = 0; // マウスの状態を示すフラグ(1なら領域内でボタンが押されている)
+
+// id(=click_area)の領域内でのマウスの状態を検知
+$("#makeMapArea").mousedown(function () {
+    // 領域内でマウスボタンを押した時
+    pushing_flag = 1;
+    setTimeout(mouse_push_hold, 1); // ここで「mouse_push_hold」を指定
+
+    // if(pushing_flag===1){
+    //     $("#makeMapArea").on("mousemove", function (e) {
+
+    //         if ($("makeMapArea").mousedown) {
+    //             var rect = e.target.getBoundingClientRect();
+    //             makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
+    //             makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
+
+
+    //             var x = e.pageX,
+    //                 y = e.pageY;
+
+    //             map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+    //             console.log(makeMapAreaX, makeMapAreaY);
+    //         }
+    //     });
+    // }
+
+    return false;
+}).mouseup(function () {
+    // 領域内でマウスボタンを離した時
+    pushing_flag = 0;
+    clearTimeout(mouse_push_hold);  // clearTimeout()の処理を止める
+}).mouseleave(function () {
+    // マウスカーソルが領域外になった時
+    pushing_flag = 2;
+    clearTimeout(mouse_push_hold);  // clearTimeout()の処理を止める
+}).mouseover(function () {
+    // マウスカーソルが領域内になった時
+    pushing_flag = 0;
+    clearTimeout(mouse_push_hold);  // clearTimeout()の処理を止める
+});
+
+
+$("#makeMapArea").on("mousemove", function (e) {
+    if (pushing_flag === 1) {
+        if ($("makeMapArea").mousedown) {
+            var rect = e.target.getBoundingClientRect();
+            makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
+            makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
+
+
+            var x = e.pageX,
+                y = e.pageY;
+
+            map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+            console.log(makeMapAreaX, makeMapAreaY);
+        }
+    }
+});
