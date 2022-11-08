@@ -1,4 +1,4 @@
-#level a , #demonstration a , #easy a {
+#level a , #demonstration a , #easy a ,#normal a,#hard a{
 
     border-radius: 325px; /*円の半径の長さ*/
     position: relative;

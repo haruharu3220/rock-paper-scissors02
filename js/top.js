@@ -13,7 +13,7 @@ function select(e) {
         if (selecter === 2) {
             $("#yes_audio").get(0).play();
             setTimeout(function () {
-                location.href = "game.html";
+                location.href = "makeMap.html";
             }, 700);
         }
         if (selecter === 3) {

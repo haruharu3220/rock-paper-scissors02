@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html labg="en">
+<head>
+<meta chrset="utf-8" />
+<title>じゃんけんパックマン</title>
+
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/sanitize.css" />
+<link rel="stylesheet" href="css/makeGame.css" />
+
+
+
+</head>
+<body>
+
+  <p>コースを作る</p>
+  <div class="makeArea">
+  <canvas id="makeMapArea"></canvas>
+  <canvas id="makeMapItem"></canvas>
+  </div>
+
+  <dev id="start"><a href="#">保存する</a></dev>
+  <dev id="select"><a href="#">遊ぶ</a></dev>
+  <dev id="setting"><a href="#">リセット</a></dev>   
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  
+  <script src="js/makeMap.js" type="module"></script>
+  <!-- <script src="js/modal.js" type="module"></script> -->
+
+</body>
+</html>

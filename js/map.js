@@ -1,8 +1,8 @@
-import { getSettingsLevel } from './getsettinglevel.js';
 import { modalFrag } from './modal.js';
 
 
-var canvas_map = document.getElementById('canvas_map');
+let canvas_map = document.getElementById('canvas_map');
+
 canvas_map.width = 896;	//canvasの横幅
 canvas_map.height = 960;	//canvasの縦幅
 
@@ -157,7 +157,6 @@ for (var y = 0; y < map.length; y++) {
 	}
 }
 console.log("アイテム数は" + itemCount);
-console.log("難易度は" + getSettingsLevel());
 
 //メインループ
 function main() {

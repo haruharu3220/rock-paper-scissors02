@@ -1,5 +1,5 @@
-import {clearFlig} from  './map.js';
-import {collision_to_enemy} from  './map.js';
+// import {clearFlig} from  './map.js';
+// import {collision_to_enemy} from  './map.js';
 
 let rule_page = 1;
 
