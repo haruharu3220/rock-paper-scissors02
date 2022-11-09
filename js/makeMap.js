@@ -60,21 +60,8 @@ var madeEnemy_choki = []; //配置したパックマンオブジェクトの管�
 let selectPlay = false; //遊ぶボタンをタップしたかフラグ
 let selectReset = false;
 
-// //パックマンのオブジェクトを作成
-// var pacman = new Object();
-// pacman.img_default = new Image();
-// pacman.img_default.src = 'img/pacman.png';
-// pacman.img_gu = new Image();
-// pacman.img_gu.src = 'img/pacman_gu.png';
-// pacman.img_choki = new Image();
-// pacman.img_choki.src = 'img/pacman_choki.png';
-// pacman.img_pa = new Image();
-// pacman.img_pa.src = 'img/pacman_pa.png';
-// pacman.janken = janken.defalt;
-// pacman.x = 32;
-// //pacman.y = 32;
-// pacman.y = 128;
-// pacman.move = 0;
+//モーダルが表示されているか判定するフラグ
+let modalDisplayFrag = false;
 
 
 //敵(グー 青)のオブジェクトを作成
@@ -177,7 +164,7 @@ let clearFlig = false;
 let gameover = false;
 
 //残アイテムの数をカウント
-let itemCount = 0; 
+let itemCount = 0;
 
 
 //マップの作成
@@ -337,63 +324,66 @@ function main() {
         //パックマンオブジェクトの制御
         for (var i = 0; i < pacmanCount; i++) {
             if (madePacman[i].janken === janken.gu) {
-                make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,); //パックマン
+                //パックマンがグーだったらグーになる
+                make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,);
+
             } else if (madePacman[i].janken === janken.choki) {
+                //パックマンがチョキだったらチョキになる
                 make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
+
             } else if (madePacman[i].janken === janken.pa) {
+                //パックマンがパーだったらパーになる
                 make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
+
             } else {
+                //パックマンがデフォルトだったらデフォルトになる
                 make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
             }
+            // アイテムを取ったらそのアイテムに応じた手になる
             itemCatch(madePacman[i]);
 
-
+            //  Moveが0なら→32の倍数座標にあるので当たり判定を行う
             if (madePacman[i].move === 0) {
                 collision(madePacman[i]);
             }
+            //　Moveが0以外なら→移動の途中なので移動を続ける
             if (madePacman[i].move > 0) {
                 move(madePacman[i]);
             }
-
-
-            
         }
+
 
         for (var i = 0; i < enemy_guCount; i++) {
             make_map.drawImage(madeEnemy_gu[i].img, madeEnemy_gu[i].x, madeEnemy_gu[i].y,); //敵（グー）
-            enemyMove(madeEnemy_gu[i]);
+
+            enemyMove(madeEnemy_gu[i]); //敵をランダムに動かす
             collision_to_enemy(madePacman[0], madeEnemy_gu[i]);
         }
 
         for (var i = 0; i < enemy_chokiCount; i++) {
             make_map.drawImage(madeEnemy_choki[i].img, madeEnemy_choki[i].x, madeEnemy_choki[i].y,); //敵（グー）
-            enemyMove(madeEnemy_choki[i]);
+            enemyMove(madeEnemy_choki[i]);//敵をランダムに動かす
             collision_to_enemy(madePacman[0], madeEnemy_choki[i]);
         }
 
         for (var i = 0; i < enemy_paCount; i++) {
             make_map.drawImage(madeEnemy_pa[i].img, madeEnemy_pa[i].x, madeEnemy_pa[i].y,); //敵（グー）
-            enemyMove(madeEnemy_pa[i]);
+            enemyMove(madeEnemy_pa[i]);//敵をランダムに動かす
             collision_to_enemy(madePacman[0], madeEnemy_pa[i]);
         }
 
 
-    if(itemCount===0){
-        gameclearForMakeMap.style.display = 'block';
-        modalFrag = true;
-    }
+        //残アイテムが0判定（クリア判定）
+        //main 関数が無限ループしているからその中でクリア判定を実施し
+        //クリアなら１回だけ通知を上げるところが難しかった
+        if (remainItemCount === 0 && !notPointFlag) {
+            clearFlig = true;
+        }
+        if (clearFlig && !modalDisplayFrag) {
+            gameclearForMakeMap.style.display = 'block';
+            modalDisplayFrag = true;
+        }
 
-    //残アイテムが0判定（クリア判定）
-    //main 関数が無限ループしているからその中でクリア判定を実施し
-    //クリアなら１回だけ通知を上げるところが難しかった
-    if (remainItemCount === 0 && !clearFlig) {
-        clearFlig = true;
-    }
-    if(clearFlig){
-        gameclearForMakeMap.style.display = 'block';
-        modalFrag = true;
-    }
-        
     }
     requestAnimationFrame(main);
 }
@@ -513,7 +503,7 @@ function collision_enemy(Object) {
             var x = Object.x / 32;
             var y = Object.y / 32;
             x++;
-            if (map[y][x] != 1){
+            if (map[y][x] != 1) {
                 Object.move = 32;
             }
         }
@@ -540,15 +530,15 @@ export function collision_to_enemy(Pacman, Object) {
                 (Pacman.janken === janken.gu && Object.janken === janken.choki) ||
                 (Pacman.janken === janken.choki && Object.janken === janken.pa)) {
                 gameover = false;
-                
+
             } else {
                 gameover = true;
                 console.log("GAMEOVER");
-     
+
                 gameOverForMakeMap.style.display = 'block';
-                modalFrag = true;
-                
-    
+                modalDisplayFrag = true;
+
+
             }
             return true;
         }
@@ -577,15 +567,15 @@ function move_random(Object) {
         Object.move -= 4;
         if (Object.direction === direction.top) {
             Object.y -= 4;
-            
+
         }
         else if (Object.direction === direction.right) {
             Object.x += 4;
-           
+
         }
         else if (Object.direction === direction.down) {
             Object.y += 4;
-           
+
         }
         else if (Object.direction === direction.left) {
             Object.x -= 4;
@@ -600,43 +590,31 @@ let makeMapAreaY = 0; //クリックしたY座標
 let mapItemX = 0; //クリックしたX座標
 let mapItemY = 0; //クリックしたY座標
 
+//アイテム領域をクリックしたとき
 $("#makeMapItem").on("click", function (e) {
-    // var mousePos = getMousePosition(Item_area, evt);
-    // console.log("aaa" + mousePos.x);
-    // console.log("aaa" + mousePos.y);
     // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
     var rect = e.target.getBoundingClientRect();
     mapItemX = e.clientX - Math.floor(rect.left) - 2;
     mapItemY = e.clientY - Math.floor(rect.top) - 2;
-    console.log(mapItemX, ~~(mapItemY / 50));
+    //console.log(mapItemX, ~~(mapItemY / 50));
 });
 
+//マップ領域をクリックしたとき
 $("#makeMapArea").on("click", function (e) {
-    // var mousePos = getMousePosition(Item_area, evt);
-    // console.log("aaa" + mousePos.x);
-    // console.log("aaa" + mousePos.y);
+
     // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
     var rect = e.target.getBoundingClientRect();
     makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
     makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
-    //console.log( makeMapAreaX,makeMapAreaY );
 
-    //console.log( map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)]);
-    console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
+    //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
 
     //map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] == 5;
     map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-    console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
+    //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
 
 });
 
-// https://liginc.co.jp/web/js/jquery/102848
-// $("#makeMapItem").draggable({
-//     drag : function (event , ui) {
-//         console.log("drag event start" );
-//         console.log(event , ui);
-//     } ,
-// });
 
 //https://shanabrian.com/web/jquery/mouse-position.php
 
@@ -672,7 +650,7 @@ $("#makeMapArea").mousedown(function () {
     clearTimeout(mouse_push_hold);  // clearTimeout()の処理を止める
 });
 
-
+//Map領域でドラッグをしたら
 $("#makeMapArea").on("mousemove", function (e) {
     if (pushing_flag === 1) {
         if ($("makeMapArea").mousedown) {
@@ -688,21 +666,29 @@ $("#makeMapArea").on("mousemove", function (e) {
 
 //リセットボタンを押したら
 $("#selectreset").on("click", function (e) {
+    console.log("リセットボタンが押されました。");
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
             selectReset = true;
+
+            if (x === 0 || y === 0) {
+                map[y][x] = 1;
+            }
             map[y][x] = 0;
         }
     }
 
 });
 
+//パックマンいないフラグ
+let notPacmanFlag = false;
+//ポイント置いていないフラグ
+let notPointFlag = false;
 
 
+//遊ぶボタンを押したら
 $("#selectPlay").on("click", function (e) {
     selectPlay = true;
-
-
 
     //パックマンと敵の数を数える
     for (var y = 0; y < map.length; y++) {
@@ -726,7 +712,7 @@ $("#selectPlay").on("click", function (e) {
                 map[y][x] = 0;
             }
             //グーの敵の数を数える
-            if (map[y][x] === enemyType.gu){ 
+            if (map[y][x] === enemyType.gu) {
                 madeEnemy_gu[enemy_guCount] = new Object();
                 madeEnemy_gu[enemy_guCount].img = new Image();
                 madeEnemy_gu[enemy_guCount].img.src = 'img/blue.png';
@@ -739,7 +725,7 @@ $("#selectPlay").on("click", function (e) {
                 map[y][x] = 0;
             }
             //チョキの敵の数を数える
-            if (map[y][x] === enemyType.choki){
+            if (map[y][x] === enemyType.choki) {
                 madeEnemy_choki[enemy_chokiCount] = new Object();
                 madeEnemy_choki[enemy_chokiCount].img = new Image();
                 madeEnemy_choki[enemy_chokiCount].img.src = 'img/red.png';
@@ -747,10 +733,10 @@ $("#selectPlay").on("click", function (e) {
                 madeEnemy_choki[enemy_chokiCount].x = 32 * x;
                 madeEnemy_choki[enemy_chokiCount].y = 32 * y;
                 madeEnemy_choki[enemy_chokiCount].move = 0;
-                madeEnemy_choki[enemy_paCount].direction = direction.top;
+                madeEnemy_choki[enemy_chokiCount].direction = direction.top;
                 enemy_chokiCount++;
                 map[y][x] = 0;
-            } 
+            }
             //パーの敵の数を数える
             if (map[y][x] === enemyType.pa) {
                 madeEnemy_pa[enemy_paCount] = new Object();
@@ -763,16 +749,32 @@ $("#selectPlay").on("click", function (e) {
                 madeEnemy_pa[enemy_paCount].direction = direction.top;
                 enemy_paCount++;
                 map[y][x] = 0;
-            
-            
+
+
             }
+            //ポイントの数を数える
             if (map[y][x] === -1) {
                 itemCount++;
-                console.log("itemCount+"+itemCount);
+                console.log("itemCount+" + itemCount);
             }
+
+
 
         }
     }
+
+    if (itemCount === 0) {
+        notPointFlag = true;
+        notPointModal.style.display = 'block';
+        modalDisplayFrag = true;
+
+    }
+    if (pacmanCount === 0) {
+        notPacmanFlag = true;
+        notPacmanModal.style.display = 'block';
+        modalDisplayFrag = true;
+    }
+
 });
 
 //敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
@@ -812,12 +814,12 @@ function enemyMove(Object) {
         }
         else if (directionChange > 60 && directionChange < 75) {
             Object.direction = direction.down;
-           // console.log("Down");
+            // console.log("Down");
         }
         else if (directionChange > 75) {
-            
+
             Object.direction = direction.left;
-           // console.log("Left");
+            // console.log("Left");
         }
         collision_enemy(Object);
         //console.log("directionChange=" + directionChange);
