@@ -21,6 +21,7 @@
     <canvas id="makeMapItem"></canvas>
   </div>
 
+    <!-- ゲームクリアの時出てくるモーダル -->
   <div id="gameclearForMakeMap" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -31,11 +32,11 @@
             <p>次へ行くときはEnter</p>
         
         </div>
-
     </div>
   </div> 
 
 
+  <!-- ゲームオーバーの時出てくるモーダル -->
   <div id="gameOverForMakeMap" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -50,13 +51,46 @@
     </div>
 </div> 
 
+  <!-- パックマンを１匹も置いていないときのモーダル -->
+<div id="notPacmanModal" class="modal">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h2>パックマンを置いていないよ</h2>
+      </div>
+      <div class="modal-body">
+          <p>パックマンを置かないとゲームができないよ！</p>
+          <p>パックマンを置いてね！！</p>
+      
+      </div>
 
+  </div>
+</div> 
+
+  <!-- ポイントを１匹も置いていないときのモーダル -->
+  <div id="notPointModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>ポイントが置いてないよ</h2>
+        </div>
+        <div class="modal-body">
+            <p>ポイントを置かないとゲームができないよ！</p>
+            <p>ポイントを置いてね！！</p>
+        
+        </div>
+  
+    </div>
+  </div> 
 
 
   <div class="select">
-    <dev id="selectSave"><a href="#">保存する</a></dev>
+    <dev id="selectSave"><a href="#">完成</a></dev>
+        <dev id="selectreset"><a href="#">リセット</a></dev>
+
+
+
     <dev id="selectPlay"><a href="#">遊ぶ</a></dev>
-    <dev id="selectreset"><a href="#">リセット</a></dev>
+    <dev id="changeMakeMode"><a href="#">作るモードへ</a></dev>
+    
   </div>
 
 
