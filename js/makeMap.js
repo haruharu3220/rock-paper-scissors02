@@ -173,6 +173,13 @@ key.push = '';
 //クリア判定フラグ
 let clearFlig = false;
 
+//ゲームオーバ判定フラグ
+let gameover = false;
+
+//残アイテムの数をカウント
+let itemCount = 0; 
+
+
 //マップの作成
 let map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -211,19 +218,18 @@ let map = [
 let item = [0, -1, 1, pacmanType.default, enemyType.gu, enemyType.choki, enemyType.pa, janken.gu, janken.choki, janken.pa]
 
 
-let itemCount = 0; //残アイテムの数をカウント
-let itemCountBuff = 0; //残アイテムの数をカウント
 
 
 
-for (var y = 0; y < map.length; y++) {
-    for (var x = 0; x < map[y].length; x++) {
-        if (map[y][x] === -1) {
-            itemCount++;
-        }
-    }
-}
-console.log("アイテム数は" + itemCount);
+
+// for (var y = 0; y < map.length; y++) {
+//     for (var x = 0; x < map[y].length; x++) {
+//         if (map[y][x] === -1) {
+//             itemCount++;
+//         }
+//     }
+// }
+
 
 //メインループ
 function main() {
@@ -323,12 +329,7 @@ function main() {
     // 描画
     make_map.stroke();
 
-    //残アイテムが0判定（クリア判定）
-    //main 関数が無限ループしているからその中でクリア判定を実施し
-    //クリアなら１回だけ通知を上げるところが難しかった
-    if (remainItemCount === 0 && !clearFlig) {
-        clearFlig = true;
-    }
+
 
 
     //遊ぶを押したら
@@ -376,8 +377,23 @@ function main() {
             collision_to_enemy(madePacman[0], madeEnemy_pa[i]);
         }
 
+
+    if(itemCount===0){
+        gameclearForMakeMap.style.display = 'block';
+        modalFrag = true;
+    }
+
+    //残アイテムが0判定（クリア判定）
+    //main 関数が無限ループしているからその中でクリア判定を実施し
+    //クリアなら１回だけ通知を上げるところが難しかった
+    if (remainItemCount === 0 && !clearFlig) {
+        clearFlig = true;
+    }
+    if(clearFlig){
+        gameclearForMakeMap.style.display = 'block';
+        modalFrag = true;
+    }
         
-        //console.log("directionChange=" + directionChange);
     }
     requestAnimationFrame(main);
 }
@@ -515,7 +531,7 @@ function collision_enemy(Object) {
 }
 
 
-let gameover = false;
+
 //敵との当たり判定　第一引数：パックマンオブジェクト　第二引数以降：敵オブジェクト
 export function collision_to_enemy(Pacman, Object) {
     for (let i = 0; i < arguments.length - 1; i++) {
@@ -528,6 +544,11 @@ export function collision_to_enemy(Pacman, Object) {
             } else {
                 gameover = true;
                 console.log("GAMEOVER");
+     
+                gameOverForMakeMap.style.display = 'block';
+                modalFrag = true;
+                
+    
             }
             return true;
         }
@@ -686,6 +707,7 @@ $("#selectPlay").on("click", function (e) {
     //パックマンと敵の数を数える
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
+            //パックマンの数を数える
             if (map[y][x] === pacmanType.default) {
                 madePacman[pacmanCount] = new Object();
                 madePacman[pacmanCount].img_default = new Image();
@@ -703,6 +725,7 @@ $("#selectPlay").on("click", function (e) {
                 pacmanCount++;
                 map[y][x] = 0;
             }
+            //グーの敵の数を数える
             if (map[y][x] === enemyType.gu){ 
                 madeEnemy_gu[enemy_guCount] = new Object();
                 madeEnemy_gu[enemy_guCount].img = new Image();
@@ -715,6 +738,7 @@ $("#selectPlay").on("click", function (e) {
                 enemy_guCount++;
                 map[y][x] = 0;
             }
+            //チョキの敵の数を数える
             if (map[y][x] === enemyType.choki){
                 madeEnemy_choki[enemy_chokiCount] = new Object();
                 madeEnemy_choki[enemy_chokiCount].img = new Image();
@@ -727,6 +751,7 @@ $("#selectPlay").on("click", function (e) {
                 enemy_chokiCount++;
                 map[y][x] = 0;
             } 
+            //パーの敵の数を数える
             if (map[y][x] === enemyType.pa) {
                 madeEnemy_pa[enemy_paCount] = new Object();
                 madeEnemy_pa[enemy_paCount].img = new Image();
@@ -740,6 +765,10 @@ $("#selectPlay").on("click", function (e) {
                 map[y][x] = 0;
             
             
+            }
+            if (map[y][x] === -1) {
+                itemCount++;
+                console.log("itemCount+"+itemCount);
             }
 
         }
@@ -798,5 +827,3 @@ function enemyMove(Object) {
     }
 
 }
-
-

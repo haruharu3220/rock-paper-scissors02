@@ -1,6 +1,9 @@
-#selectSave a , #selectPlay a , #selectreset a {
+#selectSave a,
+#selectPlay a,
+#selectreset a {
 
-    border-radius: 325px; /*円の半径の長さ*/
+    border-radius: 325px;
+    /*円の半径の長さ*/
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -14,6 +17,44 @@
     background: gray;
 }
 
-.select{
+.select {
     display: flex;
+}
+
+.modal {
+    font-family: 'Noto Sans JP', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', '游ゴシック', 'Yu Gothic', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    width: 50%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+
+.modal-header {
+    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    color: #fffafa;
+    text-shadow: 1px 1px 0 #708090,
+        -1px 1px 0 #708090,
+        1px -1px 0 #708090,
+        -1px -1px 0 #708090;
+
 }

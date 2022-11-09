@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html labg="en">
-<head>
-<meta chrset="utf-8" />
-<title>じゃんけんパックマン</title>
 
-<link rel="stylesheet" href="css/reset.css" />
-<link rel="stylesheet" href="css/sanitize.css" />
-<link rel="stylesheet" href="css/makeMap.css" />
+<head>
+  <meta chrset="utf-8" />
+  <title>じゃんけんパックマン</title>
+
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/sanitize.css" />
+  <link rel="stylesheet" href="css/makeMap.css" />
 
 
 
 </head>
+
 <body>
 
   <p>コースを作る</p>
   <div class="makeArea">
-  <canvas id="makeMapArea"></canvas>
-  <canvas id="makeMapItem"></canvas>
+    <canvas id="makeMapArea"></canvas>
+    <canvas id="makeMapItem"></canvas>
   </div>
 
+  <div id="gameclearForMakeMap" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>ゲームクリア</h2>
+        </div>
+        <div class="modal-body">
+            <p>すごい！すごい！</p>
+            <p>次へ行くときはEnter</p>
+        
+        </div>
+
+    </div>
+  </div> 
+
+
+  <div id="gameOverForMakeMap" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>ゲームオーバー</h2>
+        </div>
+        <div class="modal-body">
+            <p>残念～！！</p>
+            <p>また遊んでね！</p>
+        
+        </div>
+
+    </div>
+</div> 
+
+
+
+
   <div class="select">
-  <dev id="selectSave"><a href="#">保存する</a></dev>
-  <dev id="selectPlay"><a href="#">遊ぶ</a></dev>
-  <dev id="selectreset"><a href="#">リセット</a></dev>   
-</div>
+    <dev id="selectSave"><a href="#">保存する</a></dev>
+    <dev id="selectPlay"><a href="#">遊ぶ</a></dev>
+    <dev id="selectreset"><a href="#">リセット</a></dev>
+  </div>
+
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  
+
   <script src="js/makeMap.js" type="module"></script>
   <!-- <script src="js/modal.js" type="module"></script> -->
 
 </body>
+
 </html>
