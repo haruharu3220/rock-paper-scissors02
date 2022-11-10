@@ -1,8 +1,7 @@
-#selectDone a,
-#selectReset a ,
+#selectDoneButton a,
+#selectResetButton a ,
 #selectPlayButton a,
 #changeMakeModeButton a{
-
     border-radius: 325px;
     /*円の半径の長さ*/
     position: relative;
@@ -17,7 +16,10 @@
     font-weight: 600;
     background: gray;
 }
-
+#selectDoneButton,
+#selectResetButton{
+    display: block;
+}
 #selectPlayButton,
 #changeMakeModeButton{
     display: none;

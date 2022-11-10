@@ -650,10 +650,43 @@ $("#makeMapArea").on("mousemove", function (e) {
 });
 
 
-$("#selectDone").on("click", function (e) {
+$("#selectDoneButton").on("click", function (e) {
+    for (var y = 0; y < map.length; y++) {
+        for (var x = 0; x < map[y].length; x++) {
+            if (map[y][x] === pacmanType.default) {
+                pacmanCount++;
+            }
+            if (map[y][x] === -1) {
+                itemCount++;
+            }
+        }
+    }
+
+    //フラグを立てる
+    if (itemCount === 0 && pacmanCount !== 0) {
+        notPointFlag = true;
+        notPointModal.style.display = 'block';
+        modalDisplayFrag = true;
+    }
+    if (itemCount !== 0 && pacmanCount === 0) {
+        notPacmanFlag = true;
+        notPacmanModal.style.display = 'block';
+        modalDisplayFrag = true;
+    }
+
+    if (itemCount === 0 && pacmanCount === 0) {
+        notPacmanFlag = true;
+        notPointFlag = true;
+        notPacmanPointModal.style.display = 'block';
+        modalDisplayFrag = true;
+    }
         console.log("selectDoneが押されました");
         selectPlayButton.style.display = 'block';
         changeMakeModeButton.style.display = 'block';
+        selectDoneButton.style.display = 'none';
+        selectResetButton.style.display = 'none';
+
+
 });
 
 //リセットボタンを押したら
@@ -684,28 +717,8 @@ let notPointFlag = false;
 let pacmanSelector=0;
 $("#selectPlayButton").on("click", function (e) {
     //まずパックマンとアイテムを数える
-    for (var y = 0; y < map.length; y++) {
-        for (var x = 0; x < map[y].length; x++) {
-            if (map[y][x] === pacmanType.default) {
-                pacmanCount++;
-            }
-            if (map[y][x] === -1) {
-                itemCount++;
-            }
-        }
-    }
+  
 
-    //フラグを立てる
-    if (itemCount === 0) {
-        notPointFlag = true;
-        notPointModal.style.display = 'block';
-        modalDisplayFrag = true;
-    }
-    if (pacmanCount === 0) {
-        notPacmanFlag = true;
-        notPacmanModal.style.display = 'block';
-        modalDisplayFrag = true;
-    }
 
     if (notPointFlag === false && notPacmanFlag === false) {
         selectPlay = true;
