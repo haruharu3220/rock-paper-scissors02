@@ -89,6 +89,38 @@ text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+/* モーダルのヘッダーをデザイン */
+.modal-header {
+    height: 100px;
+    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    text-align: center;
+    font-family: "myfont";
+    font-size: 48px;
+    color: #fffafa;
+    /* text-shadow: 1px 1px 0 #708090,
+        -1px 1px 0 #708090,
+        1px -1px 0 #708090,
+        -1px -1px 0 #708090; */
+    text-shadow: 2px 2px 0 black;
+
+}
+/* モーダルのボディをデザイン */
+.modal-body{
+    height: 500px;
+
+}
+.modal-body p{
+    margin: 10px;
+    font-family: "myfont";
+    font-size: 32px;
+} 
+
 .modal-content {
     background-color: #f4f4f4;
     margin: 20% auto;
@@ -98,21 +130,7 @@ text-align: center;
     animation-duration: 1s;
 }
 
-.modal-header {
-    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
-    padding: 3px 15px;
-    display: flex;
-    justify-content: space-between;
-}
 
-.modal-header h2 {
-    color: #fffafa;
-    text-shadow: 1px 1px 0 #708090,
-        -1px 1px 0 #708090,
-        1px -1px 0 #708090,
-        -1px -1px 0 #708090;
-
-}
 
 
 .select{ 
