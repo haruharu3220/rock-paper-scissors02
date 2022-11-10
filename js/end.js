@@ -5,7 +5,7 @@ function returnTop(e) {
 
     if (e.keyCode === 13) {
         if (returnTopSelecter !== 0) {
-            location.href = "top.html";
+            location.href = "index.html";
         }
 
     }

@@ -1,3 +1,14 @@
+/* Webフォントを定義 */
+@font-face {
+    font-family: 'myfont';/* フォント名 */
+    /* フォーマットごとにパスを指定 */
+    src: url('../res/JF-Dot-K12.ttf') format('truetype');
+    src: url('../res/JF-Dot-K12B.ttf') format('truetype');
+  
+    /* src: url('../res/DragonQuestFC.ttf') format('truetype'); */
+
+  }
+
 body {
     font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
     line-height: 1.75;
@@ -17,12 +28,26 @@ body {
 h1{
     color: black;
     font-weight: 500;
-    font-family: "Nikukyu";
+    /* font-family: "Nikukyu"; */
+    font-family: "myfont";
     text-align: center;
-    font-size: 64px;
+    font-size: 80px;
     color: white;
 
 }
+
+p{
+    font-family: "myfont";
+    text-align: center; 
+    font-size:32px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    
+    /* justify-content: center;  */
+}
+
+
 #start a , #select a , #setting a ,#returnTop a{
 
     border-radius: 325px; /*円の半径の長さ*/
@@ -30,11 +55,17 @@ h1{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 10px auto;
+    margin: 20px auto;
     max-width: 220px;
     padding: 10px 25px;
     color: white;
     transition: 0.3s ease-in-out;
     font-weight: 600;
-    background: gray;
+     background: gray; 
+
+}
+
+
+#start, #select , #setting ,#returnTop{
+    font-family: "myfont";
 }

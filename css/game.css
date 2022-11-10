@@ -7,6 +7,7 @@ body {
     /*「vh」はブラウザの表示域を基準にする単位。
     100vhがブラウザの高さであり、1vhはその100分の1*/
     margin: auto;
+    background-color: black;
 }
 
 h1{

@@ -1,3 +1,45 @@
+/* Webフォントを定義 */
+@font-face {
+    font-family: 'myfont';/* フォント名 */
+    /* フォーマットごとにパスを指定 */
+    src: url('../res/JF-Dot-K12.ttf') format('truetype');
+    src: url('../res/JF-Dot-K12B.ttf') format('truetype');
+  
+    /* src: url('../res/DragonQuestFC.ttf') format('truetype'); */
+
+  }
+
+  
+body {
+    font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+    width: 100vh;
+    height: 100%;
+    margin: auto;
+    background-color: black;
+
+}
+
+h1{
+font-size: 40px;
+color: white;
+font-family: "myfont";
+text-align: center;
+}
+
+.makeArea{ 
+    width: 1006px;
+    margin:0 auto;
+} 
+
+
+#makeMapArea{
+    margin-right: 30px;
+    margin-left: 20px;
+  
+}
+
 #selectDoneButton a,
 #selectResetButton a ,
 #selectPlayButton a,
@@ -19,6 +61,8 @@
 #selectDoneButton,
 #selectResetButton{
     display: block;
+    margin: 10px;
+
 }
 #selectPlayButton,
 #changeMakeModeButton{
@@ -45,6 +89,38 @@
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+/* モーダルのヘッダーをデザイン */
+.modal-header {
+    height: 100px;
+    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    text-align: center;
+    font-family: "myfont";
+    font-size: 36px;
+    color: #fffafa;
+    /* text-shadow: 1px 1px 0 #708090,
+        -1px 1px 0 #708090,
+        1px -1px 0 #708090,
+        -1px -1px 0 #708090; */
+    text-shadow: 2px 2px 0 black;
+
+}
+/* モーダルのボディをデザイン */
+.modal-body{
+    height: 500px;
+
+}
+.modal-body p{
+    margin: 10px;
+    font-family: "myfont";
+    font-size: 32px;
+} 
+
 .modal-content {
     background-color: #f4f4f4;
     margin: 20% auto;
@@ -54,18 +130,10 @@
     animation-duration: 1s;
 }
 
-.modal-header {
-    background: linear-gradient(45deg, #ff8e8e, #ff99cc, #d3a8ff, #99ccff);
-    padding: 3px 15px;
-    display: flex;
-    justify-content: space-between;
-}
 
-.modal-header h2 {
-    color: #fffafa;
-    text-shadow: 1px 1px 0 #708090,
-        -1px 1px 0 #708090,
-        1px -1px 0 #708090,
-        -1px -1px 0 #708090;
 
-}
+
+.select{ 
+    width: 1006px;
+    justify-content: center;
+} 
