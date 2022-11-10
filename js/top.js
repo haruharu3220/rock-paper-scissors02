@@ -3,7 +3,7 @@ console.log('pathname:' + location.pathname);
 
 addEventListener('keypress', select);
 function select(e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13) { //エンターキー
         if (selecter === 1) {
             $("#yes_audio").get(0).play();
             setTimeout(function () {

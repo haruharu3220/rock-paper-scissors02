@@ -158,10 +158,10 @@ key.left = false;
 key.push = '';
 
 //クリア判定フラグ
-let clearFlig = false;
+let clearFlag = false;
 
 //ゲームオーバ判定フラグ
-let gameover = false;
+let gameOverFlag = false;
 
 //残アイテムの数をカウント
 let itemCount = 0;
@@ -225,13 +225,9 @@ function main() {
         if (item[i] === janken.pa) Item_area.drawImage(pa, 0, 50 * i, 50, 50);
     }
 
-
-
-
     //マップの作成
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
-
 
             if (map[y][x] === 0) { // アイテム無し通路
                 make_map.drawImage(aisle_pacman, 32 * x, 32 * y);
@@ -301,8 +297,8 @@ function main() {
         Item_area.lineTo(makeMapItem.width, 50 * i);
     }
     for (let i = 0; i <= makeMapItem.width / 50; i++) {
-        Item_area.moveTo(50 * i ,0 );
-        Item_area.lineTo(50 * i,makeMapItem.height);
+        Item_area.moveTo(50 * i, 0);
+        Item_area.lineTo(50 * i, makeMapItem.height);
     }
     // 描画
     Item_area.stroke();
@@ -369,9 +365,9 @@ function main() {
         //main 関数が無限ループしているからその中でクリア判定を実施し
         //クリアなら１回だけ通知を上げるところが難しかった
         if (remainItemCount === 0 && !notPointFlag) {
-            clearFlig = true;
+            clearFlag = true;
         }
-        if (clearFlig && !modalDisplayFrag) {
+        if (clearFlag && !modalDisplayFrag) {
             gameclearForMakeMap.style.display = 'block';
             modalDisplayFrag = true;
         }
@@ -521,10 +517,10 @@ export function collision_to_enemy(Pacman, Object) {
             if ((Pacman.janken === janken.pa && Object.janken === janken.gu) ||
                 (Pacman.janken === janken.gu && Object.janken === janken.choki) ||
                 (Pacman.janken === janken.choki && Object.janken === janken.pa)) {
-                gameover = false;
+                gameOverFlag = false;
 
             } else {
-                gameover = true;
+                gameOverFlag = true;
                 console.log("GAMEOVER");
 
                 gameOverForMakeMap.style.display = 'block';
@@ -686,11 +682,13 @@ $("#selectDoneButton").on("click", function (e) {
         modalDisplayFrag = true;
     }
     console.log("selectDoneが押されました");
-    selectPlayButton.style.display = 'block';
-    changeMakeModeButton.style.display = 'block';
-    selectDoneButton.style.display = 'none';
-    selectResetButton.style.display = 'none';
-
+    if (!notPointFlag && !notPacmanFlag) {
+        console.log("エンターキー");
+        selectPlayButton.style.display = 'block';
+        changeMakeModeButton.style.display = 'block';
+        selectDoneButton.style.display = 'none';
+        selectResetButton.style.display = 'none';
+    }
 
 });
 
@@ -850,3 +848,37 @@ function enemyMove(Object) {
     }
 
 }
+
+addEventListener('keydown', select);
+function select(e) {
+    if (e.keyCode === 13) { //エンターキー
+
+        //パックマンもポイントも置いてないよモーダルが出ているとき
+        if (notPointFlag && notPacmanFlag) {
+            notPacmanPointModal.style.display = 'none';
+        }
+
+
+        //ポイントが置いてないよモーダルが出ているとき
+        if (notPointFlag && !notPacmanFlag) {
+            notPointModal.style.display = 'none';
+        }
+
+        //パックマンが置いてないよモーダルが出ているとき
+        if (!notPointFlag && notPacmanFlag) {
+            notPacmanModal.style.display = 'none';
+        }
+
+        //GAMECLEARモーダルが出ているとき
+        if (clearFlag) {
+            gameclearForMakeMap.style.display = 'none';
+        }
+
+        //GAMEOVERモーダルが出ているとき
+        if (gameOverFlag) {
+            gameOverForMakeMap.style.display = 'none';
+        }
+
+    }
+}
+
