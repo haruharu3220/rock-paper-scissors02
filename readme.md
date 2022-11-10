@@ -8,7 +8,7 @@
 
 ## DEMO
 
-  - デプロイしている場合はURLを記入（任意）
+  https://haruharu3220.github.io/rock-paper-scissors02/
 
 
 ## バージョンアップ履歴
