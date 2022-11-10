@@ -9,6 +9,9 @@ body {
     /*「vh」はブラウザの表示域を基準にする単位。
     100vhがブラウザの高さであり、1vhはその100分の1*/
     margin: auto;
+
+    background: url(../res/wallpaperbetter.jpg);
+    /* background: url(../res/course_sample.png); */
 }
 
 h1{
@@ -17,7 +20,8 @@ h1{
     font-family: "Nikukyu";
     text-align: center;
     font-size: 64px;
-    color: grey;
+    color: white;
+
 }
 #start a , #select a , #setting a ,#returnTop a{
 
