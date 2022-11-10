@@ -922,6 +922,7 @@ function select(e) {
         if (clearFlag) {
             gameclearForMakeMap.style.display = 'none';
             makeMode = true;
+            clearFlag = false;
             //マップの再構築
             for (var y = 0; y < map.length; y++) {
                 for (var x = 0; x < map[y].length; x++) {
@@ -935,6 +936,7 @@ function select(e) {
         if (gameOverFlag) {
             gameOverForMakeMap.style.display = 'none';
             makeMode = true;
+            gameOverFlag = false;
             //マップの再構築
             for (var y = 0; y < map.length; y++) {
                 for (var x = 0; x < map[y].length; x++) {
