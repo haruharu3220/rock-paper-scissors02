@@ -58,7 +58,7 @@ var madeEnemy_pa = []; //配置したパックマンオブジェクトの管理�
 var madeEnemy_choki = []; //配置したパックマンオブジェクトの管理用配列
 
 let selectPlay = false; //遊ぶボタンをタップしたかフラグ
-let selectReset = false;
+let makeMode = true; //作るモードの時はtrue　遊ぶモードの時はfalse
 
 //モーダルが表示されているか判定するフラグ
 let modalDisplayFrag = false;
@@ -206,7 +206,13 @@ let item = [0, -1, 1, pacmanType.default, enemyType.gu, enemyType.choki, enemyTy
 
 //メインループ
 function main() {
-    let remainItemCount = 0;
+    let remainItemCount = 0; //残りのアイテムの数をカウント
+
+    if(makeMode){
+        $('h1').html('コースを作る');
+    }else{
+        $('h1').html('コースを遊ぶ');
+    }
 
     //アイテム格納領域の作成
     for (var i = 0; i < item.length; i++) {
@@ -688,7 +694,7 @@ $("#selectDoneButton").on("click", function (e) {
     }
     console.log("selectDoneが押されました");
     if (!notPointFlag && !notPacmanFlag) {
-        console.log("エンターキー");
+        makeMode = false; //遊ぶモードに切り替え
         selectPlayButton.style.display = 'block';
         changeMakeModeButton.style.display = 'block';
         selectDoneButton.style.display = 'none';
@@ -715,6 +721,12 @@ $("#selectResetButton").on("click", function (e) {
 
 });
 
+//リセットボタンを押したら
+$("#changeMakeModeButton").on("click", function (e) {
+    makeMode = true;
+});
+
+
 //パックマンいないフラグ
 let notPacmanFlag = false;
 //ポイント置いていないフラグ
@@ -725,9 +737,6 @@ let notPointFlag = false;
 let pacmanSelector = 0;
 $("#selectPlayButton").on("click", function (e) {
     //まずパックマンとアイテムを数える
-
-
-
     if (notPointFlag === false && notPacmanFlag === false) {
         selectPlay = true;
 
