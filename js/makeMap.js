@@ -169,53 +169,39 @@ let itemCount = 0;
 
 //マップの作成
 let map = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
 let item = [0, -1, 1, pacmanType.default, enemyType.gu, enemyType.choki, enemyType.pa, janken.gu, janken.choki, janken.pa]
-
-
-
-
-
-
-// for (var y = 0; y < map.length; y++) {
-//     for (var x = 0; x < map[y].length; x++) {
-//         if (map[y][x] === -1) {
-//             itemCount++;
-//         }
-//     }
-// }
 
 
 //メインループ
@@ -320,7 +306,8 @@ function main() {
 
 
     //遊ぶを押したら
-    if (selectPlay) {
+    if (selectPlay && !modalDisplayFrag) {
+
         //パックマンオブジェクトの制御
         for (var i = 0; i < pacmanCount; i++) {
             if (madePacman[i].janken === janken.gu) {
@@ -596,7 +583,6 @@ $("#makeMapItem").on("click", function (e) {
     var rect = e.target.getBoundingClientRect();
     mapItemX = e.clientX - Math.floor(rect.left) - 2;
     mapItemY = e.clientY - Math.floor(rect.top) - 2;
-    //console.log(mapItemX, ~~(mapItemY / 50));
 });
 
 //マップ領域をクリックしたとき
@@ -659,9 +645,15 @@ $("#makeMapArea").on("mousemove", function (e) {
             makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
 
             map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-            console.log(makeMapAreaX, makeMapAreaY);
         }
     }
+});
+
+
+$("#selectDone").on("click", function (e) {
+        console.log("selectDoneが押されました");
+        selectPlayButton.style.display = 'block';
+        changeMakeModeButton.style.display = 'block';
 });
 
 //リセットボタンを押したら
@@ -671,10 +663,12 @@ $("#selectreset").on("click", function (e) {
         for (var x = 0; x < map[y].length; x++) {
             selectReset = true;
 
-            if (x === 0 || y === 0) {
+            if (x === 0 || y === 0 || x === map[y].length-1 || y === map.length-1) {
                 map[y][x] = 1;
+            }else{
+                map[y][x] = 0;
             }
-            map[y][x] = 0;
+            
         }
     }
 
@@ -687,93 +681,102 @@ let notPointFlag = false;
 
 
 //遊ぶボタンを押したら
-$("#selectPlay").on("click", function (e) {
-    selectPlay = true;
-
-    //パックマンと敵の数を数える
+let pacmanSelector=0;
+$("#selectPlayButton").on("click", function (e) {
+    //まずパックマンとアイテムを数える
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
-            //パックマンの数を数える
             if (map[y][x] === pacmanType.default) {
-                madePacman[pacmanCount] = new Object();
-                madePacman[pacmanCount].img_default = new Image();
-                madePacman[pacmanCount].img_default.src = 'img/pacman.png';
-                madePacman[pacmanCount].img_gu = new Image();
-                madePacman[pacmanCount].img_gu.src = 'img/pacman_gu.png';
-                madePacman[pacmanCount].img_choki = new Image();
-                madePacman[pacmanCount].img_choki.src = 'img/pacman_choki.png';
-                madePacman[pacmanCount].img_pa = new Image();
-                madePacman[pacmanCount].img_pa.src = 'img/pacman_pa.png';
-                madePacman[pacmanCount].janken = janken.defalt;
-                madePacman[pacmanCount].x = 32 * x;
-                madePacman[pacmanCount].y = 32 * y;
-                madePacman[pacmanCount].move = 0;
                 pacmanCount++;
-                map[y][x] = 0;
             }
-            //グーの敵の数を数える
-            if (map[y][x] === enemyType.gu) {
-                madeEnemy_gu[enemy_guCount] = new Object();
-                madeEnemy_gu[enemy_guCount].img = new Image();
-                madeEnemy_gu[enemy_guCount].img.src = 'img/blue.png';
-                madeEnemy_gu[enemy_guCount].janken = janken.gu;
-                madeEnemy_gu[enemy_guCount].x = 32 * x;
-                madeEnemy_gu[enemy_guCount].y = 32 * y;
-                madeEnemy_gu[enemy_guCount].move = 0;
-                madeEnemy_gu[enemy_paCount].direction = direction.top;
-                enemy_guCount++;
-                map[y][x] = 0;
-            }
-            //チョキの敵の数を数える
-            if (map[y][x] === enemyType.choki) {
-                madeEnemy_choki[enemy_chokiCount] = new Object();
-                madeEnemy_choki[enemy_chokiCount].img = new Image();
-                madeEnemy_choki[enemy_chokiCount].img.src = 'img/red.png';
-                madeEnemy_choki[enemy_chokiCount].janken = janken.gu;
-                madeEnemy_choki[enemy_chokiCount].x = 32 * x;
-                madeEnemy_choki[enemy_chokiCount].y = 32 * y;
-                madeEnemy_choki[enemy_chokiCount].move = 0;
-                madeEnemy_choki[enemy_chokiCount].direction = direction.top;
-                enemy_chokiCount++;
-                map[y][x] = 0;
-            }
-            //パーの敵の数を数える
-            if (map[y][x] === enemyType.pa) {
-                madeEnemy_pa[enemy_paCount] = new Object();
-                madeEnemy_pa[enemy_paCount].img = new Image();
-                madeEnemy_pa[enemy_paCount].img.src = 'img/green.png';
-                madeEnemy_pa[enemy_paCount].janken = janken.gu;
-                madeEnemy_pa[enemy_paCount].x = 32 * x;
-                madeEnemy_pa[enemy_paCount].y = 32 * y;
-                madeEnemy_pa[enemy_paCount].move = 0;
-                madeEnemy_pa[enemy_paCount].direction = direction.top;
-                enemy_paCount++;
-                map[y][x] = 0;
-
-
-            }
-            //ポイントの数を数える
             if (map[y][x] === -1) {
                 itemCount++;
-                console.log("itemCount+" + itemCount);
             }
-
-
-
         }
     }
 
+    //フラグを立てる
     if (itemCount === 0) {
         notPointFlag = true;
         notPointModal.style.display = 'block';
         modalDisplayFrag = true;
-
     }
     if (pacmanCount === 0) {
         notPacmanFlag = true;
         notPacmanModal.style.display = 'block';
         modalDisplayFrag = true;
     }
+
+    if (notPointFlag === false && notPacmanFlag === false) {
+        selectPlay = true;
+
+        //パックマンと敵の数を数える
+        for (var y = 0; y < map.length; y++) {
+            for (var x = 0; x < map[y].length; x++) {
+                //パックマンの数を数える
+                if (map[y][x] === pacmanType.default) {
+                    madePacman[pacmanSelector] = new Object();
+                    madePacman[pacmanSelector].img_default = new Image();
+                    madePacman[pacmanSelector].img_default.src = 'img/pacman.png';
+                    madePacman[pacmanSelector].img_gu = new Image();
+                    madePacman[pacmanSelector].img_gu.src = 'img/pacman_gu.png';
+                    madePacman[pacmanSelector].img_choki = new Image();
+                    madePacman[pacmanSelector].img_choki.src = 'img/pacman_choki.png';
+                    madePacman[pacmanSelector].img_pa = new Image();
+                    madePacman[pacmanSelector].img_pa.src = 'img/pacman_pa.png';
+                    madePacman[pacmanSelector].janken = janken.defalt;
+                    madePacman[pacmanSelector].x = 32 * x;
+                    madePacman[pacmanSelector].y = 32 * y;
+                    madePacman[pacmanSelector].move = 0;
+                    pacmanSelector++;
+                    map[y][x] = 0;
+                }
+                //グーの敵の数を数える
+                if (map[y][x] === enemyType.gu) {
+                    madeEnemy_gu[enemy_guCount] = new Object();
+                    madeEnemy_gu[enemy_guCount].img = new Image();
+                    madeEnemy_gu[enemy_guCount].img.src = 'img/blue.png';
+                    madeEnemy_gu[enemy_guCount].janken = janken.gu;
+                    madeEnemy_gu[enemy_guCount].x = 32 * x;
+                    madeEnemy_gu[enemy_guCount].y = 32 * y;
+                    madeEnemy_gu[enemy_guCount].move = 0;
+                    madeEnemy_gu[enemy_paCount].direction = direction.top;
+                    enemy_guCount++;
+                    map[y][x] = 0;
+                }
+                //チョキの敵の数を数える
+                if (map[y][x] === enemyType.choki) {
+                    madeEnemy_choki[enemy_chokiCount] = new Object();
+                    madeEnemy_choki[enemy_chokiCount].img = new Image();
+                    madeEnemy_choki[enemy_chokiCount].img.src = 'img/red.png';
+                    madeEnemy_choki[enemy_chokiCount].janken = janken.gu;
+                    madeEnemy_choki[enemy_chokiCount].x = 32 * x;
+                    madeEnemy_choki[enemy_chokiCount].y = 32 * y;
+                    madeEnemy_choki[enemy_chokiCount].move = 0;
+                    madeEnemy_choki[enemy_chokiCount].direction = direction.top;
+                    enemy_chokiCount++;
+                    map[y][x] = 0;
+                }
+                //パーの敵の数を数える
+                if (map[y][x] === enemyType.pa) {
+                    madeEnemy_pa[enemy_paCount] = new Object();
+                    madeEnemy_pa[enemy_paCount].img = new Image();
+                    madeEnemy_pa[enemy_paCount].img.src = 'img/green.png';
+                    madeEnemy_pa[enemy_paCount].janken = janken.gu;
+                    madeEnemy_pa[enemy_paCount].x = 32 * x;
+                    madeEnemy_pa[enemy_paCount].y = 32 * y;
+                    madeEnemy_pa[enemy_paCount].move = 0;
+                    madeEnemy_pa[enemy_paCount].direction = direction.top;
+                    enemy_paCount++;
+                    map[y][x] = 0;
+                }
+
+            }
+
+        }
+    }
+
+
 
 });
 
@@ -783,13 +786,13 @@ function itemCatch(Object) {
 
 
         if (map[Object.y / 32][Object.x / 32] === janken.gu) {
-            console.log("グー");
+            //console.log("グー");
             Object.janken = janken.gu;
         } else if (map[Object.y / 32][Object.x / 32] === janken.choki) {
-            console.log("チョキ");
+            //console.log("チョキ");
             Object.janken = janken.choki;
         } else if (map[Object.y / 32][Object.x / 32] === janken.pa) {
-            console.log("パー");
+            //console.log("パー");
             Object.janken = janken.pa;
         }
         map[Object.y / 32][Object.x / 32] = 0;

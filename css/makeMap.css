@@ -1,6 +1,7 @@
-#selectSave a,
-#selectPlay a,
-#selectreset a {
+#selectDone a,
+#selectReset a ,
+#selectPlayButton a,
+#changeMakeModeButton a{
 
     border-radius: 325px;
     /*円の半径の長さ*/
@@ -17,6 +18,12 @@
     background: gray;
 }
 
+#selectPlayButton,
+#changeMakeModeButton{
+    display: none;
+}
+
+
 .select {
     display: flex;
 }
@@ -29,6 +36,8 @@
     left: 0;
     top: 0;
     height: 100%;
+
+
     width: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.7);
