@@ -736,8 +736,7 @@ let notPointFlag = false;
 //遊ぶボタンを押したら
 let pacmanSelector = 0;
 $("#selectPlayButton").on("click", function (e) {
-    //まずパックマンとアイテムを数える
-    if (notPointFlag === false && notPacmanFlag === false) {
+        changeMakeModeButton.style.display = 'none';
         selectPlay = true;
 
         //パックマンと敵の数を数える
@@ -804,10 +803,6 @@ $("#selectPlayButton").on("click", function (e) {
             }
 
         }
-    }
-
-
-
 });
 
 //敵のmoveが0より大きい場合は4pxセルずつランダムに移動を続ける
