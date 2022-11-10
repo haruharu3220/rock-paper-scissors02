@@ -698,7 +698,7 @@ $("#selectDoneButton").on("click", function (e) {
 });
 
 //リセットボタンを押したら
-$("#selectreset").on("click", function (e) {
+$("#selectResetButton").on("click", function (e) {
     console.log("リセットボタンが押されました。");
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
