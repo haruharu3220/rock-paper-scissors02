@@ -6,7 +6,7 @@ makeMapArea.height = 960;	//canvasの縦幅
 
 let makeMapItem = document.getElementById('makeMapItem');
 makeMapItem.width = 50;	//canvasの横幅
-makeMapItem.height = 650;	//canvasの縦幅
+makeMapItem.height = 500;	//canvasの縦幅
 
 
 
@@ -225,18 +225,7 @@ function main() {
         if (item[i] === janken.pa) Item_area.drawImage(pa, 0, 50 * i, 50, 50);
     }
 
-    // 線の色
-    Item_area.strokeStyle = "white";
-    // パスの開始
-    Item_area.beginPath();
 
-    for (let i = 0; i < makeMapItem.height / 50; i++) {
-        Item_area.moveTo(0, 50 * i);
-        Item_area.lineTo(makeMapItem.width, 50 * i);
-    }
-
-    // 描画
-    Item_area.stroke();
 
 
     //マップの作成
@@ -283,24 +272,40 @@ function main() {
     }
 
 
-    // 線の色
+    //マップ領域に白線を引く
     make_map.strokeStyle = "white";
-    // パスの開始
-    make_map.beginPath();
+    make_map.beginPath();   // パスの開始
 
     //格子の線を格納
-    for (let i = 0; i < makeMapArea.height / 32; i++) {
+    for (let i = 0; i <= makeMapArea.height / 32; i++) {
         make_map.moveTo(0, 32 * i);
         make_map.lineTo(makeMapArea.width, 32 * i);
     }
 
-    for (let i = 0; i < makeMapArea.width / 32; i++) {
+    for (let i = 0; i <= makeMapArea.width / 32; i++) {
         make_map.moveTo(32 * i, 0);
         make_map.lineTo(32 * i, makeMapArea.height);
     }
 
     // 描画
     make_map.stroke();
+
+
+    //アイテム領域に白線を引く
+    Item_area.strokeStyle = "white";
+    // パスの開始
+    Item_area.beginPath();
+
+    for (let i = 0; i <= makeMapItem.height / 50; i++) {
+        Item_area.moveTo(0, 50 * i);
+        Item_area.lineTo(makeMapItem.width, 50 * i);
+    }
+    for (let i = 0; i <= makeMapItem.width / 50; i++) {
+        Item_area.moveTo(50 * i ,0 );
+        Item_area.lineTo(50 * i,makeMapItem.height);
+    }
+    // 描画
+    Item_area.stroke();
 
 
 
@@ -680,11 +685,11 @@ $("#selectDoneButton").on("click", function (e) {
         notPacmanPointModal.style.display = 'block';
         modalDisplayFrag = true;
     }
-        console.log("selectDoneが押されました");
-        selectPlayButton.style.display = 'block';
-        changeMakeModeButton.style.display = 'block';
-        selectDoneButton.style.display = 'none';
-        selectResetButton.style.display = 'none';
+    console.log("selectDoneが押されました");
+    selectPlayButton.style.display = 'block';
+    changeMakeModeButton.style.display = 'block';
+    selectDoneButton.style.display = 'none';
+    selectResetButton.style.display = 'none';
 
 
 });
@@ -696,12 +701,12 @@ $("#selectreset").on("click", function (e) {
         for (var x = 0; x < map[y].length; x++) {
             selectReset = true;
 
-            if (x === 0 || y === 0 || x === map[y].length-1 || y === map.length-1) {
+            if (x === 0 || y === 0 || x === map[y].length - 1 || y === map.length - 1) {
                 map[y][x] = 1;
-            }else{
+            } else {
                 map[y][x] = 0;
             }
-            
+
         }
     }
 
@@ -714,10 +719,10 @@ let notPointFlag = false;
 
 
 //遊ぶボタンを押したら
-let pacmanSelector=0;
+let pacmanSelector = 0;
 $("#selectPlayButton").on("click", function (e) {
     //まずパックマンとアイテムを数える
-  
+
 
 
     if (notPointFlag === false && notPacmanFlag === false) {
