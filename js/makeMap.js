@@ -650,8 +650,13 @@ $("#makeMapArea").on("mousemove", function (e) {
     }
 });
 
-
+//完成ボタンをタップしたとき
 $("#selectDoneButton").on("click", function (e) {
+    //初期化 複数回完成ボタンを押されたときカウントを重複するのを防ぐため
+    pacmanCount=0;
+    itemCount=0;
+    notPointFlag = false;
+    notPacmanFlag = false;
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
             if (map[y][x] === pacmanType.default) {
