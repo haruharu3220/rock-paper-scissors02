@@ -258,6 +258,20 @@ for (let i = 0; i < itemNum; i++) {
 
 //メインループ
 function main() {
+
+    
+    if(item[~~(mapItemY / 50)] ===0 ) selectItem_Area.drawImage(aisle_pacman, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===-1) selectItem_Area.drawImage(point, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===1 ) selectItem_Area.drawImage(aisle, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===pacmanType.default) selectItem_Area.drawImage(pacman_default, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===enemyType.gu) selectItem_Area.drawImage(monster_gu, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===enemyType.choki) selectItem_Area.drawImage(monster_choki, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===enemyType.pa) selectItem_Area.drawImage(monster_pa, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===janken.gu) selectItem_Area.drawImage(gu, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] ===janken.choki) selectItem_Area.drawImage(choki, 0, 0,150,150);
+    if(item[~~(mapItemY / 50)] === janken.pa) selectItem_Area.drawImage(pa, 0, 0,150,150);
+
+
     let remainItemCount = 0; //残りのアイテムの数をカウント
 
     if (makeMode) {
@@ -275,9 +289,6 @@ function main() {
         if (item[i] === enemyType.gu) Item_area.drawImage(monster_gu, 0, 50 * i, 50, 50);
         if (item[i] === enemyType.choki) Item_area.drawImage(monster_choki, 0, 50 * i, 50, 50);
         if (item[i] === enemyType.pa) Item_area.drawImage(monster_pa, 0, 50 * i, 50, 50);
-        if (item[i] === 7) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 8) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 9) Item_area.drawImage(gu, 0, 50 * i, 50, 50);
         if (item[i] === janken.gu) Item_area.drawImage(gu, 0, 50 * i, 50, 50);
         if (item[i] === janken.choki) Item_area.drawImage(choki, 0, 50 * i, 50, 50);
         if (item[i] === janken.pa) Item_area.drawImage(pa, 0, 50 * i, 50, 50);
@@ -643,7 +654,7 @@ function move_random(Object) {
 
 //アイテム領域をクリックしたとき
 $("#makeMapItem").on("click", function (e) {
-
+    selectItem_Area.clearRect(0, 0, 150, 150);
     var rect = e.target.getBoundingClientRect();
     mapItemX = e.clientX - Math.floor(rect.left) - 2;
     mapItemY = e.clientY - Math.floor(rect.top) - 2;
@@ -661,11 +672,9 @@ $("#makeMapArea").on("click", function (e) {
 
     //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
 
-    //map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] == 5;
     map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
     map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-    //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
-
+ 
 });
 
 
