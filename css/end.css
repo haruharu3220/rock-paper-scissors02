@@ -1,3 +1,36 @@
+/* Webフォントを定義 */
+@font-face {
+    font-family: 'myfont';/* フォント名 */
+    /* フォーマットごとにパスを指定 */
+    src: url('../res/JF-Dot-K12.ttf') format('truetype');
+    src: url('../res/JF-Dot-K12B.ttf') format('truetype');
+  
+    /* src: url('../res/DragonQuestFC.ttf') format('truetype'); */
+
+  }
+  body {
+    font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+    width: 100vh;
+    /* height: 100vh; */
+    height: 100%;
+    
+    /*「vh」はブラウザの表示域を基準にする単位。
+    100vhがブラウザの高さであり、1vhはその100分の1*/
+    margin: auto;
+
+    background-color: black;
+
+}
+h1{
+	font-family: "myfont";
+    text-align: center;
+    font-size: 64px;
+	color: white;
+}
+
+
 /* 参考URL
 https://1-notes.com/css-bound-animation/ */
 
@@ -24,6 +57,22 @@ https://1-notes.com/css-bound-animation/ */
 	animation: bound-anim 0.8s infinite; 
 }
 
+#returnTop a{
+
+    border-radius: 325px; /*円の半径の長さ*/
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 220px;
+    padding: 10px 25px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+     background: gray; 
+
+}
 
 @keyframes bound-anim {
 	0%,100% {top: 0;transform: scale(1);}

@@ -8,7 +8,9 @@ let makeMapItem = document.getElementById('makeMapItem');
 makeMapItem.width = 50;	//canvasの横幅
 makeMapItem.height = 500;	//canvasの縦幅
 
-
+let selectItemArea = document.getElementById('selectItemArea');
+selectItemArea.width = 150;	//canvasの横幅
+selectItemArea.height = 150;	//canvasの縦幅
 
 const min = 0;
 const max = 100;
@@ -18,6 +20,15 @@ let directionNow = 0;
 //コンテキストを取得
 var make_map = makeMapArea.getContext('2d');
 var Item_area = makeMapItem.getContext('2d');
+var selectItem_Area = selectItemArea.getContext('2d');
+
+//マップ領域の座標を管理
+let makeMapAreaX = 0; //クリックしたX座標
+let makeMapAreaY = 0; //クリックしたY座標
+
+//アイテム領域の座標を管理
+let mapItemX = 0; //クリックしたX座標
+let mapItemY = 0; //クリックしたY座標
 
 //ジャンケンのENUM
 let janken = {
@@ -167,6 +178,7 @@ let gameOverFlag = false;
 let itemCount = 0;
 
 
+
 //マップの作成
 let map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -236,8 +248,12 @@ let map_buff = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
-
+let itemNum = 10;
 let item = [0, -1, 1, pacmanType.default, enemyType.gu, enemyType.choki, enemyType.pa, janken.gu, janken.choki, janken.pa]
+let itemClickFlag = [];
+for (let i = 0; i < itemNum; i++) {
+    itemClickFlag[i] = false;
+}
 
 
 //メインループ
@@ -337,6 +353,15 @@ function main() {
     for (let i = 0; i <= makeMapItem.height / 50; i++) {
         Item_area.moveTo(0, 50 * i);
         Item_area.lineTo(makeMapItem.width, 50 * i);
+
+        // //線を太く
+        // if(i === ~~(mapItemY / 50)){
+        //     Item_area.lineWidth = 8;
+        //     Item_area.stroke();
+        // }else{
+        //     Item_area.lineWidth = 1;
+        //     Item_area.stroke();
+        // }
     }
     for (let i = 0; i <= makeMapItem.width / 50; i++) {
         Item_area.moveTo(50 * i, 0);
@@ -614,19 +639,17 @@ function move_random(Object) {
     //}
 }
 
-let makeMapAreaX = 0; //クリックしたX座標
-let makeMapAreaY = 0; //クリックしたY座標
 
-let mapItemX = 0; //クリックしたX座標
-let mapItemY = 0; //クリックしたY座標
 
 //アイテム領域をクリックしたとき
 $("#makeMapItem").on("click", function (e) {
-    // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
+
     var rect = e.target.getBoundingClientRect();
     mapItemX = e.clientX - Math.floor(rect.left) - 2;
     mapItemY = e.clientY - Math.floor(rect.top) - 2;
+
 });
+
 
 //マップ領域をクリックしたとき
 $("#makeMapArea").on("click", function (e) {
@@ -868,10 +891,12 @@ function itemCatch(Object) {
 //敵をランダムに動かす関数
 function enemyMove(Object) {
     if (Object.move === 0) {
+
         directionChange = Math.floor(Math.random() * (max - min + 1) + min);
         //40％の確率でそのままの向きに移動
         if (directionChange < 40) {
             //60％の確立で方向転換
+            Object.direction = Object.direction;
         } else if (directionChange > 40 && directionChange < 55) {
             Object.direction = direction.top;
             //console.log("TOP");

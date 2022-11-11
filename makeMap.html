@@ -3,7 +3,7 @@
 
 <head>
   <meta chrset="utf-8" />
-  <title>じゃんけんパックマン</title>
+  <title>ジャンケンパックマン</title>
 
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/sanitize.css" />
@@ -17,11 +17,25 @@
 
   <h1>コースを作る</h1>
 
-  <div class="makeArea">
-
-      <canvas id="makeMapArea"></canvas>
-    <canvas id="makeMapItem"></canvas>
+  <div class="all">
+    <!-- <div class="makeArea"> -->
+      <div><canvas id="makeMapArea"></canvas></div>
+      <div><canvas id="makeMapItem"></div>
     <!-- </div> -->
+
+    <div class="subinfo">
+      <div><canvas id="selectItemArea"></canvas></div>
+      <div class="pacman_default"> </div>
+      <div class="pacman_gu">
+        <p>あああ</p>
+      </div>
+      <div class="pacman_choki">
+        <p>あああ</p>
+      </div>
+      <div class="pacman_pa">
+        <p>あああ</p>
+      </div>
+    </div>
   </div>
 
   <!-- ゲームクリアの時出てくるモーダル -->
@@ -89,8 +103,7 @@
       </div>
       <div class="modal-body">
         <p>パックマンとポイントを置かないとゲームができないよ！</p>
-        <p>置いてね！！</p>
-
+        <p>パックマンとポイントを置いてね！！</p>
       </div>
     </div>
   </div>
@@ -108,8 +121,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="js/makeMap.js" type="module"></script>
-  <script src="js/makeMapModal.js" type="module"></script>
-  <!-- <script src="js/modal.js" type="module"></script> -->
+
+
 
 </body>
 
