@@ -259,7 +259,7 @@ for (let i = 0; i < itemNum; i++) {
 //メインループ
 function main() {
 
-    
+    //選択したアイテムを表示する
     if(item[~~(mapItemY / 50)] ===0 ) selectItem_Area.drawImage(aisle_pacman, 0, 0,150,150);
     if(item[~~(mapItemY / 50)] ===-1) selectItem_Area.drawImage(point, 0, 0,150,150);
     if(item[~~(mapItemY / 50)] ===1 ) selectItem_Area.drawImage(aisle, 0, 0,150,150);
@@ -299,38 +299,48 @@ function main() {
         for (var x = 0; x < map[y].length; x++) {
 
             if (map[y][x] === 0) { // アイテム無し通路
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(aisle_pacman, 32 * x, 32 * y);
             }
             else if (map[y][x] === -1) { //ポイント有り通路)
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(point, 32 * x, 32 * y);
                 remainItemCount++;
             }
 
             else if (map[y][x] === 1) { //壁
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(aisle, 32 * x, 32 * y);
             }
             else if (map[y][x] === janken.gu) { //グーアイテム
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(gu, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === janken.choki) { //チョキアイテム
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(choki, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === janken.pa) { //パーアイテム
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(pa, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === pacmanType.default) { //デフォルトパックマン
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(pacman_default, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.gu) { //敵（グー）
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(monster_gu, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.choki) { //敵（チョキ）
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(monster_choki, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.pa) { //敵（パー）
+                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
                 make_map.drawImage(monster_pa, 32 * x, 32 * y, 32, 32);
             }
         }
