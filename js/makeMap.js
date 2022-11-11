@@ -420,40 +420,6 @@ function main() {
             move(madePacman[0]);
         }
 
-
-        // //パックマンオブジェクトの制御
-        // for (var i = 0; i < pacmanCount; i++) {
-        //     if (madePacman[i].janken === janken.gu) {
-        //         //パックマンがグーだったらグーになる
-        //         make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,);
-
-
-        //     } else if (madePacman[i].janken === janken.choki) {
-        //         //パックマンがチョキだったらチョキになる
-        //         make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
-
-        //     } else if (madePacman[i].janken === janken.pa) {
-        //         //パックマンがパーだったらパーになる
-        //         make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
-
-        //     } else {
-        //         //パックマンがデフォルトだったらデフォルトになる
-        //         make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
-        //     }
-        //     // アイテムを取ったらそのアイテムに応じた手になる
-        //     itemCatch(madePacman[i]);
-
-        //     //  Moveが0なら→32の倍数座標にあるので当たり判定を行う
-        //     if (madePacman[i].move === 0) {
-        //         collision(madePacman[i]);
-        //     }
-        //     //　Moveが0以外なら→移動の途中なので移動を続ける
-        //     if (madePacman[i].move > 0) {
-        //         move(madePacman[i]);
-        //     }
-        // }
-
-
         for (var i = 0; i < enemy_guCount; i++) {
             make_map.drawImage(madeEnemy_gu[i].img, madeEnemy_gu[i].x, madeEnemy_gu[i].y,); //敵（グー）
 
@@ -835,8 +801,6 @@ $("#selectResetButton").on("click", function (e) {
     console.log("リセットボタンが押されました。");
     for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
-            selectReset = true;
-
             if (x === 0 || y === 0 || x === map[y].length - 1 || y === map.length - 1) {
                 map[y][x] = 1;
                 map_buff[y][x] = 1;
@@ -844,14 +808,17 @@ $("#selectResetButton").on("click", function (e) {
                 map[y][x] = 0;
                 map_buff[y][x] = 0;
             }
-
         }
     }
-
 });
 
-//リセットボタンを押したら
+//作るモードへを押したら
 $("#changeMakeModeButton").on("click", function (e) {
+    selectDoneButton.style.display = 'block';
+    selectResetButton.style.display = 'block';
+    selectPlayButton.style.display = 'none';
+    changeMakeModeButton.style.display = 'none';
+    
     makeMode = true;
 });
 
@@ -966,19 +933,16 @@ function enemyMove(Object) {
     if (Object.move === 0) {
 
         directionChange = Math.floor(Math.random() * (max - min + 1) + min);
-        //40％の確率でそのままの向きに移動
-        if (directionChange < 40) {
-            //60％の確立で方向転換
-            Object.direction = Object.direction;
-        } else if (directionChange > 40 && directionChange < 55) {
+
+        if (directionChange >= 0 && directionChange < 25) {
             Object.direction = direction.top;
             //console.log("TOP");
         }
-        else if (directionChange > 55 && directionChange < 60) {
+        else if (directionChange > 25 && directionChange < 50) {
             Object.direction = direction.right;
             //console.log("Right");
         }
-        else if (directionChange > 60 && directionChange < 75) {
+        else if (directionChange > 50 && directionChange < 75) {
             Object.direction = direction.down;
             // console.log("Down");
         }
@@ -1019,6 +983,7 @@ function select(e) {
         //GAMECLEARモーダルが出ているとき
         if (clearFlag) {
             gameclearForMakeMap.style.display = 'none';
+            selectPlayButton.style.display = 'block';
             changeMakeModeButton.style.display = 'block';
             makeMode = true;
             clearFlag = false;
@@ -1034,6 +999,7 @@ function select(e) {
         //GAMEOVERモーダルが出ているとき
         if (gameOverFlag) {
             gameOverForMakeMap.style.display = 'none';
+            selectPlayButton.style.display = 'block';
             changeMakeModeButton.style.display = 'block';
             makeMode = true;
             gameOverFlag = false;
@@ -1053,7 +1019,6 @@ function select(e) {
 //パックマンの手を見てマップ右側に手を表示させる
 function pacmanHand(Oblect) {
     if (Oblect.janken === janken.gu) {
-        console.log("グー");
         $(".pacman_defaultClass").css("display", "none");
         $(".pacman_guClass").css("display", "block");
         $(".pacman_chokiClass").css("display", "none");
@@ -1061,7 +1026,6 @@ function pacmanHand(Oblect) {
 
 
     } else if (Oblect.janken === janken.choki) {
-        console.log("チョキ");
         $(".pacman_defaultClass").css("display", "none");
         $(".pacman_guClass").css("display", "none");
         $(".pacman_chokiClass").css("display", "block");
@@ -1069,7 +1033,6 @@ function pacmanHand(Oblect) {
 
 
     } else if (Oblect.janken === janken.pa) {
-        console.log("パー");
         $(".pacman_defaultClass").css("display", "none");
         $(".pacman_guClass").css("display", "none");
         $(".pacman_chokiClass").css("display", "none");
