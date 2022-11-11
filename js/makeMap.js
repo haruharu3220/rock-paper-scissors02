@@ -260,16 +260,17 @@ for (let i = 0; i < itemNum; i++) {
 function main() {
 
     //選択したアイテムを表示する
-    if(item[~~(mapItemY / 50)] ===0 ) selectItem_Area.drawImage(aisle_pacman, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===-1) selectItem_Area.drawImage(point, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===1 ) selectItem_Area.drawImage(aisle, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===pacmanType.default) selectItem_Area.drawImage(pacman_default, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===enemyType.gu) selectItem_Area.drawImage(monster_gu, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===enemyType.choki) selectItem_Area.drawImage(monster_choki, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===enemyType.pa) selectItem_Area.drawImage(monster_pa, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===janken.gu) selectItem_Area.drawImage(gu, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] ===janken.choki) selectItem_Area.drawImage(choki, 0, 0,150,150);
-    if(item[~~(mapItemY / 50)] === janken.pa) selectItem_Area.drawImage(pa, 0, 0,150,150);
+    if (item[~~(mapItemY / 50)] === 0) selectItem_Area.drawImage(aisle_pacman, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === -1) selectItem_Area.drawImage(point, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === 1) selectItem_Area.drawImage(aisle, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === pacmanType.default) selectItem_Area.drawImage(pacman_default, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === enemyType.gu) selectItem_Area.drawImage(monster_gu, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === enemyType.choki) selectItem_Area.drawImage(monster_choki, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === enemyType.pa) selectItem_Area.drawImage(monster_pa, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === janken.gu) selectItem_Area.drawImage(gu, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === janken.choki) selectItem_Area.drawImage(choki, 0, 0, 150, 150);
+    if (item[~~(mapItemY / 50)] === janken.pa) selectItem_Area.drawImage(pa, 0, 0, 150, 150);
+
 
 
     let remainItemCount = 0; //残りのアイテムの数をカウント
@@ -299,48 +300,48 @@ function main() {
         for (var x = 0; x < map[y].length; x++) {
 
             if (map[y][x] === 0) { // アイテム無し通路
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(aisle_pacman, 32 * x, 32 * y);
             }
             else if (map[y][x] === -1) { //ポイント有り通路)
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(point, 32 * x, 32 * y);
                 remainItemCount++;
             }
 
             else if (map[y][x] === 1) { //壁
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(aisle, 32 * x, 32 * y);
             }
             else if (map[y][x] === janken.gu) { //グーアイテム
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(gu, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === janken.choki) { //チョキアイテム
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(choki, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === janken.pa) { //パーアイテム
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(pa, 32 * x, 32 * y, 32, 32);
             }
             else if (map[y][x] === pacmanType.default) { //デフォルトパックマン
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(pacman_default, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.gu) { //敵（グー）
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(monster_gu, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.choki) { //敵（チョキ）
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(monster_choki, 32 * x, 32 * y, 32, 32);
             }
 
             else if (map[y][x] === enemyType.pa) { //敵（パー）
-                make_map.clearRect(32 * x, 32 * y,32 * x+32, 32 * y+32);
+                make_map.clearRect(32 * x, 32 * y, 32 * x + 32, 32 * y + 32);
                 make_map.drawImage(monster_pa, 32 * x, 32 * y, 32, 32);
             }
         }
@@ -385,38 +386,72 @@ function main() {
 
     //遊ぶを押したら
     if (selectPlay && !modalDisplayFrag) {
-
         //パックマンオブジェクトの制御
-        for (var i = 0; i < pacmanCount; i++) {
-            if (madePacman[i].janken === janken.gu) {
-                //パックマンがグーだったらグーになる
-                make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,);
+        if (madePacman[0].janken === janken.gu) {
+            //パックマンがグーだったらグーになる
+            make_map.drawImage(madePacman[0].img_gu, madePacman[0].x, madePacman[0].y,);
 
+        } else if (madePacman[0].janken === janken.choki) {
+            //パックマンがチョキだったらチョキになる
+            make_map.drawImage(madePacman[0].img_choki, madePacman[0].x, madePacman[0].y,); //パックマン
 
-            } else if (madePacman[i].janken === janken.choki) {
-                //パックマンがチョキだったらチョキになる
-                make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
+        } else if (madePacman[0].janken === janken.pa) {
+            //パックマンがパーだったらパーになる
+            make_map.drawImage(madePacman[0].img_pa, madePacman[0].x, madePacman[0].y,); //パックマン
 
-            } else if (madePacman[i].janken === janken.pa) {
-                //パックマンがパーだったらパーになる
-                make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
-
-            } else {
-                //パックマンがデフォルトだったらデフォルトになる
-                make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
-            }
-            // アイテムを取ったらそのアイテムに応じた手になる
-            itemCatch(madePacman[i]);
-
-            //  Moveが0なら→32の倍数座標にあるので当たり判定を行う
-            if (madePacman[i].move === 0) {
-                collision(madePacman[i]);
-            }
-            //　Moveが0以外なら→移動の途中なので移動を続ける
-            if (madePacman[i].move > 0) {
-                move(madePacman[i]);
-            }
+        } else {
+            //パックマンがデフォルトだったらデフォルトになる
+            make_map.drawImage(madePacman[0].img_default, madePacman[0].x, madePacman[0].y,); //パックマン
         }
+
+        // アイテムを取ったらそのアイテムに応じた手になる
+        itemCatch(madePacman[0]);
+
+        //パックマンの手をマップ右側に表示する
+        pacmanHand(madePacman[0]);
+
+
+        //  Moveが0なら→32の倍数座標にあるので当たり判定を行う
+        if (madePacman[0].move === 0) {
+            collision(madePacman[0]);
+        }
+        //　Moveが0以外なら→移動の途中なので移動を続ける
+        if (madePacman[0].move > 0) {
+            move(madePacman[0]);
+        }
+
+
+        // //パックマンオブジェクトの制御
+        // for (var i = 0; i < pacmanCount; i++) {
+        //     if (madePacman[i].janken === janken.gu) {
+        //         //パックマンがグーだったらグーになる
+        //         make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,);
+
+
+        //     } else if (madePacman[i].janken === janken.choki) {
+        //         //パックマンがチョキだったらチョキになる
+        //         make_map.drawImage(madePacman[i].img_choki, madePacman[i].x, madePacman[i].y,); //パックマン
+
+        //     } else if (madePacman[i].janken === janken.pa) {
+        //         //パックマンがパーだったらパーになる
+        //         make_map.drawImage(madePacman[i].img_pa, madePacman[i].x, madePacman[i].y,); //パックマン
+
+        //     } else {
+        //         //パックマンがデフォルトだったらデフォルトになる
+        //         make_map.drawImage(madePacman[i].img_default, madePacman[i].x, madePacman[i].y,); //パックマン
+        //     }
+        //     // アイテムを取ったらそのアイテムに応じた手になる
+        //     itemCatch(madePacman[i]);
+
+        //     //  Moveが0なら→32の倍数座標にあるので当たり判定を行う
+        //     if (madePacman[i].move === 0) {
+        //         collision(madePacman[i]);
+        //     }
+        //     //　Moveが0以外なら→移動の途中なので移動を続ける
+        //     if (madePacman[i].move > 0) {
+        //         move(madePacman[i]);
+        //     }
+        // }
 
 
         for (var i = 0; i < enemy_guCount; i++) {
@@ -665,16 +700,16 @@ $("#makeMapItem").on("click", function (e) {
 //マップ領域をクリックしたとき
 $("#makeMapArea").on("click", function (e) {
     let onlyPacmanFlag = true;
-    let pacmanX=0;
-    let pacmanY=0;
+    let pacmanX = 0;
+    let pacmanY = 0;
 
-//パックマンがすでに配置されていないか確認をする
- for (var y = 0; y < map.length; y++) {
+    //パックマンがすでに配置されていないか確認をする
+    for (var y = 0; y < map.length; y++) {
         for (var x = 0; x < map[y].length; x++) {
-            if(map[y][x] === pacmanType.default) {
-                onlyPacmanFlag=false;
-                pacmanX=x;
-                pacmanY=y;
+            if (map[y][x] === pacmanType.default) {
+                onlyPacmanFlag = false;
+                pacmanX = x;
+                pacmanY = y;
             }
         }
     }
@@ -684,16 +719,16 @@ $("#makeMapArea").on("click", function (e) {
     makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
 
     //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
-    
+
     map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
     map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-    
+
     //パックマンが既に配置済みだったら既存のパックマンを消す
-    if(!onlyPacmanFlag && item[~~(mapItemY / 50)] ===pacmanType.default) {
+    if (!onlyPacmanFlag && item[~~(mapItemY / 50)] === pacmanType.default) {
         map[pacmanY][pacmanX] = 0;
         map_buff[pacmanY][pacmanX] = 0;
     }
-    onlyPacmanFlag=true;
+    onlyPacmanFlag = true;
 });
 
 
@@ -735,15 +770,15 @@ $("#makeMapArea").mousedown(function () {
 $("#makeMapArea").on("mousemove", function (e) {
     if (pushing_flag === 1) {
         if ($("makeMapArea").mousedown) {
-            if(item[~~(mapItemY / 50)] !==pacmanType.default){ 
+            if (item[~~(mapItemY / 50)] !== pacmanType.default) {
                 var rect = e.target.getBoundingClientRect();
                 makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
                 makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
-    
+
                 map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
                 map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
             }
-           
+
         }
     }
 });
@@ -1011,4 +1046,41 @@ function select(e) {
 
     }
 }
+
+
+
+//パックマンの手を見てマップ右側に手を表示させる
+function pacmanHand(Oblect) {
+    if (Oblect.janken === janken.gu) {
+        console.log("グー");
+        $(".pacman_defaultClass").css("display", "none");
+        $(".pacman_guClass").css("display", "block");
+        $(".pacman_chokiClass").css("display", "none");
+        $(".pacman_paClass").css("display", "none");
+
+
+    } else if (Oblect.janken === janken.choki) {
+        console.log("チョキ");
+        $(".pacman_defaultClass").css("display", "none");
+        $(".pacman_guClass").css("display", "none");
+        $(".pacman_chokiClass").css("display", "block");
+        $(".pacman_paClass").css("display", "none");
+
+
+    } else if (Oblect.janken === janken.pa) {
+        console.log("パー");
+        $(".pacman_defaultClass").css("display", "none");
+        $(".pacman_guClass").css("display", "none");
+        $(".pacman_chokiClass").css("display", "none");
+        $(".pacman_paClass").css("display", "block");
+
+    } else {
+        $(".pacman_defaultClass").css("display", "block");
+        $(".pacman_guClass").css("display", "none");
+        $(".pacman_chokiClass").css("display", "none");
+        $(".pacman_paClass").css("display", "none");
+    }
+
+}
+
 

@@ -1,15 +1,16 @@
 /* Webフォントを定義 */
 @font-face {
-    font-family: 'myfont';/* フォント名 */
+    font-family: 'myfont';
+    /* フォント名 */
     /* フォーマットごとにパスを指定 */
     src: url('../res/JF-Dot-K12.ttf') format('truetype');
     src: url('../res/JF-Dot-K12B.ttf') format('truetype');
-  
+
     /* src: url('../res/DragonQuestFC.ttf') format('truetype'); */
 
-  }
+}
 
-  
+
 body {
     font-family: Roboto, "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
     line-height: 1.75;
@@ -21,90 +22,99 @@ body {
 
 }
 
-h1{
+h1 {
     font-size: 40px;
     color: white;
     font-family: "myfont";
     text-align: center;
-    }
+}
 
-p{
+p {
     font-size: 24px;
     color: white;
     font-family: "myfont";
     text-align: center;
 
 }
-.all{
+
+.all {
     width: 1500px;
-    display: flex; 
+    display: flex;
     justify-content: center;
 }
 
-h3{
+h3 {
     font-size: 24px;
     color: white;
     font-family: "myfont";
     text-align: center;
 }
-#makeMapArea{
+
+#makeMapArea {
     margin-right: 30px;
     /* margin-left: 20px; */
-  
+
 }
 
-#makeMapItem{
+#makeMapItem {
     margin-right: 50px;
     /* margin-left: 20px; */
-  
+
 }
 
- #selectItemArea{
-   
-    text-align:center;
+#selectItemArea {
+
+    text-align: center;
     margin-bottom: 200px;
 
- }
+}
 
-.pacman{
+.pacman {
     margin-bottom: 50px;
 }
 
-.pacman_default,
-.pacman_gu,
-.pacman_choki,
-.pacman_pa{
-    position:relative;
+.pacman_defaultClass,
+.pacman_guClass,
+.pacman_chokiClass,
+.pacman_paClass {
+    position: relative;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 25px;
     width: 150px;
     height: 350px;
     /* background-color: red; */
-    text-align:center;
-    
-    
-} 
+    text-align: center;
 
-.pacman_default span,
-.pacman_gu span,
-.pacman_choki span,
-.pacman_pa span{
+
+}
+
+.pacman_guClass,
+.pacman_chokiClass,
+.pacman_paClass {
+    display: none;
+
+}
+
+.pacman_defaultClass span,
+.pacman_guClass span,
+.pacman_chokiClass span,
+.pacman_paClass span {
     position: absolute;
-	left: 0;
-	right: 0;
-	top:0;
-	bottom: 0;
-	height:100px;
-    animation: bound-anim 0.6s infinite; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100px;
+    animation: bound-anim 0.6s infinite;
 
 }
 
 
 #selectDoneButton a,
-#selectResetButton a ,
+#selectResetButton a,
 #selectPlayButton a,
-#changeMakeModeButton a{
+#changeMakeModeButton a {
     border-radius: 325px;
     /*円の半径の長さ*/
     position: relative;
@@ -119,14 +129,16 @@ h3{
     font-weight: 600;
     background: gray;
 }
+
 #selectDoneButton,
-#selectResetButton{
+#selectResetButton {
     display: block;
     margin: 10px;
 
 }
+
 #selectPlayButton,
-#changeMakeModeButton{
+#changeMakeModeButton {
     display: none;
     margin: 10px;
 }
@@ -170,16 +182,18 @@ h3{
     text-shadow: 2px 2px 0 black;
 
 }
+
 /* モーダルのボディをデザイン */
-.modal-body{
+.modal-body {
     height: 500px;
 
 }
-.modal-body p{
+
+.modal-body p {
     margin: 10px;
     font-family: "myfont";
     font-size: 32px;
-} 
+}
 
 .modal-content {
     background-color: #f4f4f4;
@@ -193,15 +207,30 @@ h3{
 
 
 
-.select{ 
+.select {
     width: 1006px;
     justify-content: center;
-} 
+}
 
 
 @keyframes bound-anim {
-	0%,100% {top: 0;transform: scale(1);}
-	30% {top: -25%;}
-	50% {transform: scale(1);}
-	90% {top: 0;transform: scale(1.1,0.8);}
+
+    0%,
+    100% {
+        top: 0;
+        transform: scale(1);
+    }
+
+    30% {
+        top: -25%;
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    90% {
+        top: 0;
+        transform: scale(1.1, 0.8);
+    }
 }
