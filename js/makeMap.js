@@ -374,15 +374,6 @@ function main() {
     for (let i = 0; i <= makeMapItem.height / 50; i++) {
         Item_area.moveTo(0, 50 * i);
         Item_area.lineTo(makeMapItem.width, 50 * i);
-
-        // //線を太く
-        // if(i === ~~(mapItemY / 50)){
-        //     Item_area.lineWidth = 8;
-        //     Item_area.stroke();
-        // }else{
-        //     Item_area.lineWidth = 1;
-        //     Item_area.stroke();
-        // }
     }
     for (let i = 0; i <= makeMapItem.width / 50; i++) {
         Item_area.moveTo(50 * i, 0);
@@ -390,8 +381,6 @@ function main() {
     }
     // 描画
     Item_area.stroke();
-
-
 
 
     //遊ぶを押したら
@@ -402,6 +391,7 @@ function main() {
             if (madePacman[i].janken === janken.gu) {
                 //パックマンがグーだったらグーになる
                 make_map.drawImage(madePacman[i].img_gu, madePacman[i].x, madePacman[i].y,);
+
 
             } else if (madePacman[i].janken === janken.choki) {
                 //パックマンがチョキだったらチョキになる
@@ -674,17 +664,36 @@ $("#makeMapItem").on("click", function (e) {
 
 //マップ領域をクリックしたとき
 $("#makeMapArea").on("click", function (e) {
+    let onlyPacmanFlag = true;
+    let pacmanX=0;
+    let pacmanY=0;
 
+//パックマンがすでに配置されていないか確認をする
+ for (var y = 0; y < map.length; y++) {
+        for (var x = 0; x < map[y].length; x++) {
+            if(map[y][x] === pacmanType.default) {
+                onlyPacmanFlag=false;
+                pacmanX=x;
+                pacmanY=y;
+            }
+        }
+    }
     // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
     var rect = e.target.getBoundingClientRect();
     makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
     makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
 
     //console.log("map[~~(makeMapAreaY/32)][~~(makeMapAreaX/32)] ==" + map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)]);
-
+    
     map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
     map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
- 
+    
+    //パックマンが既に配置済みだったら既存のパックマンを消す
+    if(!onlyPacmanFlag && item[~~(mapItemY / 50)] ===pacmanType.default) {
+        map[pacmanY][pacmanX] = 0;
+        map_buff[pacmanY][pacmanX] = 0;
+    }
+    onlyPacmanFlag=true;
 });
 
 
@@ -726,12 +735,15 @@ $("#makeMapArea").mousedown(function () {
 $("#makeMapArea").on("mousemove", function (e) {
     if (pushing_flag === 1) {
         if ($("makeMapArea").mousedown) {
-            var rect = e.target.getBoundingClientRect();
-            makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
-            makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
-
-            map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
-            map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+            if(item[~~(mapItemY / 50)] !==pacmanType.default){ 
+                var rect = e.target.getBoundingClientRect();
+                makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
+                makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
+    
+                map[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+                map_buff[~~(makeMapAreaY / 32)][~~(makeMapAreaX / 32)] = item[~~(mapItemY / 50)];
+            }
+           
         }
     }
 });
@@ -818,8 +830,14 @@ let notPointFlag = false;
 //遊ぶボタンを押したら
 let pacmanSelector = 0;
 $("#selectPlayButton").on("click", function (e) {
+    //変数初期化→2回目の遊ぶをタップしたときのため
+    pacmanSelector = 0;
+    enemy_guCount = 0;
+    enemy_chokiCount = 0;
+    enemy_paCount = 0;
     changeMakeModeButton.style.display = 'none';
     selectPlay = true;
+    madePacman.length = 0;
 
     //パックマンと敵の数を数える
     for (var y = 0; y < map.length; y++) {
@@ -965,6 +983,7 @@ function select(e) {
         //GAMECLEARモーダルが出ているとき
         if (clearFlag) {
             gameclearForMakeMap.style.display = 'none';
+            changeMakeModeButton.style.display = 'block';
             makeMode = true;
             clearFlag = false;
             //マップの再構築
@@ -979,6 +998,7 @@ function select(e) {
         //GAMEOVERモーダルが出ているとき
         if (gameOverFlag) {
             gameOverForMakeMap.style.display = 'none';
+            changeMakeModeButton.style.display = 'block';
             makeMode = true;
             gameOverFlag = false;
             //マップの再構築
