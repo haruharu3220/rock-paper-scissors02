@@ -865,6 +865,7 @@ let notPointFlag = false;
 //遊ぶボタンを押したら
 let pacmanSelector = 0;
 $("#selectPlayButton").on("click", function (e) {
+    selectPlayButton.style.display = 'none';
     //変数初期化→2回目の遊ぶをタップしたときのため
     pacmanSelector = 0;
     enemy_guCount = 0;
